@@ -1,0 +1,1303 @@
+/* â”€â”€ SECTION LABEL (shared) â”€â”€ */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ember);
+}
+
+.eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  flex-shrink: 0;
+}
+
+/* â”€â”€ GOVERNED BY DESIGN â”€â”€ */
+.governed-section {
+  position: relative;
+  padding: 80px 5%;
+  background: linear-gradient(180deg, #ffffff 0%, #faf9f7 42%, #ffffff 100%);
+  overflow: hidden;
+}
+
+.governed-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.governed-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.governed-blob--1 {
+  width: min(42vw, 480px);
+  height: min(42vw, 480px);
+  top: -12%;
+  right: -6%;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.09) 0%, transparent 70%);
+  animation: governedBlobDrift 22s ease-in-out infinite;
+}
+
+.governed-blob--2 {
+  width: min(36vw, 400px);
+  height: min(36vw, 400px);
+  bottom: -15%;
+  left: -5%;
+  background: radial-gradient(circle, rgba(255, 180, 100, 0.07) 0%, transparent 72%);
+  animation: governedBlobDrift 26s ease-in-out infinite reverse;
+}
+
+@keyframes governedBlobDrift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-12px, 10px);
+  }
+}
+
+.governed-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.governed-header-wrap {
+  position: relative;
+  margin: 0 auto 48px;
+}
+
+.governed-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.governed-header-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.governed-sparkle {
+  z-index: 1;
+  filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.45));
+}
+
+.governed-sparkle--left {
+  left: 12%;
+  top: 10%;
+}
+
+.governed-sparkle--right {
+  right: 12%;
+  top: 18%;
+}
+
+.governed-label,
+.governed-title,
+.governed-intro {
+  position: relative;
+  z-index: 1;
+}
+
+.governed-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.governed-title {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: var(--ash);
+}
+
+.governed-intro {
+  font-size: 15px;
+  color: var(--stone);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 540px;
+}
+
+.governed-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+
+.governed-card {
+  --gov-delay: 0s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #fefefe 100%);
+  border: 1px solid #e8e8e8;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 6px 20px rgba(0, 0, 0, 0.04);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.governed-card:hover {
+  transform: translateY(-3px);
+  border-color: #d8d8d8;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.04),
+    0 14px 32px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 122, 0, 0.06);
+}
+
+.governed-card-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 210px;
+  padding: 10px 10px 8px;
+  background: linear-gradient(180deg, #fcfcfc 0%, #f6f6f6 100%);
+  overflow: visible;
+}
+
+.governed-card-stack {
+  position: relative;
+  width: 96%;
+  height: 188px;
+  margin: 0 auto;
+}
+
+.governed-stack-layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 14px;
+  border: 1px solid #ececec;
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.governed-stack-layer--back {
+  top: 10px;
+  width: 78%;
+  height: 100%;
+  opacity: 0.38;
+  z-index: 0;
+}
+
+.governed-stack-layer--mid {
+  top: 5px;
+  width: 86%;
+  height: 100%;
+  opacity: 0.62;
+  z-index: 1;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+.governed-card-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(105deg, #101010 0%, #0a0a0a 42%, #110a05 72%, #1c1005 100%);
+  border: 1px solid rgba(255, 122, 0, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 4px 14px rgba(0, 0, 0, 0.14);
+  transition:
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.governed-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 70% at 15% 20%, rgba(255, 122, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 75% at 92% 75%, rgba(255, 122, 0, 0.12) 0%, transparent 55%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, transparent 50%, rgba(255, 122, 0, 0.04) 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: govInnerShimmer 8s ease-in-out infinite;
+}
+
+@keyframes govInnerShimmer {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.governed-inner-glow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 122, 0, 0.25) 50%, rgba(255, 160, 80, 0.35) 100%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.governed-card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, transparent 55%, rgba(255, 122, 0, 0.06) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.governed-card:hover .governed-card-inner {
+  border-color: rgba(255, 122, 0, 0.16);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 6px 18px rgba(0, 0, 0, 0.16),
+    0 0 20px rgba(255, 122, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.governed-card:hover .governed-stack-layer--mid {
+  transform: translateX(-50%) translateY(1px);
+}
+
+.governed-card:hover .governed-stack-layer--back {
+  transform: translateX(-50%) translateY(2px);
+}
+
+.gov-visual {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gov-glow-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  color: var(--ember);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 122, 0, 0.16);
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.1);
+  animation: govCoreFloat 4.5s ease-in-out infinite;
+}
+
+.gov-glow-core--sm {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+}
+
+.gov-glow-core--audit {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  animation: none;
+}
+
+@keyframes govCoreFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.gov-svg {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 6px rgba(255, 122, 0, 0.3));
+}
+
+.gov-svg--policy {
+  width: 22px;
+  height: 22px;
+}
+
+.gov-stroke-draw {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: govStrokeDraw 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-stroke-draw--delay {
+  animation-delay: 0.35s;
+}
+
+.gov-stroke-draw--delay2 {
+  animation-delay: 0.55s;
+}
+
+@keyframes govStrokeDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gov-check-draw {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: govStrokeDraw 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s forwards;
+}
+
+.gov-pulse-dot {
+  animation: govDotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes govDotPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.gov-visual--auth {
+  color: var(--ember);
+}
+
+.gov-auth-scene {
+  width: min(78%, 112px);
+  height: auto;
+  overflow: visible;
+}
+
+.gov-auth-shield {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.gov-auth-shield--pulse {
+  opacity: 0;
+  animation: govAuthShieldPulse 3.6s ease-out infinite;
+}
+
+.gov-auth-shield--p1 {
+  animation-delay: 0s;
+}
+
+.gov-auth-shield--p2 {
+  animation-delay: 1.2s;
+}
+
+.gov-auth-shield--p3 {
+  animation-delay: 2.4s;
+}
+
+@keyframes govAuthShieldPulse {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.45;
+    stroke-opacity: 0.5;
+  }
+  70% {
+    opacity: 0.12;
+    stroke-opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.18);
+    opacity: 0;
+    stroke-opacity: 0;
+  }
+}
+
+.gov-auth-ambient {
+  fill: rgba(255, 122, 0, 0.12);
+  filter: blur(8px);
+  animation: govAuthAmbient 3s ease-in-out infinite;
+}
+
+@keyframes govAuthAmbient {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+
+.gov-auth-shield--core {
+  stroke-width: 1.6;
+  animation: govAuthCoreGlow 3s ease-in-out infinite;
+}
+
+@keyframes govAuthCoreGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(255, 122, 0, 0.35));
+    stroke-opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(255, 122, 0, 0.55));
+    stroke-opacity: 1;
+  }
+}
+
+.gov-auth-lock {
+  color: var(--ember);
+  animation: govAuthLockFloat 4s ease-in-out infinite;
+}
+
+.gov-auth-lock-shackle {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: govStrokeDraw 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.gov-auth-lock-body {
+  opacity: 0;
+  animation: govAuthLockBodyIn 0.5s ease-out 0.9s forwards;
+}
+
+@keyframes govAuthLockBodyIn {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes govAuthLockFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+
+.gov-auth-glimmer {
+  stroke: currentColor;
+  opacity: 0;
+  animation: govAuthGlimmer 3.6s ease-in-out infinite;
+}
+
+.gov-auth-glimmer--1 {
+  animation-delay: 0.4s;
+}
+
+.gov-auth-glimmer--2 {
+  animation-delay: 1.6s;
+}
+
+.gov-auth-glimmer--3 {
+  animation-delay: 2.8s;
+}
+
+@keyframes govAuthGlimmer {
+  0%,
+  100% {
+    opacity: 0;
+    stroke-width: 1;
+  }
+  15% {
+    opacity: 0.9;
+    stroke-width: 2;
+  }
+  30% {
+    opacity: 0;
+    stroke-width: 1;
+  }
+}
+
+/* â”€â”€ AUTHENTICATED â€” fingerprint scan + verified check â”€â”€ */
+.gov-fp-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.gov-fingerprint {
+  width: 52px;
+  height: 52px;
+  color: var(--ember);
+  filter: drop-shadow(0 0 7px rgba(255, 122, 0, 0.4));
+  animation: govAuthCoreGlow 3.2s ease-in-out infinite;
+}
+
+.gov-fp-line {
+  stroke-dasharray: 56;
+  stroke-dashoffset: 56;
+  animation: govStrokeDraw 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-fp-1 {
+  animation-delay: 0.05s;
+}
+.gov-fp-2 {
+  animation-delay: 0.15s;
+}
+.gov-fp-3 {
+  animation-delay: 0.25s;
+}
+.gov-fp-4 {
+  animation-delay: 0.35s;
+}
+.gov-fp-5 {
+  animation-delay: 0.45s;
+}
+.gov-fp-6 {
+  animation-delay: 0.55s;
+}
+.gov-fp-7 {
+  animation-delay: 0.65s;
+}
+.gov-fp-8 {
+  animation-delay: 0.75s;
+}
+
+.gov-fp-scan {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 22%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.95), transparent);
+  box-shadow: 0 0 12px rgba(255, 122, 0, 0.6);
+  animation: govFpScan 2.6s ease-in-out infinite;
+}
+
+@keyframes govFpScan {
+  0%,
+  100% {
+    top: 22%;
+    opacity: 0.35;
+  }
+  50% {
+    top: 72%;
+    opacity: 1;
+  }
+}
+
+.gov-fp-check {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #0c0a08;
+  background: var(--ember);
+  box-shadow: 0 2px 8px rgba(255, 122, 0, 0.45);
+  opacity: 0;
+  transform: scale(0.4);
+  animation: govFpCheckIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1s forwards;
+}
+
+.gov-fp-check svg {
+  width: 12px;
+  height: 12px;
+}
+
+@keyframes govFpCheckIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* â”€â”€ TRACEABLE â€” connected lineage chain â”€â”€ */
+.gov-trace-scene {
+  width: min(84%, 118px);
+  height: auto;
+  color: var(--ember);
+  filter: drop-shadow(0 0 6px rgba(255, 122, 0, 0.3));
+}
+
+.gov-trace-draw {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+  animation: govStrokeDraw 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+.gov-trace-flow {
+  stroke-dasharray: 5 112;
+  stroke-dashoffset: 117;
+  opacity: 0.9;
+  animation: govTraceFlow 2.8s linear 1.6s infinite;
+}
+
+@keyframes govTraceFlow {
+  to {
+    stroke-dashoffset: 5;
+  }
+}
+
+.gov-trace-node {
+  opacity: 0;
+  animation: govTraceNodeIn 0.45s ease-out forwards;
+}
+
+.gov-trace-node--1 {
+  animation-delay: 0.3s;
+}
+.gov-trace-node--2 {
+  animation-delay: 0.6s;
+}
+.gov-trace-node--3 {
+  animation-delay: 0.9s;
+}
+.gov-trace-node--4 {
+  animation-delay: 1.2s;
+}
+
+@keyframes govTraceNodeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.gov-trace-node-core {
+  animation: govDotPulse 2.4s ease-in-out infinite;
+}
+
+.gov-ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 122, 0, 0.35);
+  animation: govRipple 3.2s ease-out infinite;
+}
+
+.gov-ripple--1 {
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.gov-ripple--2 {
+  width: 80px;
+  height: 80px;
+  animation-delay: 1.1s;
+}
+
+.gov-ripple--3 {
+  width: 80px;
+  height: 80px;
+  animation-delay: 2.2s;
+}
+
+@keyframes govRipple {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.gov-chart-panel {
+  position: relative;
+  width: 62%;
+  max-width: 180px;
+  padding: 14px 14px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gov-policy-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  height: 64px;
+  margin-bottom: 6px;
+}
+
+.gov-bar {
+  flex: 1;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(180deg, #ff7a00 0%, rgba(255, 122, 0, 0.15) 100%);
+  transform-origin: bottom;
+  box-shadow: 0 0 12px rgba(255, 122, 0, 0.25);
+}
+
+.gov-bar--1 {
+  animation:
+    govBar1 2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards,
+    govBarBreathe 3s ease-in-out 2.2s infinite;
+  height: 0;
+}
+
+.gov-bar--2 {
+  animation:
+    govBar2 2s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards,
+    govBarBreathe 3s ease-in-out 2.5s infinite;
+  height: 0;
+}
+
+.gov-bar--3 {
+  animation:
+    govBar3 2s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards,
+    govBarBreathe 3s ease-in-out 2.8s infinite;
+  height: 0;
+}
+
+.gov-bar--4 {
+  animation:
+    govBar4 2s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards,
+    govBarBreathe 3s ease-in-out 3.1s infinite;
+  height: 0;
+}
+
+@keyframes govBar1 {
+  to {
+    height: 38%;
+  }
+}
+
+@keyframes govBar2 {
+  to {
+    height: 62%;
+  }
+}
+
+@keyframes govBar3 {
+  to {
+    height: 48%;
+  }
+}
+
+@keyframes govBar4 {
+  to {
+    height: 88%;
+  }
+}
+
+@keyframes govBarBreathe {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+.gov-chart-line {
+  width: 100%;
+  height: 28px;
+  overflow: visible;
+  color: var(--ember);
+  opacity: 0.85;
+}
+
+.gov-line-draw {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  animation: govStrokeDraw 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
+.gov-badge-float {
+  position: absolute;
+  bottom: 18px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: var(--ember);
+  background: rgba(12, 12, 12, 0.9);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  box-shadow: 0 2px 12px rgba(255, 122, 0, 0.12);
+  animation: govBadgeFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes govBadgeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.gov-orbit {
+  position: absolute;
+  border: 1px solid rgba(255, 122, 0, 0.12);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.gov-orbit--a {
+  width: 130px;
+  height: 46px;
+  margin: -23px 0 0 -65px;
+  animation: govOrbitSpin 14s linear infinite;
+}
+
+.gov-orbit--b {
+  width: 100px;
+  height: 100px;
+  margin: -50px 0 0 -50px;
+  border-color: rgba(255, 122, 0, 0.08);
+  animation: govOrbitSpin 20s linear infinite reverse;
+}
+
+.gov-orbit--c {
+  width: 72px;
+  height: 72px;
+  margin: -36px 0 0 -36px;
+  border-color: rgba(255, 122, 0, 0.15);
+  animation: govOrbitSpin 10s linear infinite;
+}
+
+.gov-satellite {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 10px rgba(255, 122, 0, 0.8);
+  top: 50%;
+  left: 50%;
+  margin: -3px 0 0 -3px;
+}
+
+.gov-satellite--1 {
+  animation: govSatOrbit1 8s linear infinite;
+}
+
+.gov-satellite--2 {
+  animation: govSatOrbit2 12s linear infinite reverse;
+}
+
+@keyframes govOrbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes govSatOrbit1 {
+  from {
+    transform: rotate(0deg) translateX(52px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(52px) rotate(-360deg);
+  }
+}
+
+@keyframes govSatOrbit2 {
+  from {
+    transform: rotate(0deg) translateX(38px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(38px) rotate(-360deg);
+  }
+}
+
+.gov-hub {
+  animation: govHubPulse 2.5s ease-in-out infinite;
+}
+
+.gov-orbit-path {
+  opacity: 0.5;
+  animation: govPathFade 3s ease-in-out infinite;
+}
+
+.gov-orbit-path--2 {
+  animation-delay: 0.5s;
+}
+
+.gov-orbit-path--3 {
+  animation-delay: 1s;
+}
+
+@keyframes govHubPulse {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes govPathFade {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.gov-audit-frame {
+  position: relative;
+  width: 118px;
+  height: 124px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gov-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(255, 122, 0, 0.55);
+  border-style: solid;
+  animation: govCornerPulse 2.8s ease-in-out infinite;
+}
+
+.gov-corner--tl {
+  top: 0;
+  left: 0;
+  border-width: 2px 0 0 2px;
+  border-radius: 4px 0 0 0;
+}
+
+.gov-corner--tr {
+  top: 0;
+  right: 0;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 4px 0 0;
+  animation-delay: 0.2s;
+}
+
+.gov-corner--bl {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 4px;
+  animation-delay: 0.3s;
+}
+
+.gov-corner--br {
+  bottom: 0;
+  right: 0;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 4px 0;
+  animation-delay: 0.4s;
+}
+
+.gov-audit-shield {
+  position: relative;
+  z-index: 2;
+  width: 72px;
+  height: auto;
+  color: var(--ember, #ff7a00);
+  filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.35));
+}
+
+@keyframes govCornerPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.gov-scan-beam {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.9), transparent);
+  box-shadow: 0 0 16px rgba(255, 122, 0, 0.6);
+  animation: govScan 3s ease-in-out infinite;
+  z-index: 4;
+}
+
+.gov-audit-glow-line {
+  position: absolute;
+  bottom: 8px;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.7), transparent);
+  box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
+  animation: govGlowLine 2.5s ease-in-out infinite;
+}
+
+@keyframes govScan {
+  0%,
+  100% {
+    top: 8%;
+    opacity: 0.4;
+  }
+  50% {
+    top: 88%;
+    opacity: 1;
+  }
+}
+
+@keyframes govGlowLine {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scaleX(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.governed-card-body {
+  padding: 18px 18px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #fefefe 100%);
+  border-top: 1px solid #f0f0f0;
+}
+
+.governed-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ash, #0a0a0a);
+  margin: 0;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.governed-card-desc {
+  font-size: 12px;
+  color: #888888;
+  line-height: 1.62;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 1100px) {
+  .governed-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .governed-section {
+    padding: 60px 5%;
+  }
+
+  .governed-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .governed-header-wrap {
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 1101px) {
+  .gov-glow-core {
+    width: 64px;
+    height: 64px;
+    border-radius: 15px;
+  }
+
+  .gov-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gov-ripple--1,
+  .gov-ripple--2,
+  .gov-ripple--3 {
+    width: 72px;
+    height: 72px;
+  }
+
+  .gov-chart-panel {
+    width: 68%;
+    padding: 12px 14px 8px;
+  }
+
+  .gov-policy-bars {
+    height: 58px;
+    gap: 6px;
+  }
+
+  .gov-orbit--a {
+    width: 110px;
+    height: 40px;
+    margin: -20px 0 0 -55px;
+  }
+
+  .gov-orbit--b {
+    width: 88px;
+    height: 88px;
+    margin: -44px 0 0 -44px;
+  }
+
+  .gov-orbit--c {
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+  }
+
+  .gov-audit-frame {
+    width: 104px;
+    height: 112px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gov-glow-core,
+  .gov-ripple,
+  .gov-auth-shield--pulse,
+  .gov-auth-ambient,
+  .gov-auth-shield--core,
+  .gov-auth-lock,
+  .gov-auth-glimmer,
+  .gov-bar,
+  .gov-satellite,
+  .gov-orbit,
+  .gov-orbit-path,
+  .gov-hub,
+  .gov-scan-beam,
+  .gov-audit-glow-line,
+  .gov-corner,
+  .gov-badge-float,
+  .governed-blob,
+  .governed-card-inner::before,
+  .gov-stroke-draw,
+  .gov-check-draw,
+  .gov-line-draw,
+  .gov-auth-lock-shackle,
+  .gov-fingerprint,
+  .gov-fp-line,
+  .gov-fp-scan,
+  .gov-fp-check,
+  .gov-trace-draw,
+  .gov-trace-flow,
+  .gov-trace-node,
+  .gov-trace-node-core {
+    animation: none !important;
+  }
+
+  .gov-fp-line,
+  .gov-trace-draw {
+    stroke-dashoffset: 0;
+  }
+
+  .gov-fp-check {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .gov-trace-flow {
+    opacity: 0;
+  }
+
+  .gov-trace-node {
+    opacity: 1;
+  }
+
+  .gov-bar--1 {
+    height: 38%;
+  }
+
+  .gov-bar--2 {
+    height: 62%;
+  }
+
+  .gov-bar--3 {
+    height: 48%;
+  }
+
+  .gov-bar--4 {
+    height: 88%;
+  }
+
+  .gov-stroke-draw,
+  .gov-check-draw,
+  .gov-line-draw,
+  .gov-auth-lock-shackle {
+    stroke-dashoffset: 0;
+  }
+
+  .gov-auth-lock-body {
+    opacity: 1;
+    transform: none;
+  }
+
+  .governed-card:hover {
+    transform: none;
+  }
+
+  .governed-card:hover .governed-card-inner {
+    transform: none;
+  }
+}
