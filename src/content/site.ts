@@ -9,6 +9,11 @@ export const siteConfig = {
   },
 };
 
+export const routes = {
+  home: "/",
+  grcSuite: "/suites/grc-suite",
+} as const;
+
 export const navLinks = [
   { label: "Platform", href: "#platform" },
   { label: "Industries", href: "#" },
@@ -29,7 +34,7 @@ export const headerActionLinks = [
 ];
 
 export const navSuites = [
-  { label: "GRC Suite — Governance, Risk & Compliance", href: "#" },
+  { label: "GRC Suite — Governance, Risk & Compliance", href: routes.grcSuite },
   { label: "BOM Suite — Business Operations Mesh", href: "#" },
   { label: "APPcelerate — Build & Run Software Faster", href: "#" },
   { label: "Platform Admin Console", href: "#" },
@@ -79,7 +84,7 @@ export const navSuitesMega = {
       subtitle: "Governance · Risk · Compliance",
       description:
         "Continuous compliance monitoring, audit evidence, and regulatory intelligence — surfacing non-compliance before the regulator does.",
-      href: "#",
+      href: routes.grcSuite,
       image: "/images/domain-outcomes/domain-compliance.png",
       imageAlt: "GRC Suite — compliance and audit visualization",
     },
@@ -249,7 +254,7 @@ export const outcomeFeatureCards = [
     subtitle: "Governance · Risk · Compliance",
     description:
       "Continuous compliance monitoring, audit evidence, and regulatory intelligence — surfacing non-compliance before the regulator does.",
-    ctaHref: "#platform",
+    ctaHref: routes.grcSuite,
     centerLabel: "GRC",
     orbitItems: [
       { label: "CCM", icon: "◎" },
@@ -686,8 +691,238 @@ export const finalCta = {
 };
 
 export const footerLinks = {
-  suites: ["GRC Suite", "BOM Suite", "APPcelerate", "Platform Admin"],
-  platform: ["Continuous Compliance", "Risk Assessment", "KYC Verify", "AI App Builder"],
-  company: ["About Moderor", "Leadership", "Customer Stories", "Partners", "Contact Sales"],
-  resources: ["Documentation", "Blog", "Whitepapers", "Webinars", "Sign In"],
+  suites: [
+    { label: "GRC Suite", href: routes.grcSuite },
+    { label: "BOM Suite", href: "#" },
+    { label: "APPcelerate", href: "#" },
+    { label: "Platform Admin", href: "#" },
+  ],
+  platform: [
+    { label: "Continuous Compliance", href: "#" },
+    { label: "Risk Assessment", href: "#" },
+    { label: "KYC Verify", href: "#" },
+    { label: "AI App Builder", href: "#" },
+  ],
+  company: [
+    { label: "About Moderor", href: "#" },
+    { label: "Leadership", href: "#" },
+    { label: "Customer Stories", href: "#" },
+    { label: "Partners", href: "#" },
+    { label: "Contact Sales", href: "#" },
+  ],
+  resources: [
+    { label: "Documentation", href: "#" },
+    { label: "Blog", href: "#" },
+    { label: "Whitepapers", href: "#" },
+    { label: "Webinars", href: "#" },
+    { label: "Sign In", href: "#" },
+  ],
+};
+
+export const grcSuitePage = {
+  metadata: {
+    title: "GRC Suite — Continuous Governance. Smarter Risk Decisions.",
+    description:
+      "The GRC Suite brings together AI-powered products for governance, risk, compliance, audit, and regulatory operations.",
+  },
+  breadcrumb: [
+    { label: "Home", href: routes.home },
+    { label: "Suites", href: routes.home },
+    { label: "GRC Suite", current: true as const },
+  ],
+  hero: {
+    badge: "GRC Suite · Agent-Native",
+    title: "Continuous Governance.",
+    titleHighlight: "Smarter Risk Decisions.",
+    tagline:
+      "One intelligent suite for governance, risk, compliance, audit, and regulatory operations.",
+    paragraphs: [
+      "The GRC Suite brings together AI-powered products that help organizations continuously monitor compliance, accelerate audits, manage operational and third-party risk, and stay ahead of regulatory change.",
+      "Instead of relying on periodic reviews and disconnected processes, the suite delivers continuous visibility across your governance and risk landscape, enabling teams to detect issues earlier, respond faster, and make informed decisions with confidence.",
+      "AI continuously identifies risks, gathers evidence, and recommends actions, while your experts retain complete control over every critical decision.",
+    ],
+    primaryCta: "Book a Demo",
+    secondaryCta: "Explore Products",
+    productsAnchor: "#products",
+    visual: {
+      shieldImage: "/images/grc-suite/grc-hero-shield.png",
+      shieldAlt: "Global GRC governance shield with digital compliance network",
+      trendCard: {
+        label: "Compliance readiness",
+        value: "95%",
+        trend: "+12%",
+        trendLabel: "vs last week",
+        period: "Week",
+        tooltip: "95%",
+        days: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        series: [78, 82, 85, 90, 95],
+        highlightIndex: 4,
+      },
+      frameworksCard: {
+        title: "Active frameworks",
+        viewAllLabel: "View all",
+        items: [
+          {
+            name: "ISO 27001 Controls",
+            score: "98% compliant",
+            badge: "ISO",
+            accent: "#ff7a00",
+          },
+          {
+            name: "SOX Financial Controls",
+            score: "94% compliant",
+            badge: "SOX",
+            accent: "#e06d00",
+          },
+        ],
+      },
+      scanChip: "3 controls scanning",
+    },
+  },
+  why: {
+    label: "Why Organizations Need a Modern GRC Suite",
+    text:
+      "Enterprise risk evolves every day, but many organizations still rely on manual reviews, spreadsheets, and point-in-time assessments to manage governance and compliance. The result is delayed risk detection, fragmented visibility, longer audit cycles, and increased regulatory exposure. The GRC Suite replaces reactive processes with continuous monitoring, intelligent automation, and human-governed decision-making, helping organizations move from periodic compliance to continuous assurance.",
+  },
+  products: {
+    label: "One Suite. Eight Intelligent Products.",
+    title: "Every organization faces different",
+    titleHighlight: "governance and compliance challenges.",
+    description:
+      "The GRC Suite brings together specialized products that work seamlessly through a common platform, shared data model, and unified governance framework.",
+    items: [
+      {
+        num: "01",
+        name: "Continuous Compliance Monitoring",
+        description:
+          "Monitor controls in real time to detect compliance gaps before they become audit findings.",
+      },
+      {
+        num: "02",
+        name: "Auditor Workbench",
+        description:
+          "Accelerate internal audits with AI-assisted evidence collection, control validation, and audit-ready documentation.",
+      },
+      {
+        num: "03",
+        name: "Third Party Risk Assessment",
+        description:
+          "Manage third-party risk throughout the supplier lifecycle with AI-powered assessments and continuous risk visibility.",
+      },
+      {
+        num: "04",
+        name: "Smart Alert Triage",
+        description:
+          "Reduce alert fatigue by prioritizing high-risk events and accelerating investigations.",
+      },
+      {
+        num: "05",
+        name: "Regulatory Intelligence",
+        description:
+          "Transform regulatory change into actionable compliance insights with intelligent obligation management.",
+      },
+      {
+        num: "06",
+        name: "AI Branch Audit",
+        description:
+          "Deliver faster, more consistent branch audits through AI-assisted execution and evidence-driven insights.",
+      },
+      {
+        num: "07",
+        name: "Compliance IQ",
+        description:
+          "Move from reactive audit preparation to continuous compliance readiness with automated assessments and real-time visibility.",
+      },
+      {
+        num: "08",
+        name: "Operational Risk Management",
+        description:
+          "Strengthen enterprise resilience with real-time operational risk visibility and intelligent control monitoring.",
+      },
+    ],
+  },
+  outcomes: {
+    label: "Business Outcomes",
+    title: "The GRC Suite helps",
+    titleHighlight: "organizations.",
+    rows: [
+      {
+        left: "Maintain continuous compliance readiness",
+        right: "Reduce audit effort and accelerate audit execution",
+      },
+      {
+        left: "Strengthen governance across the enterprise",
+        right: "Improve operational and regulatory risk visibility",
+      },
+      {
+        left: "Reduce manual effort through AI-powered automation",
+        right: "Increase productivity across audit, risk, and compliance teams",
+      },
+      {
+        left: "Improve regulatory confidence with complete audit trails",
+        right: "Make faster, risk-informed business decisions",
+      },
+    ],
+  },
+  ai: {
+    label: "AI That Works With Your Teams",
+    columns: [
+      {
+        eyebrow: "How It Works",
+        title: "The GRC Suite combines AI automation with human expertise.",
+        paragraphs: [
+          "AI continuously monitors controls, analyzes evidence, identifies risks, and recommends actions.",
+          "Every recommendation is reviewed by the appropriate stakeholder before execution, ensuring transparency, governance, and accountability while maintaining a complete audit trail.",
+        ],
+        closing: "Technology accelerates execution. People remain in control.",
+      },
+      {
+        eyebrow: "The Principle",
+        title: "Agents detect.",
+        titleHighlight: "Humans decide.",
+        titleSuffix: "Always.",
+        paragraphs: [
+          "Every compliance issue, audit finding, policy violation, or operational risk is reviewed by a designated decision-maker before action is taken.",
+          "Every approval, decision, and remediation step is fully traceable, creating a transparent audit trail that regulators and boards can trust.",
+        ],
+        muted: true,
+      },
+    ],
+  },
+  whyChoose: {
+    label: "Why Choose GRC Suite",
+    items: [
+      {
+        name: "Continuous Monitoring",
+        description:
+          "Move beyond periodic assessments with continuous visibility across compliance, operational risk, audits, and regulatory obligations.",
+      },
+      {
+        name: "Unified Governance",
+        description:
+          "Manage audit, compliance, operational risk, regulatory intelligence, and third-party risk through one integrated suite.",
+      },
+      {
+        name: "Faster Decisions",
+        description: "Turn fragmented data into actionable insights with AI-powered intelligence.",
+      },
+      {
+        name: "Human-Governed AI",
+        description:
+          "Maintain complete oversight with built-in approval workflows and end-to-end traceability.",
+      },
+      {
+        name: "Enterprise Ready",
+        description:
+          "Deploy on-premises or in the cloud and integrate seamlessly with your existing enterprise ecosystem.",
+      },
+    ],
+  },
+  finalCta: {
+    title: "Ready to Modernize Governance,",
+    titleHighlight: "Risk and Compliance?",
+    description:
+      "See how the GRC Suite helps organizations replace reactive compliance with continuous governance, intelligent automation, and AI-assisted decision-making.",
+    cta: "Book a Demo",
+  },
 };
