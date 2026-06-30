@@ -1,0 +1,224 @@
+// Content model for the GRC Suite — Auditor Workbench product page.
+// Kept separate from site.ts so the marketing homepage content stays untouched.
+// Presentation lives in src/components/auditor/*, never here.
+
+export const auditorRoute = "/products/auditor-workbench";
+
+export const auditorBreadcrumb = [
+  { label: "Home", href: "/" },
+  { label: "GRC Suite", href: "/" },
+  { label: "Auditor Workbench", href: auditorRoute },
+];
+
+export const auditorHero = {
+  badge: "GRC Suite · Auditor Workbench",
+  titleLine1: "Transform Internal Audits",
+  titleLine2: "into Continuous Assurance",
+  primaryCta: "Book a Demo",
+  secondaryCta: "Explore Capabilities",
+  description:
+    "AI-powered evidence collection and continuous control validation for internal audit teams. Execute audits faster with intelligent, governed workflows. Stay audit-ready year-round with human-in-the-loop assurance.",
+  stat: {
+    num: "572+",
+    label: "Audits under management across regulated enterprises",
+  },
+  // Big faded words scrolling through the dark band beneath the hero.
+  bandMarquee: [
+    "CONTINUOUS ASSURANCE",
+    "AUDIT MANAGEMENT",
+    "EVIDENCE AUTOMATION",
+    "CONTROL VALIDATION",
+  ],
+  bandTagline: "Partnering with leading frameworks to deliver continuous, governed assurance.",
+};
+
+// Sample in-app walkthrough shown inside the device in the hero centre.
+export const auditorApp = {
+  name: "Auditor Workbench",
+  greeting: "Good morning, Auditor",
+  steps: ["Plan", "Collect", "Validate", "Report"],
+};
+
+export const auditorStats = {
+  eyebrow: "Results That Matter",
+  note: "Based on Auditor Workbench implementation outcomes.",
+  metrics: [
+    { value: "95", suffix: "%", label: "Faster Audit Readiness" },
+    { value: "90", suffix: "%", label: "Reduction in Compliance Overhead" },
+    { value: "80", suffix: "%", label: "Faster Risk Response" },
+    { value: "Higher", suffix: "", label: "Accuracy Across Control Functions" },
+  ],
+};
+
+export const auditorNarrative = {
+  eyebrow: "Manual Audits Can't Keep Up",
+  problem: [
+    "Internal audit teams are expected to deliver greater assurance with fewer resources — while managing expanding regulations, growing audit scope, and increasing operational risk.",
+    "Yet most audits still depend on spreadsheets, emails, screenshots, and manual evidence collection — slowing execution and limiting visibility into organizational risk.",
+    "Auditor Workbench replaces fragmented audit processes with AI-powered execution that improves efficiency, consistency, and governance.",
+  ],
+  solutionHeadLead: "Audit Smarter.",
+  solutionHeadHighlight: "Not Harder.",
+  solution: [
+    "Auditor Workbench automates the entire audit lifecycle — from planning and evidence collection to control validation, issue management, remediation, and reporting.",
+    "AI handles repetitive audit activities while auditors retain complete ownership of every review, approval, and decision.",
+    "The result is faster audits, stronger controls, and continuous assurance.",
+  ],
+  ledger: [
+    { phase: "Plan", state: "Scheduled" },
+    { phase: "Collect Evidence", state: "Automated" },
+    { phase: "Validate Controls", state: "Continuous" },
+    { phase: "Report", state: "Audit-ready" },
+  ],
+};
+
+export const auditorOutcomes = {
+  eyebrow: "Business Outcomes That Drive Value",
+  title: "Outcomes the board can measure.",
+  cards: [
+    {
+      icon: "Zap",
+      name: "Faster Audit Execution",
+      desc: "Reduce audit cycles with AI-powered evidence collection and intelligent automation.",
+    },
+    {
+      icon: "BadgeCheck",
+      name: "Better Audit Quality",
+      desc: "Standardize audit planning, execution, and reporting across every engagement.",
+    },
+    {
+      icon: "ShieldCheck",
+      name: "Stronger Control Assurance",
+      desc: "Continuously validate controls and identify issues before they become audit findings.",
+    },
+    {
+      icon: "Users",
+      name: "More Productive Teams",
+      desc: "Free auditors from repetitive activities so they can focus on strategic risk analysis.",
+    },
+    {
+      icon: "TriangleAlert",
+      name: "Reduced Compliance Risk",
+      desc: "Improve audit readiness by proactively identifying control gaps and remediation priorities.",
+    },
+    {
+      icon: "GitBranch",
+      name: "End-to-End Traceability",
+      desc: "Maintain a complete audit trail across every audit, finding, approval, and remediation.",
+    },
+  ],
+};
+
+export const auditorCapabilities = {
+  eyebrow: "Everything Your Audit Team Needs",
+  title: "One workbench for the whole audit lifecycle.",
+  cards: [
+    {
+      icon: "FileSearch",
+      name: "AI-Assisted Evidence Collection",
+      desc: "Automatically gather evidence from enterprise systems to reduce manual effort and accelerate execution.",
+    },
+    {
+      icon: "CalendarClock",
+      name: "Intelligent Audit Planning",
+      desc: "Plan, schedule, and manage audits from a centralized workspace with complete visibility.",
+    },
+    {
+      icon: "Activity",
+      name: "Continuous Control Validation",
+      desc: "Monitor control effectiveness throughout the lifecycle to catch issues before they become findings.",
+    },
+    {
+      icon: "Workflow",
+      name: "Automated Audit Workflows",
+      desc: "Standardize execution through intelligent workflows that improve consistency and governance.",
+    },
+    {
+      icon: "FileText",
+      name: "Digital Workpapers",
+      desc: "Generate structured, audit-ready documentation automatically for every audit.",
+    },
+    {
+      icon: "Eye",
+      name: "Observation Management",
+      desc: "Capture, prioritize, assign, and monitor audit observations with complete visibility.",
+    },
+    {
+      icon: "ListChecks",
+      name: "Remediation Tracking",
+      desc: "Track corrective actions through governed workflows and validate remediation progress.",
+    },
+    {
+      icon: "BarChart3",
+      name: "Executive Dashboards",
+      desc: "Monitor audit performance, findings, and enterprise risk through real-time insights.",
+    },
+    {
+      icon: "FileCheck2",
+      name: "Audit-Ready Reporting",
+      desc: "Generate standardized audit reports with complete evidence and full traceability.",
+    },
+  ],
+  feature: {
+    icon: "UserCheck",
+    name: "Human-in-the-Loop Governance",
+    desc: "Every AI recommendation is reviewed and approved by an auditor before any action is taken — judgment stays with your team.",
+  },
+};
+
+export const auditorStakeholders = {
+  eyebrow: "Designed for Every Audit Stakeholder",
+  title: "Built for everyone who owns the audit.",
+  cards: [
+    {
+      role: "Chief Audit Executives",
+      desc: "Enterprise-wide visibility into audit performance, control effectiveness, and organizational risk.",
+    },
+    {
+      role: "Internal Audit Teams",
+      desc: "Less manual effort and more time evaluating risks instead of collecting evidence.",
+    },
+    {
+      role: "Risk & Compliance Leaders",
+      desc: "Stronger governance through continuous control monitoring and proactive risk visibility.",
+    },
+    {
+      role: "Business Process Owners",
+      desc: "Collaborate through standardized evidence requests and structured remediation workflows.",
+    },
+  ],
+};
+
+export const auditorPrinciple = {
+  eyebrow: "AI Executes. Auditors Lead.",
+  how: {
+    label: "How It Works",
+    headLead: "AI Executes.",
+    headHighlight: "Auditors Lead.",
+    body: [
+      "AI accelerates execution by collecting evidence, validating controls, and recommending findings.",
+      "Auditors remain in control of every approval, review, and remediation decision — ensuring transparency, accountability, and regulatory confidence across the entire audit lifecycle.",
+    ],
+  },
+  principle: {
+    label: "The Principle",
+    headLines: ["Every decision.", "Every step.", "Fully traceable."],
+    body: [
+      "No AI recommendation becomes an action without auditor review and approval. Every finding, decision, and remediation step is attributed, timestamped, and permanently logged.",
+      "The result is an audit trail that regulators, boards, and external auditors can trust.",
+    ],
+  },
+};
+
+export const auditorFinalCta = {
+  label: "Stop Auditing the Past. Start Assuring the Present.",
+  titleLead: "Ready to Rethink",
+  titleHighlight: "Internal Audit?",
+  description: [
+    "Transform manual audit execution into continuous assurance — with AI-powered",
+    "automation, intelligent workflows, and human-governed decision making.",
+  ],
+  lines: ["Reduce audit effort.", "Strengthen governance.", "Stay audit-ready, every day."],
+  primaryCta: "Book a Demo",
+  secondaryCta: "Contact Sales",
+};
