@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import type { outcomeFeatureCards } from "@/content/site";
 import { OutcomeAppMarquee } from "./OutcomeAppMarquee";
@@ -73,15 +74,27 @@ export function OutcomeFeatureCards({ cards }: { cards: typeof outcomeFeatureCar
                     {card.title}
                   </h3>
                 </div>
-                <a
-                  href={card.ctaHref}
-                  aria-label={`Learn more about ${card.title}`}
-                  className="outcome-card-arrow flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-white text-charcoal transition-all duration-300 group-hover:border-ember/30 group-hover:bg-ember group-hover:text-white"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
-                    <path d="M7 17L17 7M17 7H7M17 7V17" />
-                  </svg>
-                </a>
+                {card.ctaHref.startsWith("/") ? (
+                  <Link
+                    href={card.ctaHref}
+                    aria-label={`Learn more about ${card.title}`}
+                    className="outcome-card-arrow flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-white text-charcoal transition-all duration-300 group-hover:border-ember/30 group-hover:bg-ember group-hover:text-white"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <a
+                    href={card.ctaHref}
+                    aria-label={`Learn more about ${card.title}`}
+                    className="outcome-card-arrow flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border bg-white text-charcoal transition-all duration-300 group-hover:border-ember/30 group-hover:bg-ember group-hover:text-white"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" aria-hidden>
+                      <path d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+                  </a>
+                )}
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-grey-light">{card.description}</p>

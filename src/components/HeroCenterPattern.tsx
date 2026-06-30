@@ -48,20 +48,28 @@ function Sparkle({
   );
 }
 
-export function HeroCenterPattern() {
+export function HeroCenterPattern({
+  showLeftSparkle = true,
+  rightSparkleClassName = "right-[7%] top-[18%]",
+}: {
+  showLeftSparkle?: boolean;
+  rightSparkleClassName?: string;
+}) {
   return (
     <div className="pointer-events-none absolute inset-0 z-[3] overflow-hidden" aria-hidden>
       <div className="hero-ribbed-columns" />
 
+      {showLeftSparkle ? (
+        <Sparkle
+          className="left-[7%] top-[10%]"
+          gradientId="sparkle-orange-1"
+          from="#ff7a00"
+          to="#ffb347"
+          delay={0}
+        />
+      ) : null}
       <Sparkle
-        className="left-[7%] top-[10%]"
-        gradientId="sparkle-orange-1"
-        from="#ff7a00"
-        to="#ffb347"
-        delay={0}
-      />
-      <Sparkle
-        className="right-[7%] top-[18%]"
+        className={rightSparkleClassName}
         gradientId="sparkle-orange-2"
         from="#ffb347"
         to="#ff7a00"
