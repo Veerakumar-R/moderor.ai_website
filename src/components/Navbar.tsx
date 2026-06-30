@@ -18,6 +18,11 @@ import "./navbar.css";
 
 type MegaSidebar = typeof navMegaSidebar;
 
+// Live product routes. Unmapped products fall back to "#" until their pages ship.
+const productRoutes: Record<string, string> = {
+  "Auditor Workbench": "/products/auditor-workbench",
+};
+
 function MegaMenuSuiteMedia({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="mega-menu-suite-media">
@@ -79,7 +84,7 @@ function ProductsMegaMenu() {
             <ul className="products-mega-suite-links">
               {suite.items.map((item) => (
                 <li key={item}>
-                  <Link href="#" className="products-mega-suite-link">
+                  <Link href={productRoutes[item] ?? "#"} className="products-mega-suite-link">
                     <span className="products-mega-suite-link-text">{item}</span>
                     <ArrowUpRight size={13} strokeWidth={2.25} className="products-mega-suite-link-arrow" aria-hidden />
                   </Link>
