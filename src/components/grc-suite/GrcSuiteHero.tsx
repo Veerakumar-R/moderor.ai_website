@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { grcSuitePage, siteConfig } from "@/content/site";
 import { PillButton } from "@/components/ui/PillButton";
 import { HeroCenterPattern } from "@/components/HeroCenterPattern";
@@ -39,12 +40,25 @@ export function GrcSuiteHero() {
             <div className="hero-orange-mesh" aria-hidden />
             <div className="hero-orange-noise" aria-hidden />
             <div className="hero-grain" aria-hidden />
+
+            <div className="grc-hero-flow-accent" aria-hidden>
+              <Image
+                src={hero.visual.accentImage}
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 640px) 70vw, (max-width: 1024px) 52vw, 680px"
+                className="grc-hero-flow-accent-image"
+              />
+            </div>
+
             <div className="absolute inset-0 z-[2] bg-gradient-to-br from-[#ff7a00]/6 via-transparent to-black/28" />
           </div>
+
           <HeroCenterPattern showLeftSparkle={false} rightSparkleClassName="right-[7%] top-[10%]" />
         </div>
 
-        <div className="relative z-10 flex min-h-[520px] flex-col justify-center px-6 py-14 sm:min-h-[560px] sm:px-10 lg:min-h-[640px] lg:px-14">
+        <div className="grc-hero-content relative z-10 flex min-h-[520px] flex-col justify-center px-6 py-14 sm:min-h-[560px] sm:px-10 lg:min-h-[640px] lg:px-14">
           <div className="grc-section-inner w-full">
             <div className="grc-hero-layout">
               <div className="grc-hero-copy">
@@ -62,26 +76,22 @@ export function GrcSuiteHero() {
                   </span>
                 </h1>
 
-                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white">
+                <p className="mt-5 max-w-2xl text-[15px] font-normal leading-relaxed text-white">
                   {hero.tagline}
                 </p>
 
                 <div className="mt-6 space-y-4">
-                  {hero.paragraphs.map((paragraph, index) => (
+                  {hero.paragraphs.map((paragraph) => (
                     <p
                       key={paragraph.slice(0, 32)}
-                      className="max-w-2xl text-[15px] leading-relaxed text-white"
+                      className="max-w-2xl text-[15px] font-normal leading-relaxed text-white"
                     >
-                      {index === hero.paragraphs.length - 1 ? (
-                        <strong>{paragraph}</strong>
-                      ) : (
-                        paragraph
-                      )}
+                      {paragraph}
                     </p>
                   ))}
                 </div>
 
-                <div className="mt-9 flex flex-wrap items-center gap-3">
+                <div className="mt-10 flex flex-wrap items-center gap-3 sm:mt-11">
                   <PillButton href="#" variant="orange" showArrow>
                     {siteConfig.cta.primary}
                   </PillButton>
