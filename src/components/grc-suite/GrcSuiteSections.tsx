@@ -8,6 +8,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { GrcSuiteProductsSection } from "./GrcSuiteProductsSection";
 import { GrcSuiteOutcomesSection } from "./GrcSuiteOutcomesSection";
+import { GrcSuiteHowItWorksSection } from "./GrcSuiteHowItWorksSection";
 import { GrcSuiteAiSection } from "./GrcSuiteAiSection";
 import "@/components/governed.css";
 import "./grc-suite.css";
@@ -80,14 +81,12 @@ export function GrcSuiteWhySection() {
       <div className="grc-section-inner grc-why-content">
         <ScrollReveal duration={0.85}>
           <div className="grc-why-grid">
-            <div className="grc-why-tag-col">
-              <p className="grc-suite-tag">
+            <div className="grc-why-head-col">
+              <p className="grc-suite-tag grc-why-tag">
                 <span className="grc-suite-tag-dot" aria-hidden />
                 {why.tag}
               </p>
-            </div>
 
-            <div className="grc-why-headline-col">
               <h2 className="grc-suite-headline" id="grc-why-heading">
                 <span className="grc-suite-headline-lead">{why.title}</span>
                 <span className="grc-suite-headline-accent">{why.titleHighlight}</span>
@@ -108,5 +107,5 @@ export function GrcSuiteWhySection() {
   );
 }
 
-export { GrcSuiteProductsSection, GrcSuiteOutcomesSection, GrcSuiteAiSection };
+export { GrcSuiteProductsSection, GrcSuiteOutcomesSection, GrcSuiteAiSection, GrcSuiteHowItWorksSection };
 export { GrcSuiteWhyChooseSection } from "./GrcSuiteWhyChooseSection";

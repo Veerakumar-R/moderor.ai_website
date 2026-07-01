@@ -69,7 +69,7 @@ export function GrcSuiteProductsSection() {
   return (
     <section
       id="products"
-      className="grc-products-section problem-section relative"
+      className="grc-products-section problem-section relative px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
     >
       <div className="problem-mesh" aria-hidden />
 

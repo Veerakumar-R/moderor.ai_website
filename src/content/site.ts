@@ -735,17 +735,13 @@ export const grcSuitePage = {
     title: "Continuous Governance.",
     titleHighlight: "Smarter Risk Decisions.",
     tagline:
-      "One intelligent suite for governance, risk, compliance, audit, and regulatory operations.",
-    paragraphs: [
-      "The GRC Suite brings together AI-powered products that help organizations continuously monitor compliance, accelerate audits, manage operational and third-party risk, and stay ahead of regulatory change.",
-    ],
+      "One intelligent suite for governance, risk, compliance, audit, and regulatory operations. The GRC Suite brings together AI-powered products that help organizations continuously monitor compliance, accelerate audits, manage operational and third-party risk, and stay ahead of regulatory change.",
     primaryCta: "Book a Demo",
     secondaryCta: "Explore Products",
     productsAnchor: "#products",
     visual: {
       shieldImage: "/images/grc-suite/grc-hero-shield.png",
       shieldAlt: "Global GRC governance shield with digital compliance network",
-      accentImage: "/images/grc-suite/grc-hero-flow-lines.png",
       trendCard: {
         label: "Compliance readiness",
         value: "95%",
@@ -871,7 +867,10 @@ export const grcSuitePage = {
     label: "Human-Governed AI.",
     howItWorks: {
       eyebrow: "How It Works",
-      headline: "The GRC Suite combines AI automation with human expertise.",
+      headline: "The GRC Suite combines",
+      headlineAccent1: "AI automation",
+      headlineConnector: "with",
+      headlineAccent2: "human expertise",
       steps: [
         {
           label: "AI Automates",
@@ -894,9 +893,12 @@ export const grcSuitePage = {
     },
     principle: {
       eyebrow: "The Principle",
-      headline: "Agents detect.",
-      headlineAccent: "Humans decide.",
+      headline: "Agents Detect.",
+      headlineAccent: "Humans Decide.",
       headlineEnd: "Always.",
+      description:
+        "AI surfaces control gaps, evidence issues, and risk signals — but every recommendation routes through your team.",
+      descriptionLine2: "Governed, traceable, and accountable by design.",
       cycle: [
         {
           label: "AI Agents",

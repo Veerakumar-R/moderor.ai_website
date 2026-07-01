@@ -54,7 +54,6 @@ function WhyChooseCard({
 }) {
   const theme = CARD_THEME;
   const Icon = WHY_CHOOSE_ICONS[index] ?? ShieldCheck;
-  const badge = String(index + 1).padStart(2, "0");
 
   return (
     <motion.article
@@ -83,7 +82,6 @@ function WhyChooseCard({
             <span className="grc-why-choose-icon-glow" />
             <Icon className="grc-why-choose-icon" strokeWidth={1.5} />
           </div>
-          <span className="grc-why-choose-badge">{badge}</span>
         </div>
 
         <h3 className="grc-why-choose-title">{item.name}</h3>
@@ -105,7 +103,7 @@ export function GrcSuiteWhyChooseSection() {
       <div className="pilot-mesh" aria-hidden />
       <div className="pilot-grid-bg" aria-hidden />
 
-      <div className="relative z-[1] mx-auto w-full max-w-[1400px]">
+      <div className="grc-section-inner relative z-[1]">
         <ScrollReveal duration={0.85}>
           <div className="pilot-header-wrap">
             <PilotHeaderDeco />

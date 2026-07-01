@@ -218,6 +218,25 @@
   width: 100%;
 }
 
+.final-closing-cta--aside-action .final-closing-cta-lead {
+  gap: 0;
+}
+
+.final-closing-cta--aside-action .final-closing-cta-aside {
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .final-closing-cta--aside-action .final-closing-cta-aside {
+    gap: 1.35rem;
+    padding-top: 0.35rem;
+  }
+
+  .final-closing-cta--aside-action .final-closing-actions {
+    margin-top: 0.15rem;
+  }
+}
+
 .final-closing-btn {
   display: inline-flex;
   align-items: center;

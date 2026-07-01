@@ -31,63 +31,11 @@ const OUTCOME_ICONS: LucideIcon[] = [
   Rocket,
 ];
 
-function buildSpiralPath(
-  cx: number,
-  cy: number,
-  a: number,
-  b: number,
-  maxTheta: number,
-  step = 0.14,
-  startTheta = 0,
-) {
-  let path = "";
-
-  for (let theta = startTheta; theta <= maxTheta + startTheta; theta += step) {
-    const radius = a + b * (theta - startTheta);
-    const x = cx + radius * Math.cos(theta);
-    const y = cy + radius * Math.sin(theta);
-    path += `${theta === startTheta ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`;
-  }
-
-  return path;
-}
-
-const HUB_SPIRAL_PRIMARY = buildSpiralPath(40, 40, 2.5, 2.15, Math.PI * 4.2);
-const HUB_SPIRAL_SECONDARY = buildSpiralPath(40, 40, 2.5, 2.15, Math.PI * 4.2, 0.14, Math.PI);
-
-function OutcomesHubSpiral({ reduceMotion }: { reduceMotion: boolean | null }) {
-  if (reduceMotion) {
-    return (
-      <>
-        <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--outer" />
-        <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--inner" />
-      </>
-    );
-  }
-
+function OutcomesHubRings() {
   return (
     <>
-      <svg className="grc-outcomes-hub-spiral" viewBox="0 0 80 80" aria-hidden>
-        <defs>
-          <linearGradient id="grc-outcomes-spiral-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ff7a00" stopOpacity="0.15" />
-            <stop offset="45%" stopColor="#ff7a00" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#ffd080" stopOpacity="0.25" />
-          </linearGradient>
-        </defs>
-        <g className="grc-outcomes-hub-spiral-rotate grc-outcomes-hub-spiral-rotate--primary">
-          <path className="grc-outcomes-hub-spiral-path" d={HUB_SPIRAL_PRIMARY} />
-        </g>
-        <g className="grc-outcomes-hub-spiral-rotate grc-outcomes-hub-spiral-rotate--secondary">
-          <path
-            className="grc-outcomes-hub-spiral-path grc-outcomes-hub-spiral-path--secondary"
-            d={HUB_SPIRAL_SECONDARY}
-          />
-        </g>
-      </svg>
-      <span className="grc-outcomes-hub-spiral-ring grc-outcomes-hub-spiral-ring--1" />
-      <span className="grc-outcomes-hub-spiral-ring grc-outcomes-hub-spiral-ring--2" />
-      <span className="grc-outcomes-hub-spiral-ring grc-outcomes-hub-spiral-ring--3" />
+      <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--outer" />
+      <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--inner" />
     </>
   );
 }
@@ -118,7 +66,7 @@ export function GrcSuiteOutcomesSection() {
   return (
     <section
       id="grc-outcomes"
-      className="grc-outcomes-section relative border-b border-border px-5 sm:px-[50px]"
+      className="grc-outcomes-section relative border-b border-border px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
     >
       <div className="grc-section-inner">
         <div className="grc-outcomes-card relative w-full rounded-[28px] lg:rounded-[36px]">
@@ -171,8 +119,8 @@ export function GrcSuiteOutcomesSection() {
 
                 <div className="grc-outcomes-panel-hub" aria-hidden>
                   <span className="grc-outcomes-panel-hub-glow" />
-                  <OutcomesHubSpiral reduceMotion={reduceMotion} />
-                  <Fingerprint size={30} strokeWidth={1.5} className="grc-outcomes-panel-hub-icon" />
+                  <OutcomesHubRings />
+                  <Fingerprint size={40} strokeWidth={1.5} className="grc-outcomes-panel-hub-icon" />
                 </div>
 
                 <div className="grc-outcomes-panel-grid">

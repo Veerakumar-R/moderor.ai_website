@@ -17,18 +17,31 @@ const FOOTER_COLUMNS = [
 
 type FinalCTAProps = {
   label?: string;
+  showLabel?: boolean;
+  ctaBelowDescription?: boolean;
   title?: string;
   titleHighlight?: string;
   description?: string | readonly string[];
+  ctaText?: string;
 };
 
 export function FinalCTA({
   label = finalCta.label,
+  showLabel = true,
+  ctaBelowDescription = false,
   title = finalCta.title,
   titleHighlight = finalCta.titleHighlight,
   description = finalCta.description,
+  ctaText = siteConfig.cta.primary,
 }: FinalCTAProps = {}) {
   const descriptionLines = Array.isArray(description) ? description : [description];
+  const ctaButton = (
+    <div className="final-closing-actions">
+      <PillButton href="#" variant="orange" showArrow>
+        {ctaText}
+      </PillButton>
+    </div>
+  );
 
   return (
     <section className="final-closing-section" aria-labelledby="final-closing-heading">
@@ -42,8 +55,10 @@ export function FinalCTA({
 
         <div className="final-closing-shell-inner">
           <ScrollReveal duration={0.85}>
-            <div className="final-closing-cta">
-              <p className="final-closing-label">{label}</p>
+            <div
+              className={`final-closing-cta${ctaBelowDescription ? " final-closing-cta--aside-action" : ""}`}
+            >
+              {showLabel && label ? <p className="final-closing-label">{label}</p> : null}
 
               <div className="final-closing-cta-top">
                 <div className="final-closing-cta-lead">
@@ -53,11 +68,7 @@ export function FinalCTA({
                       {titleHighlight}
                     </span>
                   </h2>
-                  <div className="final-closing-actions">
-                    <PillButton href="#" variant="orange" showArrow>
-                      {siteConfig.cta.primary}
-                    </PillButton>
-                  </div>
+                  {!ctaBelowDescription ? ctaButton : null}
                 </div>
 
                 <div className="final-closing-cta-aside">
@@ -68,6 +79,7 @@ export function FinalCTA({
                       </span>
                     ))}
                   </p>
+                  {ctaBelowDescription ? ctaButton : null}
                 </div>
               </div>
             </div>
