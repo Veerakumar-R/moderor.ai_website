@@ -15,7 +15,6 @@ import {
 import { grcSuitePage } from "@/content/site";
 import { MagicCard } from "@/components/ui/magic-card";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 import "@/components/problem.css";
 import "./grc-suite.css";
 
@@ -45,9 +44,9 @@ function ProductsHeadline() {
   const { title, titleHighlight } = products;
 
   return (
-    <h2 className="grc-products-headline text-[clamp(1.65rem,2.8vw,2.5rem)] leading-[1.18] font-semibold tracking-tight text-charcoal">
-      {title}{" "}
-      <span className="text-ember">{titleHighlight}</span>
+    <h2 className="grc-suite-headline grc-products-headline">
+      <span className="grc-suite-headline-lead">{title}</span>
+      <span className="grc-suite-headline-accent">{titleHighlight}</span>
     </h2>
   );
 }
@@ -70,13 +69,16 @@ export function GrcSuiteProductsSection() {
   return (
     <section
       id="products"
-      className="grc-products-section problem-section relative"
+      className="grc-products-section problem-section relative px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
     >
       <div className="problem-mesh" aria-hidden />
 
       <div className="relative z-[1] grc-section-inner">
         <ScrollReveal duration={0.85}>
-          <SectionLabel>{products.label}</SectionLabel>
+          <p className="grc-suite-tag">
+            <span className="grc-suite-tag-dot" aria-hidden />
+            {products.label}
+          </p>
         </ScrollReveal>
 
         <div className="grc-products-header">
@@ -85,7 +87,7 @@ export function GrcSuiteProductsSection() {
           </ScrollReveal>
 
           <ScrollReveal duration={0.85} delay={0.18} className="min-w-0 lg:pt-1">
-            <p className="text-base leading-relaxed text-grey-light lg:text-[17px] lg:leading-[1.7]">
+            <p className="text-base font-normal leading-relaxed text-grey-light lg:text-[17px] lg:leading-[1.7]">
               {products.description}
             </p>
           </ScrollReveal>
@@ -103,13 +105,17 @@ export function GrcSuiteProductsSection() {
                 className="h-full"
               >
                 <MagicCard
-                  gradientColor="rgba(255, 122, 0, 0.16)"
+                  gradientColor="rgba(255, 122, 0, 0.22)"
                   gradientFrom="#ff7a00"
-                  gradientTo="#ffd080"
-                  gradientOpacity={0.7}
+                  gradientTo="#ffb347"
+                  gradientOpacity={0.55}
                   gradientSize={240}
-                  className="outcome-feature-card group h-full rounded-[20px]"
+                  surfaceColor="#0b0b0b"
+                  borderFallback="rgba(255, 122, 0, 0.14)"
+                  className="grc-product-card outcome-feature-card group h-full rounded-[20px]"
                 >
+                  <span className="grc-product-card-surface" aria-hidden />
+                  <span className="grc-product-card-glow" aria-hidden />
                   <div className="relative z-[1] flex h-full flex-1 flex-col p-6 lg:p-7">
                     <div className="grc-product-card-arrow">
                       <ProductCardArrow name={product.name} />
@@ -118,7 +124,7 @@ export function GrcSuiteProductsSection() {
                     <h3 className="mt-4 pr-12 text-lg font-bold tracking-tight text-charcoal lg:text-xl">
                       {product.name}
                     </h3>
-                    <p className="mt-4 text-sm leading-relaxed text-grey-light">{product.description}</p>
+                    <p className="mt-4 text-sm font-normal leading-relaxed text-grey-light">{product.description}</p>
                   </div>
                 </MagicCard>
               </ScrollReveal>

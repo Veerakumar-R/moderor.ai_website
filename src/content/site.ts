@@ -735,12 +735,7 @@ export const grcSuitePage = {
     title: "Continuous Governance.",
     titleHighlight: "Smarter Risk Decisions.",
     tagline:
-      "One intelligent suite for governance, risk, compliance, audit, and regulatory operations.",
-    paragraphs: [
-      "The GRC Suite brings together AI-powered products that help organizations continuously monitor compliance, accelerate audits, manage operational and third-party risk, and stay ahead of regulatory change.",
-      "Instead of relying on periodic reviews and disconnected processes, the suite delivers continuous visibility across your governance and risk landscape, enabling teams to detect issues earlier, respond faster, and make informed decisions with confidence.",
-      "AI continuously identifies risks, gathers evidence, and recommends actions, while your experts retain complete control over every critical decision.",
-    ],
+      "One intelligent suite for governance, risk, compliance, audit, and regulatory operations. The GRC Suite brings together AI-powered products that help organizations continuously monitor compliance, accelerate audits, manage operational and third-party risk, and stay ahead of regulatory change.",
     primaryCta: "Book a Demo",
     secondaryCta: "Explore Products",
     productsAnchor: "#products",
@@ -780,9 +775,13 @@ export const grcSuitePage = {
     },
   },
   why: {
-    label: "Why Organizations Need a Modern GRC Suite",
-    text:
-      "Enterprise risk evolves every day, but many organizations still rely on manual reviews, spreadsheets, and point-in-time assessments to manage governance and compliance. The result is delayed risk detection, fragmented visibility, longer audit cycles, and increased regulatory exposure. The GRC Suite replaces reactive processes with continuous monitoring, intelligent automation, and human-governed decision-making, helping organizations move from periodic compliance to continuous assurance.",
+    tag: "GRC Suite",
+    title: "Why organizations need a",
+    titleHighlight: "modern GRC suite",
+    paragraphs: [
+      "Enterprise risk evolves every day, but many organizations still rely on manual reviews, spreadsheets, and point-in-time assessments to manage governance and compliance. The result is delayed risk detection, fragmented visibility, longer audit cycles, and increased regulatory exposure.",
+      "The GRC Suite replaces reactive processes with continuous monitoring, intelligent automation, and human-governed decision-making, helping organizations move from periodic compliance to continuous assurance.",
+    ],
   },
   products: {
     label: "One Suite. Eight Intelligent Products.",
@@ -865,32 +864,73 @@ export const grcSuitePage = {
     ],
   },
   ai: {
-    label: "AI That Works With Your Teams",
-    columns: [
-      {
-        eyebrow: "How It Works",
-        title: "The GRC Suite combines AI automation with human expertise.",
-        paragraphs: [
-          "AI continuously monitors controls, analyzes evidence, identifies risks, and recommends actions.",
-          "Every recommendation is reviewed by the appropriate stakeholder before execution, ensuring transparency, governance, and accountability while maintaining a complete audit trail.",
-        ],
-        closing: "Technology accelerates execution. People remain in control.",
-      },
-      {
-        eyebrow: "The Principle",
-        title: "Agents detect.",
-        titleHighlight: "Humans decide.",
-        titleSuffix: "Always.",
-        paragraphs: [
-          "Every compliance issue, audit finding, policy violation, or operational risk is reviewed by a designated decision-maker before action is taken.",
-          "Every approval, decision, and remediation step is fully traceable, creating a transparent audit trail that regulators and boards can trust.",
-        ],
-        muted: true,
-      },
-    ],
+    label: "Human-Governed AI.",
+    howItWorks: {
+      eyebrow: "How It Works",
+      headline: "The GRC Suite combines",
+      headlineAccent1: "AI automation",
+      headlineConnector: "with",
+      headlineAccent2: "human expertise",
+      steps: [
+        {
+          label: "AI Automates",
+          description:
+            "Continuously monitors controls, analyzes evidence, identifies risks, and recommends actions.",
+        },
+        {
+          label: "Humans Review",
+          description:
+            "Every recommendation is reviewed by the appropriate stakeholder before execution.",
+        },
+        {
+          label: "Execute & Track",
+          description:
+            "Approved actions are executed and fully traceable, maintaining a complete audit trail.",
+        },
+      ],
+      closingLead: "Technology accelerates execution.",
+      closingHighlight: "People remain in control.",
+    },
+    principle: {
+      eyebrow: "The Principle",
+      headline: "Agents Detect.",
+      headlineAccent: "Humans Decide.",
+      headlineEnd: "Always.",
+      description:
+        "AI surfaces control gaps, evidence issues, and risk signals — but every recommendation routes through your team.",
+      descriptionLine2: "Governed, traceable, and accountable by design.",
+      cycle: [
+        {
+          label: "AI Agents",
+          sub: "Detect. Analyze. Recommend.",
+        },
+        {
+          label: "Humans Decide",
+          sub: "Review. Decide. Approve.",
+        },
+        {
+          label: "Accountable Actions",
+          sub: "Execute. Track. Be accountable.",
+        },
+      ],
+      cards: [
+        {
+          description:
+            "AI continuously surfaces control gaps, evidence issues, and risk signals across your GRC program — before they become audit findings.",
+        },
+        {
+          description:
+            "Every recommendation routes through governed approval workflows with full traceability, stakeholder accountability, and immutable audit records.",
+        },
+      ],
+    },
   },
   whyChoose: {
     label: "Why Choose GRC Suite",
+    title: "One platform.",
+    titleHighlight: "Complete governance.",
+    description:
+      "Continuous monitoring, unified workflows, and human-governed AI — built for enterprise GRC teams who need speed without sacrificing control.",
     items: [
       {
         name: "Continuous Monitoring",

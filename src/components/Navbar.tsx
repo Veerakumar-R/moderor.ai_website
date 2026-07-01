@@ -266,7 +266,7 @@ export function Navbar() {
             <NavMegaTrigger label="Products" open={productsMenu.open} onToggle={toggleProductsMenu} />
 
             {headerNavLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="nav-link">
+              <Link key={link.label} href={link.href} className="nav-link">
                 {link.label}
               </Link>
             ))}
@@ -312,7 +312,7 @@ export function Navbar() {
             <div className="flex flex-col gap-1 px-5 py-4">
               {headerNavLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="py-2.5 text-grey hover:text-charcoal"
