@@ -15,7 +15,34 @@ const FOOTER_COLUMNS = [
   { title: "Resources", links: footerLinks.resources },
 ] as const;
 
-export function FinalCTA() {
+type FinalCTAProps = {
+  label?: string;
+  showLabel?: boolean;
+  ctaBelowDescription?: boolean;
+  title?: string;
+  titleHighlight?: string;
+  description?: string | readonly string[];
+  ctaText?: string;
+};
+
+export function FinalCTA({
+  label = finalCta.label,
+  showLabel = true,
+  ctaBelowDescription = false,
+  title = finalCta.title,
+  titleHighlight = finalCta.titleHighlight,
+  description = finalCta.description,
+  ctaText = siteConfig.cta.primary,
+}: FinalCTAProps = {}) {
+  const descriptionLines = Array.isArray(description) ? description : [description];
+  const ctaButton = (
+    <div className="final-closing-actions">
+      <PillButton href="#" variant="orange" showArrow>
+        {ctaText}
+      </PillButton>
+    </div>
+  );
+
   return (
     <section className="final-closing-section" aria-labelledby="final-closing-heading">
       <div className="final-closing-shell">
@@ -28,35 +55,31 @@ export function FinalCTA() {
 
         <div className="final-closing-shell-inner">
           <ScrollReveal duration={0.85}>
-            <div className="final-closing-cta">
-              <p className="final-closing-label">{finalCta.label}</p>
+            <div
+              className={`final-closing-cta${ctaBelowDescription ? " final-closing-cta--aside-action" : ""}`}
+            >
+              {showLabel && label ? <p className="final-closing-label">{label}</p> : null}
 
               <div className="final-closing-cta-top">
                 <div className="final-closing-cta-lead">
                   <h2 id="final-closing-heading" className="final-closing-headline">
-                    {finalCta.title}{" "}
+                    {title}{" "}
                     <span className="final-closing-headline-accent text-accent-gradient">
-                      {finalCta.titleHighlight}
+                      {titleHighlight}
                     </span>
                   </h2>
+                  {!ctaBelowDescription ? ctaButton : null}
                 </div>
 
                 <div className="final-closing-cta-aside">
                   <p className="final-closing-desc">
-                    {finalCta.description.map((line) => (
+                    {descriptionLines.map((line) => (
                       <span key={line} className="final-closing-desc-line">
                         {line}
                       </span>
                     ))}
                   </p>
-                  <div className="final-closing-actions">
-                    <PillButton href="#" variant="orange" showArrow>
-                      {siteConfig.cta.primary}
-                    </PillButton>
-                    <PillButton href="#" variant="outline" showArrow>
-                      {siteConfig.cta.secondary}
-                    </PillButton>
-                  </div>
+                  {ctaBelowDescription ? ctaButton : null}
                 </div>
               </div>
             </div>

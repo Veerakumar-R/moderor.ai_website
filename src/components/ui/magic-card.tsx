@@ -12,6 +12,8 @@ interface MagicCardProps {
   gradientOpacity?: number;
   gradientFrom?: string;
   gradientTo?: string;
+  surfaceColor?: string;
+  borderFallback?: string;
 }
 
 export function MagicCard({
@@ -22,6 +24,8 @@ export function MagicCard({
   gradientOpacity = 0.65,
   gradientFrom = "#ff7a00",
   gradientTo = "#ffc080",
+  surfaceColor = "#ffffff",
+  borderFallback = "rgba(232, 232, 232, 1)",
 }: MagicCardProps) {
   const mouseX = useMotionValue(-gradientSize);
   const mouseY = useMotionValue(-gradientSize);
@@ -50,11 +54,11 @@ export function MagicCard({
   }, [reset]);
 
   const borderBackground = useMotionTemplate`
-    linear-gradient(#ffffff 0 0) padding-box,
+    linear-gradient(${surfaceColor} 0 0) padding-box,
     radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px,
       ${gradientFrom},
       ${gradientTo},
-      rgba(232, 232, 232, 1) 100%
+      ${borderFallback} 100%
     ) border-box
   `;
 

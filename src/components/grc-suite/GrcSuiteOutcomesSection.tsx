@@ -1,7 +1,18 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import { Check } from "lucide-react";
+import {
+  ClipboardCheck,
+  Eye,
+  Fingerprint,
+  Rocket,
+  Scale,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
 import { grcSuitePage } from "@/content/site";
 import DotGrid from "@/components/DotGrid";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -9,45 +20,53 @@ import "./grc-suite.css";
 
 const { outcomes } = grcSuitePage;
 
-function OutcomeCell({ label }: { label: string }) {
+const OUTCOME_ICONS: LucideIcon[] = [
+  ShieldCheck,
+  ClipboardCheck,
+  Scale,
+  Eye,
+  Sparkles,
+  TrendingUp,
+  Target,
+  Rocket,
+];
+
+function OutcomesHubRings() {
   return (
     <>
-      <span className="grc-outcomes-check" aria-hidden>
-        <Check size={15} strokeWidth={2.25} />
-      </span>
-      <span className="grc-outcomes-item-text">{label}</span>
+      <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--outer" />
+      <span className="grc-outcomes-panel-hub-ring grc-outcomes-panel-hub-ring--inner" />
     </>
   );
 }
 
-function OutcomeRow({
-  left,
-  right,
-  index,
+function OutcomeQuadrant({
+  label,
+  icon: Icon,
+  accent,
 }: {
-  left: string;
-  right: string;
-  index: number;
+  label: string;
+  icon: LucideIcon;
+  accent?: boolean;
 }) {
   return (
-    <ScrollReveal duration={0.65} delay={0.06 + index * 0.06} className="grc-outcomes-grid-row">
-      <div className="grc-outcomes-grid-item" role="listitem">
-        <OutcomeCell label={left} />
+    <article className={`grc-outcomes-quadrant${accent ? " grc-outcomes-quadrant--accent" : ""}`}>
+      <div className="grc-outcomes-quadrant-icon" aria-hidden>
+        <Icon size={20} strokeWidth={1.65} />
       </div>
-      <div className="grc-outcomes-grid-item" role="listitem">
-        <OutcomeCell label={right} />
-      </div>
-    </ScrollReveal>
+      <h3 className="grc-outcomes-quadrant-title">{label}</h3>
+    </article>
   );
 }
 
 export function GrcSuiteOutcomesSection() {
   const reduceMotion = useReducedMotion();
+  const allItems = outcomes.rows.flatMap((row) => [row.left, row.right]);
 
   return (
     <section
       id="grc-outcomes"
-      className="grc-outcomes-section relative border-b border-border px-5 pt-8 pb-20 sm:px-[50px] sm:pt-10 sm:pb-24 lg:pt-12 lg:pb-28"
+      className="grc-outcomes-section relative border-b border-border px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
     >
       <div className="grc-section-inner">
         <div className="grc-outcomes-card relative w-full rounded-[28px] lg:rounded-[36px]">
@@ -79,21 +98,43 @@ export function GrcSuiteOutcomesSection() {
 
           <div className="grc-outcomes-card-content relative z-[1]">
             <ScrollReveal duration={0.85}>
-              <div className="grc-outcomes-eyebrow">
-                <span className="grc-outcomes-eyebrow-dot" />
-                {outcomes.label}
+              <div className="grc-outcomes-header">
+                <div className="grc-outcomes-eyebrow">
+                  <span className="grc-outcomes-eyebrow-dot" />
+                  {outcomes.label}
+                </div>
+                <h2 className="grc-outcomes-title">
+                  {outcomes.title}{" "}
+                  <span className="grc-outcomes-title-accent">{outcomes.titleHighlight}</span>
+                </h2>
               </div>
-              <h2 className="grc-outcomes-title">
-                {outcomes.title}{" "}
-                <span className="text-accent-gradient">{outcomes.titleHighlight}</span>
-              </h2>
             </ScrollReveal>
 
-            <div className="grc-outcomes-grid" role="list">
-              {outcomes.rows.map((row, index) => (
-                <OutcomeRow key={row.left} left={row.left} right={row.right} index={index} />
-              ))}
-            </div>
+            <ScrollReveal duration={0.9} delay={0.35}>
+              <div className="grc-outcomes-panel">
+                <div className="grc-outcomes-panel-lines" aria-hidden>
+                  <span className="grc-outcomes-panel-line grc-outcomes-panel-line--v" />
+                  <span className="grc-outcomes-panel-line grc-outcomes-panel-line--h" />
+                </div>
+
+                <div className="grc-outcomes-panel-hub" aria-hidden>
+                  <span className="grc-outcomes-panel-hub-glow" />
+                  <OutcomesHubRings />
+                  <Fingerprint size={40} strokeWidth={1.5} className="grc-outcomes-panel-hub-icon" />
+                </div>
+
+                <div className="grc-outcomes-panel-grid">
+                  {allItems.map((label, index) => {
+                    const Icon = OUTCOME_ICONS[index] ?? ShieldCheck;
+                    const accent = index % 4 === 0 || index % 4 === 3;
+
+                    return (
+                      <OutcomeQuadrant key={label} label={label} icon={Icon} accent={accent} />
+                    );
+                  })}
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </div>

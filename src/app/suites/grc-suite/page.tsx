@@ -5,7 +5,7 @@ import { GrcSuiteHero } from "@/components/grc-suite/GrcSuiteHero";
 import {
   GrcSuiteAiSection,
   GrcSuiteBreadcrumb,
-  GrcSuiteFinalCta,
+  GrcSuiteHowItWorksSection,
   GrcSuiteOutcomesSection,
   GrcSuiteProductsSection,
   GrcSuiteWhyChooseSection,
@@ -33,10 +33,17 @@ export default function GrcSuitePage() {
         <GrcSuiteWhySection />
         <GrcSuiteProductsSection />
         <GrcSuiteOutcomesSection />
+        <GrcSuiteHowItWorksSection />
         <GrcSuiteAiSection />
         <GrcSuiteWhyChooseSection />
-        <GrcSuiteFinalCta />
-        <FinalCTA />
+        <FinalCTA
+          showLabel={false}
+          ctaBelowDescription
+          title={grcSuitePage.finalCta.title}
+          titleHighlight={grcSuitePage.finalCta.titleHighlight}
+          description={grcSuitePage.finalCta.description}
+          ctaText={grcSuitePage.finalCta.cta}
+        />
       </main>
     </>
   );
