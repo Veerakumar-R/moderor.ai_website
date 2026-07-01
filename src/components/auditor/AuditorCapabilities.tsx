@@ -5,6 +5,7 @@ import { auditorCapabilities } from "@/content/auditorWorkbench";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { SectionLabel } from "../ui/SectionLabel";
 import { AuditorIcon } from "./icons";
+import "@/components/problem.css";
 import "./auditor.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -12,13 +13,22 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export function AuditorCapabilities() {
   const { feature } = auditorCapabilities;
   return (
-    <section id="aw-capabilities" className="aw-section" style={{ scrollMarginTop: "var(--site-header-height)" }}>
-      <div className="aw-inner">
+    <section
+      id="aw-capabilities"
+      className="aw-capabilities-section grc-products-section problem-section relative px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
+      style={{ scrollMarginTop: "var(--site-header-height)" }}
+    >
+      <div className="problem-mesh" aria-hidden />
+
+      <div className="relative z-[1] aw-inner">
         <ScrollReveal duration={0.85}>
           <SectionLabel>{auditorCapabilities.eyebrow}</SectionLabel>
         </ScrollReveal>
         <ScrollReveal duration={0.85} delay={0.08}>
-          <h2 className="aw-h2">{auditorCapabilities.title}</h2>
+          <h2 className="aw-h2">
+            {auditorCapabilities.titleLead}
+            <span className="text-ember">{auditorCapabilities.titleHighlight}</span>
+          </h2>
         </ScrollReveal>
 
         <div className="aw-cap-grid">

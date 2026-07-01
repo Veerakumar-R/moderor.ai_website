@@ -31,15 +31,15 @@ export const auditorHero = {
   ],
   bandTagline: "Partnering with leading frameworks to deliver continuous, governed assurance.",
   kpis: [
-    { value: 471, suffix: "", label: "Total Audits", tone: "ember" as const },
-    { value: 385, suffix: "", label: "Pending Audits", tone: "amber" as const },
-    { value: 86, suffix: "", label: "Completed Audits", tone: "grey" as const },
-    { value: 18, suffix: "%", label: "Completion %", tone: "teal" as const, decimals: 1 },
+    { value: 95, suffix: "%", label: "Faster Audit Readiness" },
+    { value: 90, suffix: "%", label: "Reduction in Compliance Overhead" },
+    { value: 80, suffix: "%", label: "Faster Risk Response" },
+    { text: "Higher", suffix: "", label: "Accuracy Across Control Functions" },
   ],
   kpiSection: {
     eyebrow: "Live Platform Metrics",
     titleLead: "Running in your audit program.",
-    titleHighlight: "Measured in real numbers.",
+    titleHighlight: "Results That Matter",
     note: "Live production metrics from Auditor Workbench deployments — not benchmark estimates.",
   },
 };
@@ -63,30 +63,25 @@ export const auditorStats = {
 };
 
 export const auditorNarrative = {
-  eyebrow: "Manual Audits Can't Keep Up",
+  tagline: "Manual Audits Can't Keep Up",
+  titleLead: "Audit Smarter.",
+  titleHighlight: "Not Harder.",
   problem: [
     "Internal audit teams are expected to deliver greater assurance with fewer resources — while managing expanding regulations, growing audit scope, and increasing operational risk.",
     "Yet most audits still depend on spreadsheets, emails, screenshots, and manual evidence collection — slowing execution and limiting visibility into organizational risk.",
     "Auditor Workbench replaces fragmented audit processes with AI-powered execution that improves efficiency, consistency, and governance.",
   ],
-  solutionHeadLead: "Audit Smarter.",
-  solutionHeadHighlight: "Not Harder.",
   solution: [
-    "Auditor Workbench automates the entire audit lifecycle — from planning and evidence collection to control validation, issue management, remediation, and reporting.",
+    "Auditor Workbench automates the entire audit lifecycle, from planning and evidence collection to control validation, issue management, remediation, and reporting.",
     "AI handles repetitive audit activities while auditors retain complete ownership of every review, approval, and decision.",
     "The result is faster audits, stronger controls, and continuous assurance.",
-  ],
-  ledger: [
-    { phase: "Plan", state: "Scheduled" },
-    { phase: "Collect Evidence", state: "Automated" },
-    { phase: "Validate Controls", state: "Continuous" },
-    { phase: "Report", state: "Audit-ready" },
   ],
 };
 
 export const auditorOutcomes = {
   eyebrow: "Business Outcomes That Drive Value",
-  title: "Outcomes the board can measure.",
+  titleLead: "Outcomes the board can ",
+  titleHighlight: "measure.",
   cards: [
     {
       icon: "Zap",
@@ -123,7 +118,8 @@ export const auditorOutcomes = {
 
 export const auditorCapabilities = {
   eyebrow: "Everything Your Audit Team Needs",
-  title: "One workbench for the whole audit lifecycle.",
+  titleLead: "One workbench for the whole ",
+  titleHighlight: "audit lifecycle.",
   cards: [
     {
       icon: "FileSearch",
