@@ -638,6 +638,17 @@
   border: 1px solid rgba(255, 122, 0, 0.16);
 }
 
+.platform-arch-item-icon--logo {
+  background: #f7f5f3;
+  border-color: rgba(20, 16, 12, 0.08);
+}
+
+.platform-arch-item-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .platform-arch-item-name {
   font-size: 13.5px;
   font-weight: 600;
@@ -805,8 +816,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 0.4rem;
+  gap: 0.55rem;
+  padding: 0.8rem 0.4rem;
   border-radius: 10px;
   font-size: 11.5px;
   font-weight: 700;
@@ -815,8 +826,26 @@
   border: 1px solid rgba(255, 184, 120, 0.12);
 }
 
-.platform-arch-deploy-item svg {
-  color: #ff9a44;
+.platform-arch-deploy-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(255, 184, 120, 0.22);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.platform-arch-deploy-logo svg {
+  color: #ff7a00;
+}
+
+.platform-arch-deploy-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
 }
 
 @media (max-width: 1023px) {

@@ -1135,9 +1135,9 @@ export const platformPage = {
         {
           title: "External Agents",
           items: [
-            { name: "MS Copilot", icon: "Bot" },
-            { name: "SF Agentforce", icon: "Bot" },
-            { name: "ServiceNow", icon: "Workflow" },
+            { name: "MS Copilot", logo: "/images/logos/copilot.svg" },
+            { name: "SF Agentforce", logo: "/images/logos/salesforce.svg" },
+            { name: "ServiceNow", logo: "/images/logos/servicenow.svg" },
           ],
         },
       ],
@@ -1149,10 +1149,10 @@ export const platformPage = {
           title: "Model Providers",
           items: [
             { name: "OpenAI", icon: "Atom" },
-            { name: "Claude", icon: "Sparkles" },
-            { name: "Gemini", icon: "Gem" },
-            { name: "Mistral AI", icon: "Wind" },
-            { name: "Hugging Face", icon: "Smile" },
+            { name: "Claude", logo: "/images/logos/claude.svg" },
+            { name: "Gemini", logo: "/images/logos/gemini.svg" },
+            { name: "Mistral AI", logo: "/images/logos/mistral.svg" },
+            { name: "Hugging Face", logo: "/images/logos/huggingface.svg" },
           ],
         },
         {
@@ -1181,10 +1181,10 @@ export const platformPage = {
     deployment: {
       title: "Deployment Infrastructure",
       items: [
-        { name: "AWS", icon: "Cloud" },
-        { name: "Azure", icon: "Cloud" },
-        { name: "GCP", icon: "Cloud" },
-        { name: "OCI", icon: "Cloud" },
+        { name: "AWS", logo: "/images/logos/aws.svg" },
+        { name: "Azure", logo: "/images/logos/azure.svg" },
+        { name: "GCP", logo: "/images/logos/gcp.svg" },
+        { name: "OCI", logo: "/images/logos/oracle.svg" },
         { name: "On-Prem", icon: "Server" },
       ],
     },

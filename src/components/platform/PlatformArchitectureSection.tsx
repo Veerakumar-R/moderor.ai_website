@@ -53,9 +53,10 @@ function Icon({ name, size = 18 }: { name: string; size?: number }) {
   return <Cmp size={size} strokeWidth={1.75} aria-hidden />;
 }
 
-type Group = (typeof architecture.left.groups)[number];
+type ArchItem = { name: string; icon?: string; logo?: string };
+type ArchGroup = { title: string; items: readonly ArchItem[] };
 
-function SideColumn({ title, groups }: { title: string; groups: readonly Group[] }) {
+function SideColumn({ title, groups }: { title: string; groups: readonly ArchGroup[] }) {
   return (
     <div className="platform-arch-col">
       <p className="platform-arch-col-title">{title}</p>
@@ -64,8 +65,21 @@ function SideColumn({ title, groups }: { title: string; groups: readonly Group[]
           <p className="platform-arch-card-title">{group.title}</p>
           {group.items.map((item) => (
             <div key={item.name} className="platform-arch-item">
-              <span className="platform-arch-item-icon" aria-hidden>
-                <Icon name={item.icon} />
+              <span
+                className={`platform-arch-item-icon${item.logo ? " platform-arch-item-icon--logo" : ""}`}
+                aria-hidden
+              >
+                {item.logo ? (
+                  <img
+                    src={item.logo}
+                    alt={`${item.name} logo`}
+                    className="platform-arch-item-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <Icon name={item.icon ?? "Bot"} />
+                )}
               </span>
               <span className="platform-arch-item-name">{item.name}</span>
             </div>
@@ -152,7 +166,19 @@ export function PlatformArchitectureSection() {
                 <div className="platform-arch-deploy-grid">
                   {deployment.items.map((item) => (
                     <span key={item.name} className="platform-arch-deploy-item">
-                      <Icon name={item.icon} size={20} />
+                      <span className="platform-arch-deploy-logo" aria-hidden>
+                        {"logo" in item ? (
+                          <img
+                            src={item.logo}
+                            alt={`${item.name} logo`}
+                            className="platform-arch-deploy-img"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <Icon name={item.icon} size={22} />
+                        )}
+                      </span>
                       {item.name}
                     </span>
                   ))}
