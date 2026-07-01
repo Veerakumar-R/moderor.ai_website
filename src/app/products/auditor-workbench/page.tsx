@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { AuditorHero } from "@/components/auditor/AuditorHero";
-import { AuditorStats } from "@/components/auditor/AuditorStats";
 import { AuditorNarrative } from "@/components/auditor/AuditorNarrative";
 import { AuditorOutcomes } from "@/components/auditor/AuditorOutcomes";
 import { AuditorCapabilities } from "@/components/auditor/AuditorCapabilities";
@@ -29,7 +28,6 @@ export default function AuditorWorkbenchPage() {
       <Navbar />
       <main className="pt-[var(--site-header-height)]">
         <AuditorHero />
-        <AuditorStats />
         <AuditorNarrative />
         <AuditorOutcomes />
         <AuditorCapabilities />

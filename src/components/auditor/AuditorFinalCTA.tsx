@@ -96,8 +96,8 @@ export function AuditorFinalCTA() {
                     <h4>{col.title}</h4>
                     <ul>
                       {col.links.map((item) => (
-                        <li key={item}>
-                          <Link href="#">{item}</Link>
+                        <li key={item.label}>
+                          <Link href={item.href}>{item.label}</Link>
                         </li>
                       ))}
                     </ul>
