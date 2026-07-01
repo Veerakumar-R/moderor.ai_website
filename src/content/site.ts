@@ -1116,31 +1116,78 @@ export const platformPage = {
       },
     ],
   },
-  howItWorks: {
-    eyebrow: "How It Works",
-    headline: "AI",
-    headlineAccent1: "accelerates execution",
-    headlineConnector: "— people remain",
-    headlineAccent2: "in control",
-    steps: [
-      {
-        label: "AI Detects & Recommends",
-        description:
-          "Agents continuously monitor workflows, analyze context, identify risks, and recommend the next action.",
-      },
-      {
-        label: "Humans Review & Approve",
-        description:
-          "Every business-critical recommendation routes to the right stakeholder through governed approval gates.",
-      },
-      {
-        label: "Execute & Audit",
-        description:
-          "Approved actions execute across your systems and remain fully traceable with an immutable audit trail.",
-      },
-    ],
-    closingLead: "Technology accelerates execution.",
-    closingHighlight: "People remain in control.",
+  architecture: {
+    eyebrow: "Platform Architecture",
+    headline: "One Platform.",
+    headlineAccent: "Complete Enterprise AI Control.",
+    description:
+      "Modern enterprises already have trusted investments in cloud, identity, security, and enterprise applications. moderor.ai extends — not replaces — your existing architecture, introducing a dedicated Enterprise AI Control Plane that governs how AI agents operate while integrating seamlessly with your ecosystem.",
+    left: {
+      title: "Consume",
+      groups: [
+        {
+          title: "User Roles",
+          items: [
+            { name: "AI Governance Lead", icon: "UserCog" },
+            { name: "Risk & Compliance", icon: "ShieldCheck" },
+          ],
+        },
+        {
+          title: "External Agents",
+          items: [
+            { name: "MS Copilot", logo: "/images/logos/copilot.svg" },
+            { name: "SF Agentforce", logo: "/images/logos/salesforce.svg" },
+            { name: "ServiceNow", logo: "/images/logos/servicenow.svg" },
+          ],
+        },
+      ],
+    },
+    right: {
+      title: "Connect",
+      groups: [
+        {
+          title: "Model Providers",
+          items: [
+            { name: "OpenAI", icon: "Atom" },
+            { name: "Claude", logo: "/images/logos/claude.svg" },
+            { name: "Gemini", logo: "/images/logos/gemini.svg" },
+            { name: "Mistral AI", logo: "/images/logos/mistral.svg" },
+            { name: "Hugging Face", logo: "/images/logos/huggingface.svg" },
+          ],
+        },
+        {
+          title: "Agent Tools",
+          items: [
+            { name: "Databases", icon: "Database" },
+            { name: "APIs", icon: "Webhook" },
+            { name: "File Systems", icon: "FolderTree" },
+          ],
+        },
+      ],
+    },
+    application: {
+      title: "Moderor Application",
+      items: ["Workflows", "Dashboards", "RBAC", "Audit Trail"],
+    },
+    core: {
+      title: "Orchestration & Governance Plane",
+      pillars: [
+        { name: "Agents", sub: "Reason · Plan · Act", icon: "Bot", chips: ["GRC", "Business", "Custom", "Library"] },
+        { name: "Models", sub: "Smart Routing", icon: "BrainCircuit", chips: ["Public", "On-Prem", "SLM", "Fine-tuned"] },
+        { name: "Knowledge", sub: "RAG & Memory", icon: "BookOpen", chips: ["Vector", "Graph", "Memory", "Context"] },
+        { name: "Connect", sub: "MCP & Tools", icon: "Plug", chips: ["Registry", "Servers", "A2A", "Secure"] },
+      ],
+    },
+    deployment: {
+      title: "Deployment Infrastructure",
+      items: [
+        { name: "AWS", logo: "/images/logos/aws.svg" },
+        { name: "Azure", logo: "/images/logos/azure.svg" },
+        { name: "GCP", logo: "/images/logos/gcp.svg" },
+        { name: "OCI", logo: "/images/logos/oracle.svg" },
+        { name: "On-Prem", icon: "Server" },
+      ],
+    },
   },
   principle: {
     eyebrow: "Category Positioning",

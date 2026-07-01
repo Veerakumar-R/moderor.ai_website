@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   headerActionLinks,
@@ -39,14 +40,14 @@ function MegaMenuResourceThumb({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-function MegaMenuSidebar({ sidebar }: { sidebar: MegaSidebar }) {
+function MegaMenuSidebar({ sidebar, onNavigate }: { sidebar: MegaSidebar; onNavigate: () => void }) {
   return (
     <aside className="products-mega-sidebar">
       <div className="products-mega-side-card">
         <p className="products-mega-side-label">Top Resources</p>
         <div className="products-mega-resources">
           {sidebar.topResources.map((resource) => (
-            <Link key={resource.title} href={resource.href} className="products-mega-resource" target="_blank" rel="noopener noreferrer">
+            <Link key={resource.title} href={resource.href} className="products-mega-resource" target="_blank" rel="noopener noreferrer" onClick={onNavigate}>
               <MegaMenuResourceThumb src={resource.image} alt={resource.imageAlt} />
               <span className="products-mega-resource-title">{resource.title}</span>
             </Link>
@@ -59,7 +60,7 @@ function MegaMenuSidebar({ sidebar }: { sidebar: MegaSidebar }) {
         <ul className="products-mega-quick-links">
           {sidebar.quickLinks.map((link) => (
             <li key={link.label}>
-              <Link href={link.href} className="products-mega-quick-link">
+              <Link href={link.href} className="products-mega-quick-link" onClick={onNavigate}>
                 {link.label}
               </Link>
             </li>
@@ -70,7 +71,7 @@ function MegaMenuSidebar({ sidebar }: { sidebar: MegaSidebar }) {
   );
 }
 
-function ProductsMegaMenu() {
+function ProductsMegaMenu({ onNavigate }: { onNavigate: () => void }) {
   return (
     <div className="products-mega-menu products-mega-menu--products">
       <div className="products-mega-main">
@@ -84,7 +85,7 @@ function ProductsMegaMenu() {
             <ul className="products-mega-suite-links">
               {suite.items.map((item) => (
                 <li key={item}>
-                  <Link href={productRoutes[item] ?? "#"} className="products-mega-suite-link">
+                  <Link href={productRoutes[item] ?? "#"} className="products-mega-suite-link" onClick={onNavigate}>
                     <span className="products-mega-suite-link-text">{item}</span>
                     <ArrowUpRight size={13} strokeWidth={2.25} className="products-mega-suite-link-arrow" aria-hidden />
                   </Link>
@@ -95,17 +96,17 @@ function ProductsMegaMenu() {
         ))}
       </div>
 
-      <MegaMenuSidebar sidebar={navMegaSidebar} />
+      <MegaMenuSidebar sidebar={navMegaSidebar} onNavigate={onNavigate} />
     </div>
   );
 }
 
-function SuitesMegaMenu() {
+function SuitesMegaMenu({ onNavigate }: { onNavigate: () => void }) {
   return (
     <div className="products-mega-menu products-mega-menu--suites">
       <div className="products-mega-main">
         {navSuitesMega.suites.map((suite) => (
-          <Link key={suite.id} href={suite.href} className="suites-mega-suite-card">
+          <Link key={suite.id} href={suite.href} className="suites-mega-suite-card" onClick={onNavigate}>
             <MegaMenuSuiteMedia src={suite.image} alt={suite.imageAlt} />
             <div className="products-mega-suite-divider" aria-hidden="true" />
             <div className="suites-mega-suite-body">
@@ -117,7 +118,7 @@ function SuitesMegaMenu() {
         ))}
       </div>
 
-      <MegaMenuSidebar sidebar={navMegaSidebar} />
+      <MegaMenuSidebar sidebar={navMegaSidebar} onNavigate={onNavigate} />
     </div>
   );
 }
@@ -187,6 +188,19 @@ export function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const suitesMenu = useMegaMenu();
   const productsMenu = useMegaMenu();
+  const pathname = usePathname();
+
+  // Backstop: close any open menus whenever the route changes, so a mega-menu
+  // selection never lingers open on top of the destination page. Closing menus
+  // in response to navigation is an intentional external-state sync.
+  useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
+    suitesMenu.closeMenu();
+    productsMenu.closeMenu();
+    setMobileOpen(false);
+    /* eslint-enable react-hooks/set-state-in-effect */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   const toggleSuitesMenu = () => {
     if (suitesMenu.open) {
@@ -294,11 +308,11 @@ export function Navbar() {
       </div>
 
       <NavMegaPanel open={suitesMenu.open}>
-        <SuitesMegaMenu />
+        <SuitesMegaMenu onNavigate={closeMegaMenus} />
       </NavMegaPanel>
 
       <NavMegaPanel open={productsMenu.open}>
-        <ProductsMegaMenu />
+        <ProductsMegaMenu onNavigate={closeMegaMenus} />
       </NavMegaPanel>
 
       <AnimatePresence>

@@ -5,7 +5,7 @@ import { PlatformHero } from "@/components/platform/PlatformHero";
 import { PlatformBreadcrumb, PlatformWhySection } from "@/components/platform/PlatformSections";
 import { PlatformCapabilitiesSection } from "@/components/platform/PlatformCapabilitiesSection";
 import { PlatformOutcomesSection } from "@/components/platform/PlatformOutcomesSection";
-import { PlatformHowItWorksSection } from "@/components/platform/PlatformHowItWorksSection";
+import { PlatformArchitectureSection } from "@/components/platform/PlatformArchitectureSection";
 import { PlatformPrincipleSection } from "@/components/platform/PlatformPrincipleSection";
 import { PlatformWhyChooseSection } from "@/components/platform/PlatformWhyChooseSection";
 import { platformPage } from "@/content/site";
@@ -32,7 +32,7 @@ export default function PlatformPage() {
         <PlatformWhySection />
         <PlatformCapabilitiesSection />
         <PlatformOutcomesSection />
-        <PlatformHowItWorksSection />
+        <PlatformArchitectureSection />
         <PlatformPrincipleSection />
         <PlatformWhyChooseSection />
         <FinalCTA

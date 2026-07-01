@@ -48,3 +48,4 @@ next-env.d.ts
 *.docx
 *.doc
 moderor-platform-page*.html
+architecture_diagram*.html
