@@ -1159,7 +1159,7 @@ export const platformPage = {
           title: "Agent Tools",
           items: [
             { name: "Databases", icon: "Database" },
-            { name: "API / REST API", icon: "Webhook" },
+            { name: "APIs", icon: "Webhook" },
             { name: "File Systems", icon: "FolderTree" },
           ],
         },
