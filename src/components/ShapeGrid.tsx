@@ -49,8 +49,12 @@ export default function ShapeGrid({
     const hexVert = squareSize * Math.sqrt(3);
 
     const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      if (width < 1 || height < 1) return;
+
+      canvas.width = width;
+      canvas.height = height;
       numSquaresX.current = Math.ceil(canvas.width / squareSize) + 1;
       numSquaresY.current = Math.ceil(canvas.height / squareSize) + 1;
     };
@@ -346,6 +350,16 @@ export default function ShapeGrid({
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseleave", handleMouseLeave);
 
+    const container = canvas.parentElement;
+    const resizeObserver =
+      typeof ResizeObserver !== "undefined" && container
+        ? new ResizeObserver(() => {
+            resizeCanvas();
+          })
+        : null;
+
+    resizeObserver?.observe(container);
+
     resizeCanvas();
     requestRef.current = requestAnimationFrame(updateAnimation);
 
@@ -353,6 +367,7 @@ export default function ShapeGrid({
       window.removeEventListener("resize", resizeCanvas);
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseleave", handleMouseLeave);
+      resizeObserver?.disconnect();
       if (requestRef.current !== null) cancelAnimationFrame(requestRef.current);
     };
   }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount]);

@@ -122,47 +122,47 @@ export const auditorCapabilities = {
   titleHighlight: "audit lifecycle.",
   cards: [
     {
-      icon: "FileSearch",
+      icon: "ScanSearch",
       name: "AI-Assisted Evidence Collection",
       desc: "Automatically gather evidence from enterprise systems to reduce manual effort and accelerate execution.",
     },
     {
-      icon: "CalendarClock",
+      icon: "CalendarRange",
       name: "Intelligent Audit Planning",
       desc: "Plan, schedule, and manage audits from a centralized workspace with complete visibility.",
     },
     {
-      icon: "Activity",
+      icon: "ShieldCheck",
       name: "Continuous Control Validation",
       desc: "Monitor control effectiveness throughout the lifecycle to catch issues before they become findings.",
     },
     {
-      icon: "Workflow",
+      icon: "Waypoints",
       name: "Automated Audit Workflows",
       desc: "Standardize execution through intelligent workflows that improve consistency and governance.",
     },
     {
-      icon: "FileText",
+      icon: "NotebookPen",
       name: "Digital Workpapers",
       desc: "Generate structured, audit-ready documentation automatically for every audit.",
     },
     {
-      icon: "Eye",
+      icon: "ScanEye",
       name: "Observation Management",
       desc: "Capture, prioritize, assign, and monitor audit observations with complete visibility.",
     },
     {
-      icon: "ListChecks",
+      icon: "ClipboardCheck",
       name: "Remediation Tracking",
       desc: "Track corrective actions through governed workflows and validate remediation progress.",
     },
     {
-      icon: "BarChart3",
+      icon: "LayoutDashboard",
       name: "Executive Dashboards",
       desc: "Monitor audit performance, findings, and enterprise risk through real-time insights.",
     },
     {
-      icon: "FileCheck2",
+      icon: "FileChartColumn",
       name: "Audit-Ready Reporting",
       desc: "Generate standardized audit reports with complete evidence and full traceability.",
     },
@@ -175,24 +175,41 @@ export const auditorCapabilities = {
 };
 
 export const auditorStakeholders = {
-  eyebrow: "Designed for Every Audit Stakeholder",
-  title: "Built for everyone who owns the audit.",
+  label: "Designed for Every Audit Stakeholder",
+  titleLead: "Built for everyone who",
+  titleHighlight: "owns the audit.",
   cards: [
     {
-      role: "Chief Audit Executives",
-      desc: "Enterprise-wide visibility into audit performance, control effectiveness, and organizational risk.",
+      icon: "BarChart3",
+      tagline: "Chief Audit Executives",
+      title:
+        "Enterprise-wide visibility into audit performance, control effectiveness, and organizational risk.",
+      paragraph:
+        "Gain enterprise-wide visibility into audit performance, control effectiveness, and organizational risk.",
     },
     {
-      role: "Internal Audit Teams",
-      desc: "Less manual effort and more time evaluating risks instead of collecting evidence.",
+      icon: "ClipboardCheck",
+      tagline: "Internal Audit Teams",
+      title:
+        "Reduce manual effort and spend more time evaluating risks instead of collecting evidence.",
+      paragraph:
+        "Reduce manual effort and spend more time evaluating risks instead of collecting evidence.",
     },
     {
-      role: "Risk & Compliance Leaders",
-      desc: "Stronger governance through continuous control monitoring and proactive risk visibility.",
+      icon: "ShieldCheck",
+      tagline: "Risk & Compliance Leaders",
+      title:
+        "Strengthen governance through continuous control monitoring and proactive risk visibility.",
+      paragraph:
+        "Strengthen governance through continuous control monitoring and proactive risk visibility.",
     },
     {
-      role: "Business Process Owners",
-      desc: "Collaborate through standardized evidence requests and structured remediation workflows.",
+      icon: "Workflow",
+      tagline: "Business Process Owners",
+      title:
+        "Collaborate through standardized evidence requests and structured remediation workflows.",
+      paragraph:
+        "Collaborate through standardized evidence requests and structured remediation workflows.",
     },
   ],
 };

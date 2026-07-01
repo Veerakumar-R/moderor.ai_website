@@ -10,6 +10,8 @@
 .infra-section-vignette {
   position: absolute;
   inset: 0;
+  z-index: 4;
+  pointer-events: none;
   background:
     radial-gradient(ellipse 80% 60% at 20% 50%, rgba(0, 0, 0, 0.15) 0%, transparent 70%),
     radial-gradient(ellipse 60% 50% at 90% 20%, rgba(255, 122, 0, 0.08) 0%, transparent 60%),
@@ -19,13 +21,13 @@
 .infra-shape-grid {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   opacity: 1;
   pointer-events: none;
 }
 
 .infra-shape-grid .shapegrid-canvas {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .infra-box-content {
