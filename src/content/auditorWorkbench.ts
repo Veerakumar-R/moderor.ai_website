@@ -30,6 +30,18 @@ export const auditorHero = {
     "CONTROL VALIDATION",
   ],
   bandTagline: "Partnering with leading frameworks to deliver continuous, governed assurance.",
+  kpis: [
+    { value: 471, suffix: "", label: "Total Audits", tone: "ember" as const },
+    { value: 385, suffix: "", label: "Pending Audits", tone: "amber" as const },
+    { value: 86, suffix: "", label: "Completed Audits", tone: "grey" as const },
+    { value: 18, suffix: "%", label: "Completion %", tone: "teal" as const, decimals: 1 },
+  ],
+  kpiSection: {
+    eyebrow: "Live Platform Metrics",
+    titleLead: "Running in your audit program.",
+    titleHighlight: "Measured in real numbers.",
+    note: "Live production metrics from Auditor Workbench deployments — not benchmark estimates.",
+  },
 };
 
 // Sample in-app walkthrough shown inside the device in the hero centre.
