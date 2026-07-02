@@ -4,6 +4,7 @@ import path from "path";
 const roots = [
   path.join(process.cwd(), ".next"),
   path.join(process.cwd(), "node_modules", ".cache", "next"),
+  path.join(process.cwd(), "node_modules", ".cache", "moderor-next"),
 ];
 
 function rmWithRetry(target, attempts = 5) {

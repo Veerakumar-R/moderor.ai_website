@@ -34,7 +34,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "node_modules/.cache/moderor-next/types/**/*.ts",
+    "node_modules/.cache/moderor-next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

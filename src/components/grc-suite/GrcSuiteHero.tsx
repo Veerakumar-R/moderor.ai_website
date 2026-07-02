@@ -19,7 +19,7 @@ export function GrcSuiteHero() {
 
   return (
     <section className="bg-white px-5 pt-5 pb-0 sm:px-[50px] sm:pt-6">
-      <div className="grc-hero-banner relative min-h-[520px] w-full overflow-visible rounded-[28px] bg-[#0c0600] sm:min-h-[560px] lg:min-h-[640px] lg:rounded-[36px]">
+      <div className="grc-hero-banner relative min-h-[520px] w-full overflow-hidden rounded-[28px] bg-[#0c0600] sm:min-h-[560px] lg:min-h-[640px] lg:rounded-[36px]">
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]">
           <div className="grc-hero-bg-layers">
             <div className="hero-warm-base" aria-hidden />
