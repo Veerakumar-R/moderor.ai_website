@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-function Sparkle({
+export function GovernedSparkle({
   className,
   gradientId,
   from,
@@ -59,25 +59,66 @@ function Sparkle({
 }
 
 export function GovernedHeaderDeco() {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = !!useReducedMotion();
 
   return (
     <div className="governed-header-deco" aria-hidden>
-      <Sparkle
+      <GovernedSparkle
         className="governed-sparkle--left"
         gradientId="governed-sparkle-1"
         from="#ff7a00"
         to="#ffb347"
         delay={0}
-        reduceMotion={!!reduceMotion}
+        reduceMotion={reduceMotion}
       />
-      <Sparkle
+      <GovernedSparkle
         className="governed-sparkle--right"
         gradientId="governed-sparkle-2"
         from="#ffb347"
         to="#ff7a00"
         delay={0.55}
-        reduceMotion={!!reduceMotion}
+        reduceMotion={reduceMotion}
+      />
+    </div>
+  );
+}
+
+export function GovernedSectionSparkles({ idPrefix = "governed" }: { idPrefix?: string }) {
+  const reduceMotion = !!useReducedMotion();
+
+  return (
+    <div className="governed-section-sparkles" aria-hidden>
+      <GovernedSparkle
+        className="governed-section-sparkle governed-section-sparkle--tl"
+        gradientId={`${idPrefix}-sparkle-tl`}
+        from="#ff7a00"
+        to="#ffb347"
+        delay={0}
+        reduceMotion={reduceMotion}
+      />
+      <GovernedSparkle
+        className="governed-section-sparkle governed-section-sparkle--tr"
+        gradientId={`${idPrefix}-sparkle-tr`}
+        from="#ffb347"
+        to="#ff7a00"
+        delay={0.55}
+        reduceMotion={reduceMotion}
+      />
+      <GovernedSparkle
+        className="governed-section-sparkle governed-section-sparkle--bl"
+        gradientId={`${idPrefix}-sparkle-bl`}
+        from="#ffb347"
+        to="#ff7a00"
+        delay={0.9}
+        reduceMotion={reduceMotion}
+      />
+      <GovernedSparkle
+        className="governed-section-sparkle governed-section-sparkle--br"
+        gradientId={`${idPrefix}-sparkle-br`}
+        from="#ff7a00"
+        to="#ffb347"
+        delay={1.25}
+        reduceMotion={reduceMotion}
       />
     </div>
   );

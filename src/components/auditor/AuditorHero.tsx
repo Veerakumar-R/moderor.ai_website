@@ -8,6 +8,7 @@ import { AuditorHeroBento } from "./AuditorHeroBento";
 import { AuditorHeroKpiStrip } from "./AuditorHeroKpiStrip";
 import "./auditor.css";
 
+const LineWaves = dynamic(() => import("@/components/LineWaves"), { ssr: false });
 const SideRays = dynamic(() => import("@/components/SideRays"), { ssr: false });
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -22,19 +23,37 @@ export function AuditorHero() {
         className="aw-hero-box"
       >
         <div className="aw-hero-atmosphere" aria-hidden>
+          <div className="aw-hero-atmosphere-right-glow" />
+          <div className="aw-hero-atmosphere-linewaves">
+            <LineWaves
+              speed={0}
+              innerLineCount={32}
+              outerLineCount={36}
+              warpIntensity={1}
+              rotation={-45}
+              edgeFadeWidth={0}
+              colorCycleSpeed={0}
+              brightness={0.2}
+              color1="#ffffff"
+              color2="#ffffff"
+              color3="#ffffff"
+              enableMouseInteraction={false}
+              mouseInfluence={0}
+            />
+          </div>
           <div className="aw-hero-atmosphere-rays">
             <SideRays
-              speed={2.5}
-              rayColor1="#ff7a00"
-              rayColor2="#ffc98a"
-              intensity={2}
-              spread={2}
+              speed={2.2}
+              rayColor1="#ff8a2a"
+              rayColor2="#ffe0b8"
+              intensity={1.35}
+              spread={1.85}
               origin="top-right"
-              tilt={0}
-              saturation={1.5}
-              blend={0.75}
-              falloff={1.6}
-              opacity={0.92}
+              tilt={-4}
+              saturation={1.9}
+              blend={0.62}
+              falloff={1.85}
+              opacity={0.68}
             />
           </div>
           <div className="aw-hero-atmosphere-mesh aw-hero-atmosphere-mesh--fallback" />

@@ -677,8 +677,9 @@ export const finalCta = {
   title: "See it on your data.",
   titleHighlight: "Live in weeks.",
   description: [
-    "Connect a data source, point an agent at a workflow, and watch the first governed",
-    "outcomes arrive — on your infrastructure, with your people in command.",
+    "Connect a data source, point an agent at a workflow,",
+    "and watch the first governed outcomes arrive —",
+    "on your infrastructure, with your people in command.",
   ],
   footnote: "Azure · Google Cloud · WSO2 · On-prem · 60–90 day pilot · No lock-in",
 };

@@ -107,6 +107,12 @@
   top: 18%;
 }
 
+.governed-section-sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 .governed-label,
 .governed-title,
 .governed-intro {

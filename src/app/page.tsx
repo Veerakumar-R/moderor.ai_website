@@ -26,7 +26,7 @@ export default function Home() {
         <HumanControlSection />
         <PilotSection />
         <ProofSection />
-        <FinalCTA />
+        <FinalCTA ctaBelowDescription />
       </main>
     </>
   );
