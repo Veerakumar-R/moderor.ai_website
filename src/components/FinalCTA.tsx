@@ -63,8 +63,8 @@ export function FinalCTA({
               <div className="final-closing-cta-top">
                 <div className="final-closing-cta-lead">
                   <h2 id="final-closing-heading" className="final-closing-headline">
-                    {title}{" "}
-                    <span className="final-closing-headline-accent text-accent-gradient">
+                    <span className="final-closing-headline-line">{title}</span>
+                    <span className="final-closing-headline-line final-closing-headline-accent text-accent-gradient">
                       {titleHighlight}
                     </span>
                   </h2>

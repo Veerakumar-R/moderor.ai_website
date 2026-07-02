@@ -6,6 +6,7 @@ import { auditorStakeholders } from "@/content/auditorWorkbench";
 import ShapeGrid from "../ShapeGrid";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { AuditorIcon } from "./icons";
+import "@/components/grc-suite/grc-suite.css";
 import "@/components/infrastructure.css";
 import "./auditor.css";
 
@@ -75,14 +76,15 @@ export function AuditorStakeholders() {
                   initial={{ opacity: 0, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: (i % 2) * 0.1, duration: 0.6, ease: EASE }}
-                  className="infra-card aw-sh-infra-card"
+                  transition={{ delay: (i % 4) * 0.08, duration: 0.6, ease: EASE }}
+                  className="infra-card aw-sh-infra-card group"
                 >
-                  <span className="aw-sh-icon" aria-hidden>
-                    <span className="aw-sh-icon-shine" aria-hidden />
-                    <span className="aw-sh-icon-glow" aria-hidden />
-                    <AuditorIcon name={card.icon} size={18} strokeWidth={1.65} className="aw-sh-icon-svg" />
-                  </span>
+                  <div className="grc-product-icon aw-sh-grc-icon" aria-hidden>
+                    <span className="grc-product-icon-glow" aria-hidden />
+                    <span className="grc-product-icon-svg">
+                      <AuditorIcon name={card.icon} size={22} strokeWidth={1.65} />
+                    </span>
+                  </div>
                   <p className="infra-card-label aw-sh-tagline">{card.tagline}</p>
                   <h3 className="infra-card-title aw-sh-card-title">{card.title}</h3>
                   <p className="infra-card-desc aw-sh-paragraph">{card.paragraph}</p>

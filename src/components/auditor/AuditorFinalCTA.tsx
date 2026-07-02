@@ -5,6 +5,7 @@ import { auditorFinalCta } from "@/content/auditorWorkbench";
 import { footerLinks } from "@/content/site";
 import { FinalClosingSilk } from "../FinalClosingSilk";
 import { Logo } from "../ui/Logo";
+import { PillButton } from "../ui/PillButton";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import "../final-cta.css";
 import "./auditor.css";
@@ -17,6 +18,10 @@ const FOOTER_COLUMNS = [
 ] as const;
 
 export function AuditorFinalCTA() {
+  const descriptionLines = Array.isArray(auditorFinalCta.description)
+    ? auditorFinalCta.description
+    : [auditorFinalCta.description];
+
   return (
     <section className="final-closing-section" aria-labelledby="aw-final-heading">
       <div className="final-closing-shell">
@@ -29,41 +34,29 @@ export function AuditorFinalCTA() {
 
         <div className="final-closing-shell-inner">
           <ScrollReveal duration={0.85}>
-            <div className="final-closing-cta">
-              <p className="final-closing-label">{auditorFinalCta.label}</p>
-
+            <div className="final-closing-cta final-closing-cta--aside-action">
               <div className="final-closing-cta-top">
                 <div className="final-closing-cta-lead">
                   <h2 id="aw-final-heading" className="final-closing-headline">
-                    {auditorFinalCta.titleLead}{" "}
-                    <span className="final-closing-headline-accent text-accent-gradient">
+                    <span className="final-closing-headline-line">{auditorFinalCta.titleLead}</span>
+                    <span className="final-closing-headline-line final-closing-headline-accent text-accent-gradient">
                       {auditorFinalCta.titleHighlight}
                     </span>
                   </h2>
-                  <div className="aw-cta-lines">
-                    {auditorFinalCta.lines.map((line) => (
-                      <span key={line} className="aw-cta-line">
-                        {line}
-                      </span>
-                    ))}
-                  </div>
                 </div>
 
                 <div className="final-closing-cta-aside">
                   <p className="final-closing-desc">
-                    {auditorFinalCta.description.map((line) => (
+                    {descriptionLines.map((line) => (
                       <span key={line} className="final-closing-desc-line">
                         {line}
                       </span>
                     ))}
                   </p>
                   <div className="final-closing-actions">
-                    <Link href="#" className="final-closing-btn final-closing-btn--primary">
+                    <PillButton href="#" variant="orange" showArrow>
                       {auditorFinalCta.primaryCta}
-                    </Link>
-                    <Link href="#" className="final-closing-btn final-closing-btn--secondary">
-                      {auditorFinalCta.secondaryCta}
-                    </Link>
+                    </PillButton>
                   </div>
                 </div>
               </div>

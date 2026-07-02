@@ -144,6 +144,10 @@
   color: #ffffff;
 }
 
+.final-closing-headline-line {
+  display: block;
+}
+
 .final-closing-headline-accent {
   font-weight: 700;
 }

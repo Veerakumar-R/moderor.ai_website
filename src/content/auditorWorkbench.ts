@@ -215,19 +215,24 @@ export const auditorStakeholders = {
 };
 
 export const auditorPrinciple = {
-  eyebrow: "AI Executes. Auditors Lead.",
+  label: "Human-Governed Automation",
+  titleLead: "AI Executes. ",
+  titleHighlight: "Auditors Lead.",
   how: {
+    icon: "Workflow",
     label: "How It Works",
-    headLead: "AI Executes.",
-    headHighlight: "Auditors Lead.",
+    cardTitleLead: "AI Executes. ",
+    cardTitleHighlight: "Auditors Lead.",
     body: [
       "AI accelerates execution by collecting evidence, validating controls, and recommending findings.",
       "Auditors remain in control of every approval, review, and remediation decision — ensuring transparency, accountability, and regulatory confidence across the entire audit lifecycle.",
     ],
   },
   principle: {
+    icon: "BadgeCheck",
     label: "The Principle",
-    headLines: ["Every decision.", "Every step.", "Fully traceable."],
+    cardTitleLead: "Every decision. Every step. ",
+    cardTitleHighlight: "Fully traceable.",
     body: [
       "No AI recommendation becomes an action without auditor review and approval. Every finding, decision, and remediation step is attributed, timestamped, and permanently logged.",
       "The result is an audit trail that regulators, boards, and external auditors can trust.",
@@ -236,14 +241,9 @@ export const auditorPrinciple = {
 };
 
 export const auditorFinalCta = {
-  label: "Stop Auditing the Past. Start Assuring the Present.",
   titleLead: "Ready to Rethink",
   titleHighlight: "Internal Audit?",
-  description: [
-    "Transform manual audit execution into continuous assurance — with AI-powered",
-    "automation, intelligent workflows, and human-governed decision making.",
-  ],
-  lines: ["Reduce audit effort.", "Strengthen governance.", "Stay audit-ready, every day."],
+  description:
+    "Transform manual audit execution into continuous assurance — with AI-powered automation, intelligent workflows, and human-governed decision making.",
   primaryCta: "Book a Demo",
-  secondaryCta: "Contact Sales",
 };
