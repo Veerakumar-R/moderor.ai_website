@@ -852,8 +852,8 @@
 
 @media (min-width: 1024px) {
   .grc-why-grid {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
-    gap: clamp(2rem, 3vw, 3rem);
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: clamp(2rem, 2.5vw, 2.75rem);
     align-items: start;
   }
 
@@ -873,7 +873,7 @@
 
 @media (min-width: 1280px) {
   .grc-why-grid {
-    gap: 5rem;
+    gap: 3rem;
   }
 }
 
@@ -973,6 +973,14 @@
   font-weight: 400;
   line-height: 1.75;
   color: var(--grey);
+}
+
+@media (min-width: 1024px) {
+  .grc-why-paragraph {
+    font-size: clamp(1rem, 1.05vw, 1.0625rem);
+    line-height: 1.62;
+    text-wrap: pretty;
+  }
 }
 
 .grc-why-paragraph + .grc-why-paragraph {
@@ -1682,7 +1690,7 @@
   --grc-how-icon-core: 64px;
   --grc-how-icon-gap: 9px;
   --grc-how-icon-block: calc(var(--grc-how-icon-core) + var(--grc-how-icon-gap) * 2);
-  --grc-how-center-offset: 2.75rem;
+  --grc-how-center-offset: 3rem;
 }
 
 .grc-how-flow-connector {
@@ -1692,7 +1700,6 @@
   z-index: 0;
   display: none;
   width: 100%;
-  height: calc(var(--grc-how-icon-block) + var(--grc-how-center-offset));
   color: rgba(255, 122, 0, 0.58);
   pointer-events: none;
 }
@@ -1811,6 +1818,21 @@
 /* The Principle — infrastructure-style panel */
 .grc-principle-section {
   border-bottom: 1px solid var(--border);
+}
+
+.grc-principle-section .infra-box-bg {
+  z-index: 0;
+}
+
+.grc-principle-content {
+  position: relative;
+  z-index: 2;
+  user-select: text;
+}
+
+.grc-principle-section .infra-shape-grid.grc-principle-shape-grid,
+.grc-principle-section .infra-shape-grid.grc-principle-shape-grid .shapegrid-canvas {
+  pointer-events: none;
 }
 
 .grc-principle-section .infra-header {
@@ -2012,66 +2034,28 @@
   margin-bottom: clamp(2.75rem, 5vw, 3.75rem);
   --grc-cycle-icon-size: 64px;
   --grc-cycle-arrow-rise: 30px;
+  --grc-cycle-center-offset: 1.35rem;
+  padding-top: var(--grc-cycle-arrow-rise);
+  overflow: visible;
 }
 
-.grc-ai-cycle-arrows {
+.grc-ai-cycle-beams {
   position: absolute;
-  top: 0;
-  left: 50%;
+  inset: 0;
   z-index: 0;
-  width: min(100%, 840px);
-  height: calc(var(--grc-cycle-icon-size) + var(--grc-cycle-arrow-rise) * 2);
+  display: none;
+  overflow: visible;
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
-.grc-ai-cycle-track {
-  fill: none;
-  stroke: rgba(255, 184, 120, 0.16);
-  stroke-width: 1.75;
-  stroke-linecap: round;
-}
-
-.grc-ai-cycle-flow {
-  fill: none;
-  stroke: url(#grc-principle-flow-gradient);
-  stroke-width: 1.35;
-  stroke-linecap: round;
-  stroke-dasharray: 0.1 0.9;
-  filter: url(#grc-principle-connector-glow);
-  animation: grc-ai-cycle-flow 3.4s linear infinite;
-}
-
-.grc-ai-cycle-flow--bottom {
-  animation-duration: 3.8s;
-}
-
-.grc-ai-cycle-node-cap {
-  fill: #ffb878;
-  opacity: 0.92;
-  filter: url(#grc-principle-connector-glow);
-  animation: grc-ai-cycle-cap-pulse 3.4s ease-in-out infinite;
-}
-
-.grc-ai-cycle-node-cap--bottom-end {
-  animation-delay: 1.9s;
-}
-
-@keyframes grc-ai-cycle-flow {
-  to {
-    stroke-dashoffset: -1;
+@media (min-width: 641px) {
+  .grc-ai-cycle-beams {
+    display: block;
   }
 }
 
-@keyframes grc-ai-cycle-cap-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-
-  50% {
-    opacity: 1;
-  }
+.grc-ai-cycle-beam {
+  z-index: 0;
 }
 
 .grc-ai-cycle-nodes {
@@ -2080,28 +2064,46 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
-  padding-top: var(--grc-cycle-arrow-rise);
   padding-bottom: var(--grc-cycle-arrow-rise);
+  overflow: visible;
 }
 
 @media (max-width: 640px) {
-  .grc-ai-cycle-arrows {
+  .grc-ai-cycle-beams {
     display: none;
+  }
+
+  .grc-ai-cycle {
+    padding-top: 0;
   }
 
   .grc-ai-cycle-nodes {
     grid-template-columns: 1fr;
     gap: 1.25rem;
-    padding-top: 0;
     padding-bottom: 0;
   }
 }
 
 .grc-ai-cycle-node {
+  position: relative;
+  z-index: 1;
   text-align: center;
 }
 
+@media (min-width: 641px) {
+  .grc-ai-cycle-node--center {
+    margin-top: var(--grc-cycle-center-offset);
+    z-index: 3;
+  }
+
+  .grc-ai-cycle-node--side {
+    z-index: 2;
+  }
+}
+
 .grc-ai-cycle-icon {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2109,10 +2111,28 @@
   height: var(--grc-cycle-icon-size);
   margin: 0 auto 0.85rem;
   border-radius: 50%;
-  border: 1px solid rgba(255, 184, 120, 0.35);
-  background: radial-gradient(circle at 50% 35%, rgba(255, 184, 120, 0.16) 0%, rgba(255, 122, 0, 0.04) 72%);
+  border: 1px solid rgba(255, 184, 120, 0.42);
+  background-color: #120a05;
+  background-image: radial-gradient(
+    circle at 50% 35%,
+    rgba(255, 184, 120, 0.2) 0%,
+    rgba(18, 10, 5, 0.98) 68%
+  );
   color: #ffb878;
-  box-shadow: 0 0 22px rgba(255, 184, 120, 0.14);
+  box-shadow:
+    0 0 0 4px #120a05,
+    0 0 22px rgba(255, 184, 120, 0.14);
+}
+
+.grc-ai-cycle-node--side .grc-ai-cycle-icon {
+  z-index: 3;
+}
+
+.grc-ai-cycle-node--center .grc-ai-cycle-icon {
+  z-index: 5;
+  box-shadow:
+    0 0 0 5px #120a05,
+    0 0 28px rgba(255, 184, 120, 0.2);
 }
 
 .grc-ai-cycle-icon svg {
@@ -2197,14 +2217,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .grc-ai-flow-arrow,
-  .grc-ai-cycle-flow,
   .grc-ai-cycle-node-cap {
     animation: none;
-  }
-
-  .grc-ai-cycle-flow {
-    stroke-dasharray: none;
-    opacity: 0.75;
   }
 
   .grc-ai-cycle-node-cap {

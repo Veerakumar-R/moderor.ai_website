@@ -11,6 +11,7 @@ import {
   navMegaSidebar,
   navProductsMega,
   navSuitesMega,
+  routes,
   siteConfig,
 } from "@/content/site";
 import { Logo } from "./ui/Logo";
@@ -42,6 +43,12 @@ const productRoutes: Record<string, string> = {
   "Synthetic Data Engine": "/products/synthetic-data-engine",
   "Query Builder": "/products/query-builder",
 };
+
+function isNavLinkActive(pathname: string, href: string) {
+  if (!href || href === "#") return false;
+  if (href === routes.home) return pathname === routes.home;
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 function MegaMenuSuiteMedia({ src, alt }: { src: string; alt: string }) {
   return (
@@ -298,11 +305,20 @@ export function Navbar() {
 
             <NavMegaTrigger label="Products" open={productsMenu.open} onToggle={toggleProductsMenu} />
 
-            {headerNavLinks.map((link) => (
-              <Link key={`${link.href}-${link.label}`} href={link.href} className="nav-link">
-                {link.label}
-              </Link>
-            ))}
+            {headerNavLinks.map((link) => {
+              const active = isNavLinkActive(pathname, link.href);
+
+              return (
+                <Link
+                  key={`${link.href}-${link.label}`}
+                  href={link.href}
+                  className={`nav-link${active ? " nav-link--active" : ""}`}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="relative z-10 hidden items-center gap-7 lg:flex">
@@ -343,16 +359,21 @@ export function Navbar() {
             className="overflow-hidden border-t border-border lg:hidden"
           >
             <div className="flex flex-col gap-1 px-5 py-4">
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={`${link.href}-${link.label}`}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="py-2.5 text-grey hover:text-charcoal"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {headerNavLinks.map((link) => {
+                const active = isNavLinkActive(pathname, link.href);
+
+                return (
+                  <Link
+                    key={`${link.href}-${link.label}`}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`py-2.5 hover:text-charcoal${active ? " font-semibold text-ember" : " text-grey"}`}
+                    aria-current={active ? "page" : undefined}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               {headerActionLinks.map((link) => (
                 <Link
                   key={link.href + link.label}

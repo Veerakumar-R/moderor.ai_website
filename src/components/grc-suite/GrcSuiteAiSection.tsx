@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import {
   Bot,
@@ -12,6 +13,7 @@ import {
 import { grcSuitePage } from "@/content/site";
 import ShapeGrid from "@/components/ShapeGrid";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
 import "@/components/infrastructure.css";
 import "./grc-suite.css";
 
@@ -20,8 +22,67 @@ const { principle } = grcSuitePage.ai;
 const PRINCIPLE_CYCLE_ICONS: LucideIcon[] = [Bot, UserCheck, ShieldCheck];
 const PRINCIPLE_CARD_ICONS: LucideIcon[] = [ScanSearch, ClipboardCheck];
 
+const BEAM_DURATION = 8;
+const BEAM_PAUSE = 1.2;
+const BEAM_CYCLE = BEAM_DURATION + BEAM_PAUSE;
+const BEAM_REPEAT_DELAY = BEAM_DURATION + BEAM_PAUSE * 2;
+
+const BEAM_THEME = {
+  pathColor: "rgba(255, 184, 120, 0.38)",
+  pathWidth: 2.25,
+  pathOpacity: 0.42,
+  gradientStartColor: "#ff7a00",
+  gradientStopColor: "#ffd8a8",
+  duration: BEAM_DURATION,
+  repeatDelay: BEAM_REPEAT_DELAY,
+  ease: "linear" as const,
+};
+
+function PrincipleCycleBeams({
+  containerRef,
+  agentsRef,
+  actionsRef,
+  animate,
+}: {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  agentsRef: React.RefObject<HTMLDivElement | null>;
+  actionsRef: React.RefObject<HTMLDivElement | null>;
+  animate: boolean;
+}) {
+  const beamProps = {
+    containerRef,
+    className: "grc-ai-cycle-beam",
+    animated: animate,
+    ...BEAM_THEME,
+  };
+
+  return (
+    <div className="grc-ai-cycle-beams" aria-hidden>
+      <AnimatedBeam
+        fromRef={agentsRef}
+        toRef={actionsRef}
+        curvature={52}
+        {...beamProps}
+      />
+      <AnimatedBeam
+        fromRef={actionsRef}
+        toRef={agentsRef}
+        curvature={-52}
+        reverse
+        delay={BEAM_CYCLE}
+        {...beamProps}
+      />
+    </div>
+  );
+}
+
 export function GrcSuiteAiSection() {
   const reduceMotion = useReducedMotion();
+  const cycleRef = useRef<HTMLDivElement>(null);
+  const agentsRef = useRef<HTMLDivElement>(null);
+  const humanRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const iconRefs = [agentsRef, humanRef, actionsRef] as const;
 
   return (
     <section
@@ -32,7 +93,7 @@ export function GrcSuiteAiSection() {
       <div className="grc-section-inner">
         <div className="infra-box relative w-full overflow-hidden rounded-[28px] bg-[#0c0600] lg:rounded-[36px]">
           <div
-            className="infra-box-bg pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
+            className="infra-box-bg pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]"
             aria-hidden
           >
             <div className="hero-warm-base" />
@@ -40,7 +101,7 @@ export function GrcSuiteAiSection() {
             <div className="hero-grain" />
             <div className="hero-grain-fine" />
             {!reduceMotion && (
-              <div className="infra-shape-grid">
+              <div className="infra-shape-grid grc-principle-shape-grid">
                 <ShapeGrid
                   speed={0.12}
                   squareSize={24}
@@ -55,7 +116,7 @@ export function GrcSuiteAiSection() {
             <div className="infra-section-vignette" />
           </div>
 
-          <div className="infra-box-content relative z-[1]">
+          <div className="infra-box-content grc-principle-content relative z-[2]">
             <ScrollReveal duration={0.85} className="w-full">
               <header className="infra-header grc-principle-header">
                 <div className="infra-label">
@@ -75,77 +136,28 @@ export function GrcSuiteAiSection() {
 
             <ScrollReveal duration={0.9} delay={0.12} className="w-full">
               <div className="grc-principle-body">
-                <div className="grc-ai-cycle">
-                  <svg
-                    className="grc-ai-cycle-arrows"
-                    viewBox="0 0 840 120"
-                    preserveAspectRatio="xMidYMid meet"
-                    aria-hidden
-                  >
-                    <defs>
-                      <linearGradient
-                        id="grc-principle-flow-gradient"
-                        gradientUnits="userSpaceOnUse"
-                        x1="172"
-                        y1="60"
-                        x2="668"
-                        y2="60"
-                      >
-                        <stop offset="0%" stopColor="rgba(255, 122, 0, 0.15)" />
-                        <stop offset="35%" stopColor="rgba(255, 184, 120, 0.55)" />
-                        <stop offset="50%" stopColor="rgba(255, 210, 160, 0.95)" />
-                        <stop offset="65%" stopColor="rgba(255, 184, 120, 0.55)" />
-                        <stop offset="100%" stopColor="rgba(255, 122, 0, 0.15)" />
-                      </linearGradient>
-                      <filter
-                        id="grc-principle-connector-glow"
-                        x="-30%"
-                        y="-30%"
-                        width="160%"
-                        height="160%"
-                      >
-                        <feGaussianBlur stdDeviation="2" result="blur" />
-                        <feMerge>
-                          <feMergeNode in="blur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-
-                    <path
-                      className="grc-ai-cycle-track grc-ai-cycle-track--top"
-                      d="M 172 48 C 298 4, 542 4, 668 48"
-                      pathLength={1}
-                    />
-                    <path
-                      className="grc-ai-cycle-flow grc-ai-cycle-flow--top"
-                      d="M 172 48 C 298 4, 542 4, 668 48"
-                      pathLength={1}
-                    />
-                    <circle className="grc-ai-cycle-node-cap grc-ai-cycle-node-cap--top-end" cx="668" cy="48" r="2.5" />
-
-                    <path
-                      className="grc-ai-cycle-track grc-ai-cycle-track--bottom"
-                      d="M 668 72 C 542 116, 298 116, 172 72"
-                      pathLength={1}
-                    />
-                    <path
-                      className="grc-ai-cycle-flow grc-ai-cycle-flow--bottom"
-                      d="M 668 72 C 542 116, 298 116, 172 72"
-                      pathLength={1}
-                    />
-                    <circle className="grc-ai-cycle-node-cap grc-ai-cycle-node-cap--bottom-end" cx="172" cy="72" r="2.5" />
-                  </svg>
+                <div className="grc-ai-cycle" ref={cycleRef}>
+                  <PrincipleCycleBeams
+                    containerRef={cycleRef}
+                    agentsRef={agentsRef}
+                    actionsRef={actionsRef}
+                    animate={!reduceMotion}
+                  />
 
                   <div className="grc-ai-cycle-nodes">
                     {principle.cycle.map((node, index) => {
                       const CycleIcon = PRINCIPLE_CYCLE_ICONS[index] ?? ShieldCheck;
+                      const isCenter = index === 1;
+                      const iconRef = iconRefs[index] ?? actionsRef;
 
                       return (
-                        <div key={node.label} className="grc-ai-cycle-node">
-                          <span className="grc-ai-cycle-icon">
+                        <div
+                          key={node.label}
+                          className={`grc-ai-cycle-node${isCenter ? " grc-ai-cycle-node--center" : " grc-ai-cycle-node--side"}`}
+                        >
+                          <div className="grc-ai-cycle-icon" ref={iconRef}>
                             <CycleIcon size={28} strokeWidth={1.75} />
-                          </span>
+                          </div>
                           <span className="grc-ai-cycle-label">{node.label}</span>
                           <span className="grc-ai-cycle-sub">{node.sub}</span>
                         </div>

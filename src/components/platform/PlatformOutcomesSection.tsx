@@ -30,26 +30,16 @@ const OUTCOME_ICONS: LucideIcon[] = [
 function ImpactRow({
   label,
   icon: Icon,
-  index,
 }: {
   label: string;
   icon: LucideIcon;
-  index: number;
 }) {
   return (
     <article className="platform-impact-row">
       <span className="platform-impact-icon" aria-hidden>
         <Icon size={20} strokeWidth={1.7} />
       </span>
-      <div className="platform-impact-body">
-        <h3 className="platform-impact-label">{label}</h3>
-        <span className="platform-impact-bar" aria-hidden>
-          <span
-            className="platform-impact-bar-fill"
-            style={{ "--bar-delay": `${0.15 + index * 0.09}s` } as React.CSSProperties}
-          />
-        </span>
-      </div>
+      <h3 className="platform-impact-label">{label}</h3>
     </article>
   );
 }
@@ -111,7 +101,7 @@ export function PlatformOutcomesSection() {
                   const Icon = OUTCOME_ICONS[index] ?? ShieldCheck;
 
                   return (
-                    <ImpactRow key={label} label={label} icon={Icon} index={index} />
+                    <ImpactRow key={label} label={label} icon={Icon} />
                   );
                 })}
               </div>

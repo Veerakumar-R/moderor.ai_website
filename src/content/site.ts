@@ -998,6 +998,7 @@ export const platformPage = {
       "Without a centralized control layer, AI initiatives fragment into isolated experiments — each with its own risk profile, its own data exposure, and no shared accountability.",
     ],
     bulletsLabel: "Without a centralized control layer",
+    visualTitle: "Signs of fragmented AI governance",
     bullets: [
       "AI agents operate independently across teams",
       "Business policies are enforced inconsistently",
