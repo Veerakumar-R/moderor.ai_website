@@ -39,9 +39,8 @@ export const headerActionLinks = [
 
 export const navSuites = [
   { label: "GRC Suite — Governance, Risk & Compliance", href: routes.grcSuite },
-  { label: "BOM Suite — Business Operations Mesh", href: routes.bomSuite },
-  { label: "APPcelerate — Build & Run Software Faster", href: routes.appcelerateSuite },
-  { label: "Platform Admin Console", href: routes.adminSuite },
+  { label: "BOM Suite — Business Operations Mesh", href: "#" },
+  { label: "APPcelerate — Build & Run Software Faster", href: "#" },
 ];
 
 export const navMegaSidebar = {
@@ -111,16 +110,6 @@ export const navSuitesMega = {
       href: routes.appcelerateSuite,
       image: "/images/domain-outcomes/domain-engineering.png",
       imageAlt: "APPcelerate — engineering and delivery visualization",
-    },
-    {
-      id: "platform-admin",
-      title: "Platform Admin Console",
-      subtitle: "Governance Plane",
-      description:
-        "Central control for agents, policies, audit logs, and deployment — every action logged, governed, and traceable across suites.",
-      href: routes.adminSuite,
-      image: "/images/domain-outcomes/domain-risk.png",
-      imageAlt: "Platform Admin Console — governance plane visualization",
     },
   ],
 };
