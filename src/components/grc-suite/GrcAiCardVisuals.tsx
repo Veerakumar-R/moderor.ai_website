@@ -1,22 +1,34 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import type { grcSuitePage } from "@/content/site";
 
-type ControlRadarVisual = Extract<
-  (typeof grcSuitePage)["ai"]["features"][number]["visual"],
-  { type: "control-radar" }
->;
+type ControlRadarVisual = {
+  type: "control-radar";
+  panelTitle: string;
+  statusLabel: string;
+  metrics: { label: string; value: string }[];
+  blips: { angle: number; distance: number; status: "healthy" | "warning" | "critical" }[];
+};
 
-type ApprovalFlowVisual = Extract<
-  (typeof grcSuitePage)["ai"]["features"][number]["visual"],
-  { type: "approval-flow" }
->;
+type ApprovalFlowVisual = {
+  type: "approval-flow";
+  steps: {
+    title: string;
+    detail: string;
+    state: "complete" | "active" | "queued";
+    initials?: string;
+    assignee?: string;
+  }[];
+};
 
-type AssistantVisual = Extract<
-  (typeof grcSuitePage)["ai"]["features"][number]["visual"],
-  { type: "assistant" }
->;
+type AssistantVisual = {
+  type: "assistant";
+  panelTitle: string;
+  userMessage: string;
+  assistantMessage: string;
+  actionLabel: string;
+  placeholder: string;
+};
 
 type FeatureVisualType = ControlRadarVisual["type"] | ApprovalFlowVisual["type"] | AssistantVisual["type"];
 

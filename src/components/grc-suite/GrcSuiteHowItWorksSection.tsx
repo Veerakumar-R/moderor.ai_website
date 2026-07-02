@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useCallback, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Bot, ShieldCheck, UserCheck, type LucideIcon } from "lucide-react";
 import { grcSuitePage } from "@/content/site";
 import { PilotHeaderDeco } from "@/components/PilotHeaderDeco";
@@ -12,6 +12,12 @@ import "./grc-suite.css";
 const { howItWorks } = grcSuitePage.ai;
 
 const HOW_IT_WORKS_ICONS: LucideIcon[] = [Bot, UserCheck, ShieldCheck];
+
+type ConnectorGeometry = {
+  width: number;
+  height: number;
+  path: string;
+};
 
 function HowItWorksIconRing({ children }: { children: ReactNode }) {
   return (
@@ -33,7 +39,108 @@ function HowItWorksIconRing({ children }: { children: ReactNode }) {
   );
 }
 
+function HowItWorksConnector({ gridRef }: { gridRef: React.RefObject<HTMLDivElement | null> }) {
+  const [geometry, setGeometry] = useState<ConnectorGeometry | null>(null);
+
+  const updatePath = useCallback(() => {
+    const grid = gridRef.current;
+    if (!grid || window.innerWidth < 768) {
+      setGeometry(null);
+      return;
+    }
+
+    const rings = grid.querySelectorAll<HTMLElement>(".grc-how-flow-icon-ring");
+    if (rings.length < 3) return;
+
+    const flow = grid.closest<HTMLElement>(".grc-how-flow");
+    const styles = flow ? getComputedStyle(flow) : getComputedStyle(grid);
+    const iconBlock = parseFloat(styles.getPropertyValue("--grc-how-icon-block")) || 82;
+    const centerOffset = parseFloat(styles.getPropertyValue("--grc-how-center-offset")) || 44;
+    const svgHeight = iconBlock + centerOffset;
+
+    const gridRect = grid.getBoundingClientRect();
+    const width = gridRect.width;
+    if (width <= 0) return;
+
+    const point = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2 - gridRect.left,
+        y: rect.top + rect.height / 2 - gridRect.top,
+      };
+    };
+
+    const left = point(rings[0]);
+    const center = point(rings[1]);
+    const right = point(rings[2]);
+    const radius = rings[0].offsetWidth / 2;
+
+    const startX = left.x + radius;
+    const startY = left.y;
+    const endX = right.x - radius;
+    const endY = right.y;
+    const midX = center.x;
+    const midY = center.y;
+
+    const path = [
+      `M ${startX} ${startY}`,
+      `C ${startX + (midX - startX) * 0.42} ${startY - 18}`,
+      `${midX - (midX - startX) * 0.28} ${midY - 14}`,
+      `${midX} ${midY}`,
+      `C ${midX + (endX - midX) * 0.28} ${midY - 14}`,
+      `${endX - (endX - midX) * 0.42} ${endY - 18}`,
+      `${endX} ${endY}`,
+    ].join(" ");
+
+    setGeometry({ width, height: svgHeight, path });
+  }, [gridRef]);
+
+  useLayoutEffect(() => {
+    const frame = requestAnimationFrame(() => updatePath());
+
+    const grid = gridRef.current;
+    if (!grid) return () => cancelAnimationFrame(frame);
+
+    const observer = new ResizeObserver(() => updatePath());
+    observer.observe(grid);
+
+    const rings = grid.querySelectorAll<HTMLElement>(".grc-how-flow-icon-ring");
+    rings.forEach((ring) => observer.observe(ring));
+
+    window.addEventListener("resize", updatePath);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", updatePath);
+    };
+  }, [gridRef, updatePath]);
+
+  if (!geometry) return null;
+
+  return (
+    <svg
+      className="grc-how-flow-connector"
+      viewBox={`0 0 ${geometry.width} ${geometry.height}`}
+      preserveAspectRatio="none"
+      aria-hidden
+    >
+      <path
+        d={geometry.path}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.25"
+        strokeDasharray="3 8"
+        strokeLinecap="round"
+        vectorEffect="non-scaling-stroke"
+      />
+    </svg>
+  );
+}
+
 export function GrcSuiteHowItWorksSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
   return (
     <section
       id="how-it-works"
@@ -62,28 +169,18 @@ export function GrcSuiteHowItWorksSection() {
         <ScrollReveal duration={0.9} delay={0.12}>
           <div className="grc-how-panel">
             <div className="grc-how-flow">
-              <svg
-                className="grc-how-flow-connector"
-                viewBox="0 0 720 56"
-                preserveAspectRatio="xMidYMid meet"
-                aria-hidden
-              >
-                <path
-                  d="M 24 28 C 120 6, 200 50, 300 28 S 480 6, 576 28 S 656 50, 696 28"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.25"
-                  strokeDasharray="3 8"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <div className="grc-how-flow-grid" ref={gridRef}>
+                <HowItWorksConnector gridRef={gridRef} />
 
-              <div className="grc-how-flow-grid">
                 {howItWorks.steps.map((step, index) => {
                   const Icon = HOW_IT_WORKS_ICONS[index] ?? ShieldCheck;
+                  const isCenter = index === 1;
 
                   return (
-                    <article key={step.label} className="grc-how-flow-step">
+                    <article
+                      key={step.label}
+                      className={`grc-how-flow-step${isCenter ? " grc-how-flow-step--center" : ""}`}
+                    >
                       <HowItWorksIconRing>
                         <div className="grc-product-icon grc-how-flow-icon-core" aria-hidden>
                           <span className="grc-product-icon-glow" aria-hidden />
@@ -97,11 +194,6 @@ export function GrcSuiteHowItWorksSection() {
                 })}
               </div>
             </div>
-
-            <blockquote className="grc-ai-closing">
-              <p className="grc-ai-closing-lead">{howItWorks.closingLead}</p>
-              <p className="grc-ai-closing-accent">{howItWorks.closingHighlight}</p>
-            </blockquote>
           </div>
         </ScrollReveal>
       </div>

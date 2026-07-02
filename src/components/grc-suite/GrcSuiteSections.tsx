@@ -81,24 +81,24 @@ export function GrcSuiteWhySection() {
       <div className="grc-section-inner grc-why-content">
         <ScrollReveal duration={0.85}>
           <div className="grc-why-grid">
-            <div className="grc-why-head-col">
-              <p className="grc-suite-tag grc-why-tag">
-                <span className="grc-suite-tag-dot" aria-hidden />
-                {why.tag}
-              </p>
-
-              <h2 className="grc-suite-headline" id="grc-why-heading">
-                <span className="grc-suite-headline-lead">{why.title}</span>
-                <span className="grc-suite-headline-accent">{why.titleHighlight}</span>
-              </h2>
-            </div>
-
             <div className="grc-why-copy-col">
               {why.paragraphs.map((paragraph) => (
                 <p key={paragraph.slice(0, 48)} className="grc-why-paragraph">
                   {paragraph}
                 </p>
               ))}
+            </div>
+
+            <div className="grc-why-head-col">
+              <p className="grc-suite-tag grc-why-tag">
+                <span className="grc-suite-tag-dot" aria-hidden />
+                {why.tag}
+              </p>
+
+              <h2 className="grc-suite-headline grc-why-headline" id="grc-why-heading">
+                <span className="grc-suite-headline-lead">{why.title}</span>
+                <span className="grc-suite-headline-accent">{why.titleHighlight}</span>
+              </h2>
             </div>
           </div>
         </ScrollReveal>
