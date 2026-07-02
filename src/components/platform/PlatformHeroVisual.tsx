@@ -46,7 +46,7 @@ export function PlatformHeroVisual() {
         })}
 
         <div className="platform-hero-core">
-          <Layers size={30} strokeWidth={1.6} className="platform-hero-core-icon" aria-hidden />
+          <Layers size={34} strokeWidth={1.6} className="platform-hero-core-icon" aria-hidden />
           <span className="platform-hero-core-label">Control Plane</span>
         </div>
       </motion.div>
