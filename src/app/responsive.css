@@ -1,0 +1,465 @@
+/**
+ * Site-wide responsive overrides (mobile + tablet only).
+ * Desktop (1024px+) styles are intentionally untouched.
+ */
+
+/* ── Global safeguards ─────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  .grc-section-inner,
+  .infra-box-content,
+  .grc-outcomes-card-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .grc-breadcrumb-inner {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+}
+
+/* ── Navigation (mobile panel) ───────────────────────────────────── */
+@media (max-width: 1023px) {
+  .mobile-nav-link {
+    display: block;
+    min-height: 44px;
+    padding: 0.65rem 0;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: var(--grey);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link--active {
+    color: var(--charcoal);
+  }
+
+  .mobile-nav-link--active {
+    font-weight: 600;
+    color: var(--ember);
+  }
+
+  .mobile-nav-sublink {
+    display: block;
+    min-height: 40px;
+    padding: 0.5rem 0 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--grey);
+    border-left: 1px solid var(--border);
+  }
+
+  .mobile-nav-sublink:hover {
+    color: var(--charcoal);
+  }
+
+  .mobile-nav-group-label {
+    margin: 0.75rem 0 0.25rem;
+    padding-left: 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey-light);
+  }
+
+  .mobile-nav-group-label:first-child {
+    margin-top: 0.25rem;
+  }
+}
+
+/* ── Home hero ───────────────────────────────────────────────────── */
+/* The floating platform card is absolutely positioned + translated up on
+   desktop so it straddles the hero's bottom edge. On mobile/tablet that tall
+   stacked card reaches up and overlaps the headline, so we let it flow in
+   normal document order below the hero copy instead (no overlap). */
+@media (max-width: 1023px) {
+  .home-hero-cards {
+    position: static;
+    transform: none;
+    margin-top: 1.5rem;
+  }
+
+  .home-hero-shell,
+  .home-hero-content {
+    min-height: 0 !important;
+  }
+
+  .home-hero-content {
+    padding-bottom: 2rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-hero-title-line {
+    white-space: normal;
+  }
+
+  .grc-hero-banner {
+    min-height: 460px !important;
+  }
+
+  .grc-hero-content {
+    min-height: 460px !important;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .grc-hero-copy h1 {
+    font-size: clamp(2rem, 9vw, 2.75rem) !important;
+    line-height: 1.1;
+  }
+
+  .grc-hero-description {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .platform-hero-orbit {
+    max-width: min(100%, 300px);
+  }
+
+  .platform-hero-node {
+    --radius: 108px;
+  }
+
+  .platform-hero-node-label {
+    font-size: 9px;
+  }
+
+  .platform-hero-node-chip {
+    padding: 0.32rem 0.55rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grc-hero-banner {
+    min-height: 500px !important;
+  }
+
+  .grc-hero-content {
+    min-height: 500px !important;
+  }
+
+  .platform-hero-orbit {
+    max-width: min(100%, 380px);
+  }
+
+  .platform-hero-node {
+    --radius: 150px;
+  }
+}
+
+/* ── Home hero title: allow wrapping across the whole <1024 range ──── */
+@media (max-width: 1023px) {
+  .home-hero-title-line {
+    white-space: normal;
+  }
+}
+
+/* ── Home: domain outcomes ───────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .domain-outcomes-sticky {
+    position: relative;
+    top: auto;
+    min-height: auto;
+    padding: 1.5rem 0;
+  }
+
+  .domain-outcomes-layout {
+    padding: 1rem;
+    gap: 1.25rem;
+  }
+
+  .domain-outcomes-nav {
+    margin-top: 1.5rem;
+  }
+
+  .domain-outcomes-white-card {
+    min-height: auto;
+  }
+
+  .domain-outcomes-card-content {
+    padding: 1.25rem;
+  }
+
+  .domain-outcomes-content-headline {
+    font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+  }
+
+  .domain-outcomes-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .domain-outcomes-layout {
+    padding: 0.85rem;
+  }
+
+  .domain-outcomes-card-nav {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .domain-outcomes-card-nav-item {
+    min-height: 40px;
+  }
+}
+
+/* ── Frameworks zigzag ───────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .frameworks-tile-name,
+  .frameworks-tile-type {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ── GRC / Platform shared sections ──────────────────────────────── */
+@media (max-width: 1023px) {
+  /* !important: these live in component CSS imported AFTER this sheet, so
+     an unqualified override would lose the cascade and the title would clip. */
+  .grc-outcomes-title {
+    white-space: normal !important;
+    line-height: 1.12;
+  }
+
+  .grc-principle-section .grc-principle-title {
+    white-space: normal;
+    line-height: 1.12;
+  }
+
+  .grc-principle-intro,
+  .infra-intro {
+    max-width: 100%;
+  }
+
+  .platform-arch-chip,
+  .platform-arch-core-title {
+    white-space: normal;
+  }
+
+  .platform-stack-layer {
+    flex-wrap: wrap;
+  }
+
+  .platform-stack-chips {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+    margin-top: 0.35rem;
+  }
+
+  .platform-stack-chip {
+    white-space: normal;
+  }
+
+  .platform-why-headline {
+    font-size: clamp(1.65rem, 5vw, 2.15rem);
+  }
+
+  /* orbit node labels: wrap instead of spilling past the orbit ring */
+  .platform-hero-node-chip {
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* keep the deployment logo grid from cramping 5-up on narrow columns */
+  .platform-arch-deploy-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .grc-outcomes-header,
+  .infra-header,
+  .grc-principle-header {
+    text-align: left;
+  }
+
+  .grc-outcomes-eyebrow,
+  .infra-label {
+    justify-content: flex-start;
+  }
+
+  .platform-impact-grid {
+    gap: 0.85rem;
+  }
+
+  .grc-ai-principle-cards {
+    gap: 0.85rem;
+  }
+}
+
+/* ── Infrastructure diagram ────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .infra-node-mock-label {
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* ── Problem / governance mock UI ────────────────────────────────── */
+@media (max-width: 1023px) {
+  .pm-gov-status {
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* ── Governed by design grid ─────────────────────────────────────── */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .governed-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── Human control section ───────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .human-wizard {
+    overflow-x: auto;
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .human-title {
+    font-size: clamp(1.65rem, 5vw, 2.25rem);
+  }
+}
+
+/* ── Pilot section ───────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .pilot-story-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .pilot-story-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── Final CTA / footer ──────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .final-closing-footnote {
+    white-space: normal;
+  }
+
+  .final-closing-cta-top {
+    gap: 1.5rem;
+  }
+
+  .final-closing-btn {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* ── Auditor workbench ───────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .aw-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aw-cap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aw-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .aw-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aw-hero-banner-grid {
+    gap: 2rem;
+  }
+
+  .aw-hero-title {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+  }
+
+  .aw-hero-kpi-strip {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* ── Decorative stars/sparkles: hide on mobile + tablet so they never ──
+   overlap or clutter the header/hero text. Purely decorative (aria-hidden). */
+@media (max-width: 1023px) {
+  .hero-sparkle,
+  .governed-sparkle,
+  .pilot-sparkle,
+  .governed-section-sparkle {
+    display: none !important;
+  }
+}
+
+/* ── Banner containment + stacking order ───────────────────────────── */
+@media (max-width: 1023px) {
+  /* keep hero visuals (bento cards, orbit) from bleeding past the screen */
+  .aw-hero,
+  .grc-hero-banner {
+    overflow-x: clip;
+  }
+
+  /* on stacked banners the copy (title + text + CTA) always leads,
+     the product/suite visual follows below it (order works in grid + flex) */
+  .aw-hero-copy,
+  .grc-hero-copy {
+    order: -1;
+  }
+}
+
+/* ── Auditor principle bento: stop cards overflowing the viewport ──── */
+@media (max-width: 1023px) {
+  /* grid items default to min-width:auto, so a nowrap title/chip forces the
+     card wider than the screen. Allow them to shrink + wrap instead. */
+  .aw-principle-bento-card,
+  .aw-principle-card-main,
+  .aw-principle-card-desc {
+    min-width: 0;
+  }
+
+  .aw-principle-card-visual {
+    overflow: hidden;
+  }
+
+  .aw-principle-card-title-line {
+    white-space: normal !important;
+  }
+
+  .aw-principle-card-desc p {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ── Overflow containment for decorative mockups ─────────────────── */
+@media (max-width: 1023px) {
+  .outcome-mockup-wrap,
+  .grc-viz-stage,
+  .grc-shield-stage,
+  .pm-mock-window,
+  .aw-web-frame {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+  }
+}

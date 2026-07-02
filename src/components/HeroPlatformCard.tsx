@@ -268,7 +268,7 @@ export function HeroPlatformCard() {
   const { heroCard } = heroContent;
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-[36%] px-4 sm:px-8">
+    <div className="home-hero-cards pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-[36%] px-4 sm:px-8">
       <div className="hero-cards-stage pointer-events-auto relative mx-auto max-w-[1040px] rounded-[40px] px-2 pt-6 pb-2 sm:px-4">
         <div className="hidden items-end justify-center gap-5 xl:gap-7 lg:flex">
           <div className="flex w-[176px] shrink-0 flex-col gap-4 pb-[4.5rem] xl:w-[188px] xl:pb-20">

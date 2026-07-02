@@ -684,8 +684,9 @@
   color: rgba(255, 255, 255, 0.38);
 }
 
-/* Tablet / mobile */
-@media (max-width: 900px) {
+/* Tablet / mobile — stack the corner diagram (covers the full <1024 range so
+   the 901–1023px band doesn't keep the overlapping absolute layout). */
+@media (max-width: 1023px) {
   .infra-box-content {
     padding: 1.75rem 1rem 2rem;
   }

@@ -358,7 +358,9 @@ export default function ShapeGrid({
           })
         : null;
 
-    resizeObserver?.observe(container);
+    if (resizeObserver && container) {
+      resizeObserver.observe(container);
+    }
 
     resizeCanvas();
     requestRef.current = requestAnimationFrame(updateAnimation);

@@ -13,12 +13,12 @@ const LightRays = dynamic(() => import("./LightRays"), { ssr: false });
 
 export function Hero() {
   return (
-    <section className="bg-white px-5 pt-5 pb-40 sm:px-[50px] sm:pt-6 sm:pb-44 lg:pb-48">
+    <section className="home-hero bg-white px-5 pt-5 pb-40 sm:px-[50px] sm:pt-6 sm:pb-44 lg:pb-48">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative min-h-[660px] w-full overflow-visible rounded-[28px] bg-[#0c0600] sm:min-h-[720px] lg:min-h-[780px] lg:rounded-[36px]"
+        className="home-hero-shell relative min-h-[660px] w-full overflow-visible rounded-[28px] bg-[#0c0600] sm:min-h-[720px] lg:min-h-[780px] lg:rounded-[36px]"
       >
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]">
           <div className="hero-warm-base" aria-hidden />
@@ -50,7 +50,7 @@ export function Hero() {
           <HeroCenterPattern />
         </div>
 
-        <div className="relative z-10 flex min-h-[660px] flex-col items-center px-6 pt-14 pb-56 text-center sm:min-h-[720px] sm:pt-16 sm:pb-64 lg:min-h-[780px] lg:pt-20 lg:pb-72">
+        <div className="home-hero-content relative z-10 flex min-h-[660px] flex-col items-center px-6 pt-14 pb-56 text-center sm:min-h-[720px] sm:pt-16 sm:pb-64 lg:min-h-[780px] lg:pt-20 lg:pb-72">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -66,7 +66,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="whitespace-nowrap text-[clamp(1.35rem,4.6vw,3.85rem)] leading-[1.08] font-light"
+              className="home-hero-title-line whitespace-nowrap text-[clamp(1.35rem,4.6vw,3.85rem)] leading-[1.08] font-light"
             >
               {heroContent.title}
             </motion.span>
@@ -77,7 +77,7 @@ export function Hero() {
               direction="top"
               threshold={0.2}
               rootMargin="-40px"
-              className="mt-0.5 whitespace-nowrap text-[clamp(1.35rem,4.6vw,3.85rem)] leading-[1.08] font-bold"
+              className="home-hero-title-line mt-0.5 whitespace-nowrap text-[clamp(1.35rem,4.6vw,3.85rem)] leading-[1.08] font-bold"
             />
           </h1>
 

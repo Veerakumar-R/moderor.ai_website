@@ -209,8 +209,49 @@ function NavMegaPanel({
   );
 }
 
+function MobileNavSection({
+  label,
+  open,
+  onToggle,
+  children,
+}: {
+  label: string;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mobile-nav-section">
+      <button
+        type="button"
+        className="mobile-nav-section-trigger"
+        onClick={onToggle}
+        aria-expanded={open}
+      >
+        {label}
+        <ChevronDown size={16} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="mobile-nav-section-panel">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSuitesOpen, setMobileSuitesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
   const suitesMenu = useMegaMenu();
   const productsMenu = useMegaMenu();
@@ -224,6 +265,8 @@ export function Navbar() {
     suitesMenu.closeMenu();
     productsMenu.closeMenu();
     setMobileOpen(false);
+    setMobileSuitesOpen(false);
+    setMobileProductsOpen(false);
     /* eslint-enable react-hooks/set-state-in-effect */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
@@ -298,7 +341,7 @@ export function Navbar() {
     >
       <div className="px-5 py-3 sm:px-[50px] sm:py-3.5">
         <div className="relative flex items-center justify-between">
-          <Logo className="relative z-10 h-6 w-auto sm:h-7" />
+          <Logo className="relative z-10 h-6 w-auto shrink-0 sm:h-7" />
 
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
             <NavMegaTrigger label="Suites" open={suitesMenu.open} onToggle={toggleSuitesMenu} />
@@ -333,9 +376,10 @@ export function Navbar() {
           </div>
 
           <button
-            className="relative z-10 text-charcoal lg:hidden"
+            className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-charcoal lg:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -356,9 +400,54 @@ export function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="overflow-hidden border-t border-border lg:hidden"
+            className="overflow-hidden border-t border-border lg:hidden max-h-[calc(100dvh-var(--site-header-height))] overflow-y-auto"
           >
             <div className="flex flex-col gap-1 px-5 py-4">
+              <MobileNavSection
+                label="Suites"
+                open={mobileSuitesOpen}
+                onToggle={() => {
+                  setMobileProductsOpen(false);
+                  setMobileSuitesOpen((prev) => !prev);
+                }}
+              >
+                {navSuitesMega.suites.map((suite) => (
+                  <Link
+                    key={suite.id}
+                    href={suite.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="mobile-nav-sublink"
+                  >
+                    {suite.title}
+                  </Link>
+                ))}
+              </MobileNavSection>
+
+              <MobileNavSection
+                label="Products"
+                open={mobileProductsOpen}
+                onToggle={() => {
+                  setMobileSuitesOpen(false);
+                  setMobileProductsOpen((prev) => !prev);
+                }}
+              >
+                {navProductsMega.suites.map((suite) => (
+                  <div key={suite.id}>
+                    <p className="mobile-nav-group-label">{suite.title}</p>
+                    {suite.items.map((item) => (
+                      <Link
+                        key={item}
+                        href={productRoutes[item] ?? "#"}
+                        onClick={() => setMobileOpen(false)}
+                        className="mobile-nav-sublink"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </MobileNavSection>
+
               {headerNavLinks.map((link) => {
                 const active = isNavLinkActive(pathname, link.href);
 
@@ -367,7 +456,7 @@ export function Navbar() {
                     key={`${link.href}-${link.label}`}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`py-2.5 hover:text-charcoal${active ? " font-semibold text-ember" : " text-grey"}`}
+                    className={`mobile-nav-link${active ? " mobile-nav-link--active" : ""}`}
                     aria-current={active ? "page" : undefined}
                   >
                     {link.label}
@@ -379,7 +468,7 @@ export function Navbar() {
                   key={link.href + link.label}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="py-2.5 text-grey hover:text-charcoal"
+                  className="mobile-nav-link"
                 >
                   {link.label}
                 </Link>

@@ -435,3 +435,30 @@ button.nav-link {
     height: 8rem;
   }
 }
+
+/* Mobile navigation panel (lg and below) */
+@media (max-width: 1023px) {
+  .mobile-nav-section {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mobile-nav-section-trigger {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    cursor: pointer;
+  }
+
+  .mobile-nav-section-panel {
+    padding-bottom: 0.5rem;
+  }
+}

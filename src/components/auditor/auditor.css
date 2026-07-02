@@ -1081,7 +1081,7 @@
 
   .aw-stack-card--tall {
     bottom: 22%;
-    right: -4%;
+    right: 0;
     width: 46%;
   }
 
@@ -1091,8 +1091,8 @@
 
   .aw-stack-card--mini {
     width: 46%;
-    bottom: -8%;
-    right: -4%;
+    bottom: 0;
+    right: 0;
   }
 }
 

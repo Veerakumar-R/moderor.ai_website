@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useScroll,
 } from "framer-motion";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { outcomePanels, outcomeTabs } from "@/content/site";
 import { DomainLeftVisual } from "./DomainLeftVisual";
 import { DomainMetricCard } from "./DomainMetricCard";
@@ -72,7 +72,18 @@ export function DomainOutcomesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const reduceMotion = useReducedMotion();
-  const scrollEnabled = !reduceMotion;
+  // Scroll-jacking (and the tall 100vh-per-tab track) is a desktop-only
+  // interaction. On mobile/tablet it leaves dead scroll space, so gate it on
+  // a ≥1024px viewport in addition to reduced-motion preference.
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const scrollEnabled = !reduceMotion && isDesktop;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
