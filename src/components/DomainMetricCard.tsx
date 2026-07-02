@@ -88,8 +88,71 @@ function ChartDefs({ gradId, vertical = false }: { gradId: string; vertical?: bo
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Compliance — semicircular gauge. */
-function GaugeChart({
+const TRACK = { x: 8, y: 20, w: 104, h: 10, r: 5 };
+const TRACK_BG = "#d9d9d9";
+const TRACK_BORDER = "#bdbdbd";
+
+function MetricProgressTrack({
+  fillW,
+  chartKey,
+  gradId,
+  reduceMotion,
+  track = TRACK,
+}: {
+  fillW: number;
+  chartKey: string;
+  gradId: string;
+  reduceMotion: boolean;
+  track?: typeof TRACK;
+}) {
+  const clampedFill = Math.max(track.h, Math.min(track.w, fillW));
+  const capR = track.h / 2;
+  const cy = track.y + capR;
+  const isFull = clampedFill >= track.w - 0.5;
+  const bodyW = isFull ? clampedFill : Math.max(track.h, clampedFill - capR);
+
+  return (
+    <>
+      <rect
+        x={track.x}
+        y={track.y}
+        width={track.w}
+        height={track.h}
+        rx={track.r}
+        fill={TRACK_BG}
+        stroke={TRACK_BORDER}
+        strokeWidth="1"
+      />
+      <motion.rect
+        key={`fill-${chartKey}`}
+        x={track.x}
+        y={track.y}
+        height={track.h}
+        rx={track.r}
+        fill={`url(#${gradId})`}
+        initial={reduceMotion ? { width: bodyW, opacity: 1 } : { width: track.h, opacity: 0.85 }}
+        animate={{ width: bodyW, opacity: 1 }}
+        transition={{ duration: 1, delay: 0.12, ease: EASE }}
+      />
+      {!isFull && (
+        <motion.circle
+          key={`cap-${chartKey}`}
+          cy={cy}
+          r={capR}
+          fill="#ff7a00"
+          stroke="#ffffff"
+          strokeWidth="1.25"
+          initial={reduceMotion ? { cx: track.x + clampedFill, opacity: 1 } : { cx: track.x + capR, opacity: 0 }}
+          animate={{ cx: track.x + clampedFill, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.12, ease: EASE }}
+        />
+      )}
+    </>
+  );
+}
+
+/** Percent metrics — horizontal progress bar aligned to the exact value. */
+function PercentProgressChart({
   fraction,
   chartKey,
   gradId,
@@ -100,195 +163,29 @@ function GaugeChart({
   gradId: string;
   reduceMotion: boolean;
 }) {
-  const arc = "M28 35 A32 32 0 0 1 92 35";
-  const angle = fraction * Math.PI;
-  const dotX = 60 - 32 * Math.cos(angle);
-  const dotY = 35 - 32 * Math.sin(angle);
+  const fillW = Math.max(TRACK.h, fraction * TRACK.w);
 
   return (
     <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
       <ChartDefs gradId={gradId} />
-      <path d={arc} fill="none" stroke="#ececec" strokeWidth="6" strokeLinecap="round" />
-      <motion.path
-        key={`gauge-${chartKey}`}
-        d={arc}
-        fill="none"
-        stroke={`url(#${gradId})`}
-        strokeWidth="6"
-        strokeLinecap="round"
-        filter={`url(#${gradId}-glow)`}
-        initial={reduceMotion ? { pathLength: fraction } : { pathLength: 0 }}
-        animate={{ pathLength: fraction }}
-        transition={{ duration: 1.1, delay: 0.1, ease: EASE }}
-      />
-      <motion.circle
-        key={`gauge-dot-${chartKey}`}
-        r="3.2"
-        fill="#ff7a00"
-        initial={reduceMotion ? { cx: dotX, cy: dotY, opacity: 1 } : { cx: 28, cy: 35, opacity: 0 }}
-        animate={{ cx: dotX, cy: dotY, opacity: 1 }}
-        transition={{ duration: 1.1, delay: 0.1, ease: EASE }}
-      />
+      <MetricProgressTrack fillW={fillW} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+      {[0.25, 0.5, 0.75].map((tick) => (
+        <line
+          key={tick}
+          x1={TRACK.x + TRACK.w * tick}
+          y1={TRACK.y - 1}
+          x2={TRACK.x + TRACK.w * tick}
+          y2={TRACK.y + TRACK.h + 1}
+          stroke="#c8c8c8"
+          strokeWidth="0.75"
+          opacity="0.9"
+        />
+      ))}
     </svg>
   );
 }
 
-/** Risk — ascending column bars. */
-function ColumnChart({
-  fraction,
-  chartKey,
-  gradId,
-  reduceMotion,
-}: {
-  fraction: number;
-  chartKey: string;
-  gradId: string;
-  reduceMotion: boolean;
-}) {
-  const ratios = [0.42, 0.58, 0.72, 0.86, 1];
-
-  return (
-    <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
-      <ChartDefs gradId={gradId} vertical />
-      {ratios.map((ratio, i) => {
-        const h = Math.max(4, ratio * fraction * 30);
-        const x = 8 + i * 22;
-        const isLast = i === ratios.length - 1;
-        return (
-          <motion.rect
-            key={`col-${chartKey}-${i}`}
-            x={x}
-            y={33 - h}
-            width="13"
-            height={h}
-            rx="3"
-            fill={`url(#${gradId})`}
-            filter={isLast ? `url(#${gradId}-glow)` : undefined}
-            initial={reduceMotion ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: isLast ? [0.8, 1, 0.92, 1] : 0.82 }}
-            transition={{
-              scaleY: { type: "spring", stiffness: 300, damping: 22, delay: 0.1 + i * 0.09 },
-              opacity: { duration: 0.4, delay: 0.5 + i * 0.07 },
-            }}
-            style={{ transformOrigin: `${x + 6.5}px 33px` }}
-          />
-        );
-      })}
-    </svg>
-  );
-}
-
-/** Identity — segmented level meter. */
-function SegmentMeter({
-  fraction,
-  chartKey,
-  gradId,
-  reduceMotion,
-}: {
-  fraction: number;
-  chartKey: string;
-  gradId: string;
-  reduceMotion: boolean;
-}) {
-  const segments = 8;
-  const filled = Math.max(1, Math.round(fraction * segments));
-  const gap = 3;
-  const segW = (120 - gap * (segments - 1)) / segments;
-
-  return (
-    <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
-      <ChartDefs gradId={gradId} />
-      {Array.from({ length: segments }, (_, i) => {
-        const active = i < filled;
-        const x = i * (segW + gap);
-        return (
-          <motion.rect
-            key={`seg-${chartKey}-${i}`}
-            x={x}
-            y="12"
-            width={segW}
-            height="12"
-            rx="3"
-            fill={active ? `url(#${gradId})` : "#ececec"}
-            filter={active && i === filled - 1 ? `url(#${gradId}-glow)` : undefined}
-            initial={reduceMotion ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0.4 }}
-            animate={{ opacity: active ? 1 : 0.5, scaleX: 1 }}
-            transition={{ duration: 0.32, delay: 0.1 + i * 0.07, ease: EASE }}
-            style={{ transformOrigin: `${x}px 18px` }}
-          />
-        );
-      })}
-    </svg>
-  );
-}
-
-/** Engineering — sparkline area trend. */
-function SparkArea({
-  fraction,
-  chartKey,
-  gradId,
-  reduceMotion,
-}: {
-  fraction: number;
-  chartKey: string;
-  gradId: string;
-  reduceMotion: boolean;
-}) {
-  const pts = [0.2, 0.32, 0.28, 0.55, 0.62, fraction];
-  const coords = pts.map((p, i) => {
-    const x = 6 + (i / (pts.length - 1)) * 108;
-    const y = 32 - clamp(p) * 26;
-    return { x, y };
-  });
-  const line = coords.map((c, i) => `${i === 0 ? "M" : "L"}${c.x.toFixed(1)} ${c.y.toFixed(1)}`).join(" ");
-  const area = `${line} L114 33 L6 33 Z`;
-  const end = coords[coords.length - 1];
-
-  return (
-    <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
-      <ChartDefs gradId={gradId} />
-      <linearGradient id={`${gradId}-fill`} x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#ff7a00" stopOpacity="0.22" />
-        <stop offset="100%" stopColor="#ff7a00" stopOpacity="0" />
-      </linearGradient>
-      <line x1="6" y1="33" x2="114" y2="33" stroke="#ececec" strokeWidth="1" />
-      <motion.path
-        key={`spark-area-${chartKey}`}
-        d={area}
-        fill={`url(#${gradId}-fill)`}
-        initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      />
-      <motion.path
-        key={`spark-line-${chartKey}`}
-        d={line}
-        fill="none"
-        stroke={`url(#${gradId})`}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        filter={`url(#${gradId}-glow)`}
-        initial={reduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1.1, delay: 0.15, ease: EASE }}
-      />
-      <motion.circle
-        key={`spark-dot-${chartKey}`}
-        cx={end.x}
-        cy={end.y}
-        r="3"
-        fill="#ff7a00"
-        initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.35, delay: 1.1, type: "spring", stiffness: 280, damping: 18 }}
-        style={{ transformOrigin: `${end.x}px ${end.y}px` }}
-      />
-    </svg>
-  );
-}
-
-/** Compliance metric 2 — rising audit volume bars. */
+/** Count metrics — rising volume bars showing scale toward capacity. */
 function CountVolumeChart({
   fraction,
   chartKey,
@@ -300,186 +197,264 @@ function CountVolumeChart({
   gradId: string;
   reduceMotion: boolean;
 }) {
-  const bars = 8;
-  const barW = 8;
-  const gap = 4.5;
+  const bars = 6;
+  const barW = 10;
+  const gap = 5;
   const startX = (120 - (bars * barW + (bars - 1) * gap)) / 2;
 
   return (
     <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
       <ChartDefs gradId={gradId} vertical />
-      <line x1="8" y1="33" x2="112" y2="33" stroke="#ececec" strokeWidth="1" />
+      <line x1="8" y1="30" x2="112" y2="30" stroke="#ececec" strokeWidth="1" />
       {Array.from({ length: bars }, (_, i) => {
         const t = (i + 1) / bars;
-        const h = Math.max(5, Math.pow(t, 1.35) * fraction * 28);
+        const h = Math.max(6, t * fraction * 22);
         const x = startX + i * (barW + gap);
         const isPeak = i === bars - 1;
         return (
           <motion.rect
             key={`vol-${chartKey}-${i}`}
             x={x}
-            y={33 - h}
+            y={30 - h}
             width={barW}
             height={h}
-            rx="2"
+            rx="2.5"
             fill={`url(#${gradId})`}
             filter={isPeak ? `url(#${gradId}-glow)` : undefined}
             initial={reduceMotion ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: isPeak ? 1 : 0.55 + t * 0.35 }}
+            animate={{ scaleY: 1, opacity: isPeak ? 1 : 0.45 + t * 0.4 }}
             transition={{
-              scaleY: { type: "spring", stiffness: 320, damping: 20, delay: 0.12 + i * 0.06 },
-              opacity: { duration: 0.35, delay: 0.18 + i * 0.05 },
+              scaleY: { type: "spring", stiffness: 320, damping: 20, delay: 0.1 + i * 0.07 },
+              opacity: { duration: 0.35, delay: 0.15 + i * 0.06 },
             }}
-            style={{ transformOrigin: `${x + barW / 2}px 33px` }}
+            style={{ transformOrigin: `${x + barW / 2}px 30px` }}
           />
         );
       })}
+      <motion.line
+        key={`cap-${chartKey}`}
+        x1="8"
+        x2="112"
+        y1="10"
+        y2="10"
+        stroke="#ff7a00"
+        strokeWidth="1"
+        strokeDasharray="3 3"
+        opacity="0.45"
+        initial={reduceMotion ? { opacity: 0.45 } : { opacity: 0 }}
+        animate={{ opacity: 0.45 }}
+        transition={{ duration: 0.4, delay: 0.55 }}
+      />
     </svg>
   );
 }
 
-/** Percent reduction — full donut ring (distinct from semicircle gauge). */
-function DonutRingChart({
-  fraction,
+/** Multiplier metrics — single track at 1/value fill (3× faster = ⅓ the time). */
+function MultiplierCompareChart({
   chartKey,
   gradId,
   reduceMotion,
+  value,
 }: {
-  fraction: number;
   chartKey: string;
   gradId: string;
   reduceMotion: boolean;
+  value: number;
 }) {
-  const r = 12;
-  const cx = 60;
-  const cy = 18;
-  const circumference = 2 * Math.PI * r;
-  const offset = circumference * (1 - fraction);
+  const fillW = Math.max(TRACK.h, TRACK.w / value);
 
   return (
     <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
       <ChartDefs gradId={gradId} />
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#ececec" strokeWidth="4.5" />
-      <motion.circle
-        key={`ring-${chartKey}`}
-        cx={cx}
-        cy={cy}
-        r={r}
-        fill="none"
-        stroke={`url(#${gradId})`}
-        strokeWidth="4.5"
+      <MetricProgressTrack fillW={fillW} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+      <line
+        x1={TRACK.x + TRACK.w}
+        y1={TRACK.y - 2}
+        x2={TRACK.x + TRACK.w}
+        y2={TRACK.y + TRACK.h + 2}
+        stroke="#ff7a00"
+        strokeWidth="1.5"
         strokeLinecap="round"
-        strokeDasharray={circumference}
-        transform={`rotate(-90 ${cx} ${cy})`}
-        filter={`url(#${gradId}-glow)`}
-        initial={reduceMotion ? { strokeDashoffset: offset } : { strokeDashoffset: circumference }}
-        animate={{ strokeDashoffset: offset }}
-        transition={{ duration: 1.15, delay: 0.12, ease: EASE }}
-      />
-      <motion.circle
-        key={`ring-dot-${chartKey}`}
-        r="2.8"
-        fill="#ff7a00"
-        initial={
-          reduceMotion
-            ? { cx: cx + r * Math.cos(fraction * 2 * Math.PI - Math.PI / 2), cy: cy + r * Math.sin(fraction * 2 * Math.PI - Math.PI / 2), opacity: 1 }
-            : { cx, cy: cy - r, opacity: 0 }
-        }
-        animate={{
-          cx: cx + r * Math.cos(fraction * 2 * Math.PI - Math.PI / 2),
-          cy: cy + r * Math.sin(fraction * 2 * Math.PI - Math.PI / 2),
-          opacity: 1,
-        }}
-        transition={{ duration: 1.15, delay: 0.12, ease: EASE }}
+        opacity="0.55"
       />
     </svg>
   );
 }
 
-/** Duration / speed — descending step line (lower is better). */
-function DurationStepsChart({
-  fraction,
+/** Duration metrics — single track at agent/manual ratio (shorter = faster). */
+function SpeedCompareChart({
+  chartKey,
+  gradId,
+  reduceMotion,
+  minutes,
+}: {
+  chartKey: string;
+  gradId: string;
+  reduceMotion: boolean;
+  minutes: number;
+}) {
+  const manualMinutes = Math.max(minutes * 4.5, 18);
+  const fillW = Math.max(TRACK.h, TRACK.w * (minutes / manualMinutes));
+
+  return (
+    <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
+      <ChartDefs gradId={gradId} />
+      <MetricProgressTrack fillW={fillW} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+      <line
+        x1={TRACK.x + TRACK.w}
+        y1={TRACK.y - 2}
+        x2={TRACK.x + TRACK.w}
+        y2={TRACK.y + TRACK.h + 2}
+        stroke="#ff7a00"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        opacity="0.55"
+      />
+    </svg>
+  );
+}
+
+/** Range metrics — highlighted band on a 0–100% scale. */
+function RangeBandChart({
+  visual,
   chartKey,
   gradId,
   reduceMotion,
 }: {
-  fraction: number;
+  visual: Extract<MetricVisual, { type: "range" }>;
   chartKey: string;
   gradId: string;
   reduceMotion: boolean;
 }) {
-  const steps = [1, 0.78, 0.62, clamp(fraction, 0.2, 1)];
-  const coords = steps.map((p, i) => ({
-    x: 10 + i * 32,
-    y: 8 + (1 - p) * 22,
-  }));
+  const startX = TRACK.x + (visual.start / 100) * TRACK.w;
+  const bandW = ((visual.end - visual.start) / 100) * TRACK.w;
+
   return (
     <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
       <ChartDefs gradId={gradId} />
-      {[8, 16, 24, 32].map((y) => (
-        <line key={y} x1="8" y1={y} x2="112" y2={y} stroke="#f0f0f0" strokeWidth="1" />
-      ))}
-      {coords.slice(0, -1).map((c, i) => {
-        const next = coords[i + 1];
-        return (
-          <motion.line
-            key={`step-${chartKey}-${i}`}
-            x1={c.x}
-            y1={c.y}
-            x2={next.x}
-            y2={next.y}
-            stroke={`url(#${gradId})`}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            initial={
-              reduceMotion
-                ? { opacity: 1, x2: next.x, y2: next.y }
-                : { opacity: 0, x2: c.x, y2: c.y }
-            }
-            animate={{ opacity: 1, x2: next.x, y2: next.y }}
-            transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: EASE }}
-          />
-        );
-      })}
-      {coords.map((c, i) => (
-        <motion.circle
-          key={`step-dot-${chartKey}-${i}`}
-          cx={c.x}
-          cy={c.y}
-          r={i === coords.length - 1 ? 3.2 : 2.4}
-          fill={i === coords.length - 1 ? "#ff7a00" : `url(#${gradId})`}
-          filter={i === coords.length - 1 ? `url(#${gradId}-glow)` : undefined}
-          initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.35, delay: 0.2 + i * 0.1, type: "spring", stiffness: 280, damping: 18 }}
-          style={{ transformOrigin: `${c.x}px ${c.y}px` }}
+      <rect x={TRACK.x} y={TRACK.y} width={TRACK.w} height={TRACK.h} rx={TRACK.r} fill={TRACK_BG} stroke={TRACK_BORDER} strokeWidth="1" />
+      <motion.rect
+        key={`band-${chartKey}`}
+        y={TRACK.y}
+        height={TRACK.h}
+        rx={TRACK.r}
+        fill={`url(#${gradId})`}
+        initial={reduceMotion ? { x: startX, width: bandW, opacity: 1 } : { x: startX, width: 0, opacity: 0.6 }}
+        animate={{ x: startX, width: bandW, opacity: 1 }}
+        transition={{ duration: 0.95, delay: 0.15, ease: EASE }}
+      />
+      <motion.circle
+        key={`band-cap-${chartKey}`}
+        cy={TRACK.y + TRACK.h / 2}
+        r={TRACK.h / 2}
+        fill="#ff7a00"
+        stroke="#ffffff"
+        strokeWidth="1.25"
+        initial={reduceMotion ? { cx: startX + bandW, opacity: 1 } : { cx: startX, opacity: 0 }}
+        animate={{ cx: startX + bandW, opacity: 1 }}
+        transition={{ duration: 0.95, delay: 0.15, ease: EASE }}
+      />
+      <line x1={startX} y1={TRACK.y - 3} x2={startX} y2={TRACK.y + TRACK.h + 3} stroke="#ff7a00" strokeWidth="1.2" opacity="0.55" />
+      <line
+        x1={startX + bandW}
+        y1={TRACK.y - 3}
+        x2={startX + bandW}
+        y2={TRACK.y + TRACK.h + 3}
+        stroke="#ff7a00"
+        strokeWidth="1.2"
+        opacity="0.55"
+      />
+    </svg>
+  );
+}
+
+/** Consolidation metrics — many segments merge into one (no labels; card text explains). */
+function ConsolidationChart({
+  chartKey,
+  gradId,
+  reduceMotion,
+}: {
+  chartKey: string;
+  gradId: string;
+  reduceMotion: boolean;
+}) {
+  const segCount = 7;
+  const segW = 5;
+  const gap = 2;
+  const clusterW = segCount * segW + (segCount - 1) * gap;
+  const clusterX = 8;
+  const arrowX = clusterX + clusterW + 6;
+  const caseX = arrowX + 10;
+  const caseW = 112 - caseX;
+
+  return (
+    <svg viewBox="0 0 120 36" className="domain-metric-chart-svg" aria-hidden>
+      <ChartDefs gradId={gradId} />
+      {Array.from({ length: segCount }, (_, i) => (
+        <motion.rect
+          key={`seg-${chartKey}-${i}`}
+          x={clusterX + i * (segW + gap)}
+          y={TRACK.y + 1}
+          width={segW}
+          height={TRACK.h - 2}
+          rx="2"
+          fill="#c8c8c8"
+          stroke="#bdbdbd"
+          strokeWidth="0.5"
+          initial={reduceMotion ? { opacity: 1, scaleY: 1 } : { opacity: 0, scaleY: 0.4 }}
+          animate={{ opacity: 0.55 + (i / segCount) * 0.35, scaleY: 1 }}
+          transition={{ duration: 0.3, delay: 0.05 + i * 0.04, ease: EASE }}
+          style={{ transformOrigin: `${clusterX + i * (segW + gap) + segW / 2}px ${TRACK.y + TRACK.h / 2}px` }}
         />
       ))}
+      <motion.path
+        key={`arrow-${chartKey}`}
+        d={`M${arrowX} ${TRACK.y + TRACK.h / 2} H${arrowX + 8} M${arrowX + 5} ${TRACK.y + TRACK.h / 2 - 3} L${arrowX + 8} ${TRACK.y + TRACK.h / 2} L${arrowX + 5} ${TRACK.y + TRACK.h / 2 + 3}`}
+        fill="none"
+        stroke="#ff7a00"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        initial={reduceMotion ? { opacity: 1, pathLength: 1 } : { opacity: 0, pathLength: 0 }}
+        animate={{ opacity: 1, pathLength: 1 }}
+        transition={{ duration: 0.55, delay: 0.45, ease: EASE }}
+      />
+      <rect
+        x={caseX}
+        y={TRACK.y}
+        width={caseW}
+        height={TRACK.h}
+        rx={TRACK.r}
+        fill={TRACK_BG}
+        stroke={TRACK_BORDER}
+        strokeWidth="1"
+      />
+      <motion.rect
+        key={`case-fill-${chartKey}`}
+        x={caseX}
+        y={TRACK.y}
+        width={caseW}
+        height={TRACK.h}
+        rx={TRACK.r}
+        fill={`url(#${gradId})`}
+        initial={reduceMotion ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0.5 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.5, delay: 0.65, ease: EASE }}
+        style={{ transformOrigin: `${caseX + caseW / 2}px ${TRACK.y + TRACK.h / 2}px` }}
+      />
+      <motion.circle
+        key={`case-dot-${chartKey}`}
+        cx={caseX + caseW / 2}
+        cy={TRACK.y + TRACK.h / 2}
+        r="3"
+        fill="#ffffff"
+        initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.35, delay: 0.9, type: "spring", stiffness: 300, damping: 20 }}
+        style={{ transformOrigin: `${caseX + caseW / 2}px ${TRACK.y + TRACK.h / 2}px` }}
+      />
     </svg>
   );
-}
-
-const CHART_FAMILIES = [GaugeChart, ColumnChart, SegmentMeter, SparkArea];
-
-type ChartComponent = (props: {
-  fraction: number;
-  chartKey: string;
-  gradId: string;
-  reduceMotion: boolean;
-}) => JSX.Element;
-
-/** Pick a distinct chart per metric within each domain tab. */
-function resolveMetricChart(tabKey: number, metricIndex: number): ChartComponent {
-  const byTab: ChartComponent[][] = [
-    [GaugeChart, DonutRingChart, CountVolumeChart],
-    [SegmentMeter, CountVolumeChart, SparkArea],
-    [GaugeChart, DurationStepsChart],
-    [SegmentMeter, DonutRingChart],
-  ];
-
-  const list = byTab[tabKey];
-  if (list?.[metricIndex]) return list[metricIndex];
-  return CHART_FAMILIES[(tabKey + metricIndex) % CHART_FAMILIES.length];
 }
 
 function MetricChart({
@@ -493,10 +468,61 @@ function MetricChart({
   metricIndex: number;
   reduceMotion: boolean;
 }) {
+  const visual = parseMetricVisual(value);
   const fraction = metricFraction(value);
   const chartKey = `${tabKey}-${metricIndex}-${value}`;
   const gradId = `domain-metric-grad-${tabKey}-${metricIndex}`;
-  const Family = resolveMetricChart(tabKey, metricIndex);
+
+  let chart: JSX.Element;
+  switch (visual.type) {
+    case "percent":
+      chart = (
+        <PercentProgressChart
+          fraction={fraction}
+          chartKey={chartKey}
+          gradId={gradId}
+          reduceMotion={reduceMotion}
+        />
+      );
+      break;
+    case "range":
+      chart = (
+        <RangeBandChart visual={visual} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+      );
+      break;
+    case "multiplier":
+      chart = (
+        <MultiplierCompareChart
+          chartKey={chartKey}
+          gradId={gradId}
+          reduceMotion={reduceMotion}
+          value={visual.value}
+        />
+      );
+      break;
+    case "duration":
+      chart = (
+        <SpeedCompareChart
+          chartKey={chartKey}
+          gradId={gradId}
+          reduceMotion={reduceMotion}
+          minutes={visual.value}
+        />
+      );
+      break;
+    case "count":
+      chart =
+        visual.value >= 40 && !value.includes("+") ? (
+          <CountVolumeChart fraction={fraction} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+        ) : (
+          <ConsolidationChart
+            chartKey={chartKey}
+            gradId={gradId}
+            reduceMotion={reduceMotion}
+          />
+        );
+      break;
+  }
 
   return (
     <motion.div
@@ -506,7 +532,7 @@ function MetricChart({
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.45, delay: metricIndex * 0.1, ease: EASE }}
     >
-      <Family fraction={fraction} chartKey={chartKey} gradId={gradId} reduceMotion={reduceMotion} />
+      {chart}
     </motion.div>
   );
 }

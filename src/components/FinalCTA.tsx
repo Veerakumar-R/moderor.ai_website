@@ -58,10 +58,9 @@ export function FinalCTA({
             <div
               className={`final-closing-cta${ctaBelowDescription ? " final-closing-cta--aside-action" : ""}`}
             >
-              {showLabel && label ? <p className="final-closing-label">{label}</p> : null}
-
               <div className="final-closing-cta-top">
                 <div className="final-closing-cta-lead">
+                  {showLabel && label ? <p className="final-closing-label">{label}</p> : null}
                   <h2 id="final-closing-heading" className="final-closing-headline">
                     <span className="final-closing-headline-line">{title}</span>
                     <span className="final-closing-headline-line final-closing-headline-accent text-accent-gradient">

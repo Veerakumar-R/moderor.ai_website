@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { humanFlowSteps } from "@/content/site";
 import { ScrollReveal } from "./ui/ScrollReveal";
@@ -13,9 +13,38 @@ const Check = () => (
   </svg>
 );
 
+type LineMetrics = {
+  top: number;
+  height: number;
+  fill: number;
+};
+
 function Wizard({ reduceMotion }: { reduceMotion: boolean }) {
   const n = humanFlowSteps.length;
   const [active, setActive] = useState(reduceMotion ? n - 1 : 0);
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const nodeRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [lineMetrics, setLineMetrics] = useState<LineMetrics>({ top: 16, height: 0, fill: 0 });
+
+  const updateLineMetrics = useCallback(() => {
+    const container = stepsRef.current;
+    const nodes = nodeRefs.current.filter((node): node is HTMLSpanElement => node !== null);
+    if (!container || nodes.length < 2) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const firstRect = nodes[0].getBoundingClientRect();
+    const lastRect = nodes[nodes.length - 1].getBoundingClientRect();
+    const startY = firstRect.top - containerRect.top + firstRect.height / 2;
+    const endY = lastRect.top - containerRect.top + lastRect.height / 2;
+    const lineHeight = Math.max(0, endY - startY);
+
+    const activeIndex = Math.min(active, nodes.length - 1);
+    const activeRect = nodes[activeIndex].getBoundingClientRect();
+    const activeY = activeRect.top - containerRect.top + activeRect.height / 2;
+    const fillHeight = Math.max(0, Math.min(activeY - startY, lineHeight));
+
+    setLineMetrics({ top: startY, height: lineHeight, fill: fillHeight });
+  }, [active]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -23,7 +52,24 @@ function Wizard({ reduceMotion }: { reduceMotion: boolean }) {
     return () => globalThis.clearInterval(id);
   }, [reduceMotion, n]);
 
-  const fill = n > 1 ? (active / (n - 1)) * 100 : 0;
+  useEffect(() => {
+    const frame = requestAnimationFrame(updateLineMetrics);
+
+    const container = stepsRef.current;
+    if (!container) {
+      return () => cancelAnimationFrame(frame);
+    }
+
+    const observer = new ResizeObserver(updateLineMetrics);
+    observer.observe(container);
+    window.addEventListener("resize", updateLineMetrics);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", updateLineMetrics);
+    };
+  }, [updateLineMetrics]);
 
   return (
     <div className="human-wizard">
@@ -35,10 +81,16 @@ function Wizard({ reduceMotion }: { reduceMotion: boolean }) {
         </span>
       </div>
 
-      <div className="human-wizard-steps">
+      <div className="human-wizard-steps" ref={stepsRef}>
         <div className="human-wizard-track" aria-hidden>
-          <span className="human-wizard-line" />
-          <span className="human-wizard-line-fill" style={{ height: `${fill}%` }} />
+          <span
+            className="human-wizard-line"
+            style={{ top: lineMetrics.top, height: lineMetrics.height }}
+          />
+          <span
+            className="human-wizard-line-fill"
+            style={{ top: lineMetrics.top, height: lineMetrics.fill }}
+          />
         </div>
 
         {humanFlowSteps.map((step, i) => {
@@ -47,7 +99,13 @@ function Wizard({ reduceMotion }: { reduceMotion: boolean }) {
           const cls = done ? "is-done" : isActive ? "is-active" : "is-pending";
           return (
             <div key={step.num} className={`human-step ${cls} ${step.highlight ? "is-key" : ""}`}>
-              <span className="human-step-node" aria-hidden>
+              <span
+                className="human-step-node"
+                ref={(el) => {
+                  nodeRefs.current[i] = el;
+                }}
+                aria-hidden
+              >
                 {done ? <Check /> : <span>{step.num}</span>}
               </span>
               <div className="human-step-card">

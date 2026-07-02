@@ -132,24 +132,32 @@ function TraceVisual() {
 function AuditVisual() {
   return (
     <div className="gov-visual gov-visual--audit">
-      <div className="gov-audit-frame">
-        <span className="gov-corner gov-corner--tl" aria-hidden />
-        <span className="gov-corner gov-corner--tr" aria-hidden />
-        <span className="gov-corner gov-corner--bl" aria-hidden />
-        <span className="gov-corner gov-corner--br" aria-hidden />
-        <span className="gov-scan-beam" aria-hidden />
-        <svg viewBox="0 0 80 88" className="gov-audit-shield" aria-hidden>
-          <path
-            className="gov-stroke-draw"
-            d="M40 8 L68 20 V44 C68 62 56 74 40 80 C24 74 12 62 12 44 V20 Z"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinejoin="round"
-          />
-          <path className="gov-check-draw" d="M28 44 L36 52 L52 36" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <span className="gov-ripple gov-ripple--1" aria-hidden />
+      <span className="gov-ripple gov-ripple--2" aria-hidden />
+      <span className="gov-ripple gov-ripple--3" aria-hidden />
+      <div className="gov-audit-doc-wrap">
+        <svg viewBox="0 0 96 108" className="gov-audit-doc-scene" fill="none" stroke="currentColor" aria-hidden>
+          <rect className="gov-audit-page gov-audit-page--back" x="24" y="18" width="50" height="68" rx="5" strokeWidth="1.8" />
+          <rect className="gov-audit-page" x="16" y="12" width="50" height="68" rx="5" strokeWidth="2.1" />
+          <path className="gov-audit-line gov-audit-line--1" d="M24 24 H58" strokeWidth="2.4" strokeLinecap="round" />
+          <g className="gov-audit-tick-badge gov-audit-tick-badge--1" aria-hidden>
+            <circle className="gov-audit-tick-bg" cx="25" cy="38" r="5.5" />
+            <path className="gov-audit-tick-mark" d="M22.5 38 L24.2 39.8 L27.8 36.2" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+          <path className="gov-audit-line gov-audit-line--2" d="M32 38 H54" strokeWidth="1.9" strokeLinecap="round" opacity="0.75" />
+          <g className="gov-audit-tick-badge gov-audit-tick-badge--2" aria-hidden>
+            <circle className="gov-audit-tick-bg" cx="25" cy="50" r="5.5" />
+            <path className="gov-audit-tick-mark" d="M22.5 50 L24.2 51.8 L27.8 48.2" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+          <path className="gov-audit-line gov-audit-line--3" d="M32 50 H50" strokeWidth="1.9" strokeLinecap="round" opacity="0.75" />
+          <g className="gov-audit-tick-badge gov-audit-tick-badge--3" aria-hidden>
+            <circle className="gov-audit-tick-bg" cx="25" cy="62" r="5.5" />
+            <path className="gov-audit-tick-mark" d="M22.5 62 L24.2 63.8 L27.8 60.2" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+          <path className="gov-audit-line gov-audit-line--4" d="M32 62 H46" strokeWidth="1.9" strokeLinecap="round" opacity="0.75" />
+          <circle className="gov-audit-seal" cx="60" cy="72" r="13" strokeWidth="2.2" />
+          <path className="gov-audit-seal-check" d="M54.5 72 L58 75.5 L65.5 68" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <span className="gov-audit-glow-line" aria-hidden />
       </div>
     </div>
   );
