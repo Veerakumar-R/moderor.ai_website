@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Keep dev build output in node_modules cache to reduce OneDrive file-lock issues on Windows.
+  ...(process.env.NODE_ENV === "development"
+    ? { distDir: "node_modules/.cache/moderor-next" }
+    : {}),
   output: "export",
   images: {
     unoptimized: true,
