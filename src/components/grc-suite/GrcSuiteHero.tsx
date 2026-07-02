@@ -62,10 +62,10 @@ export function GrcSuiteHero() {
                 </div>
 
                 <h1 className="flex flex-col pb-5 tracking-tight text-white">
-                  <span className="whitespace-nowrap pb-2 text-[60px] leading-[1.08] font-normal">
+                  <span className="whitespace-normal pb-2 text-[34px] leading-[1.08] font-normal sm:text-[46px] lg:whitespace-nowrap lg:text-[60px]">
                     {hero.title}
                   </span>
-                  <span className="mt-0.5 whitespace-nowrap text-[60px] leading-[1.08] font-bold">
+                  <span className="mt-0.5 whitespace-normal text-[34px] leading-[1.08] font-bold sm:text-[46px] lg:whitespace-nowrap lg:text-[60px]">
                     {hero.titleHighlight}
                   </span>
                 </h1>

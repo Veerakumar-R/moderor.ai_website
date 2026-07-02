@@ -26,7 +26,7 @@ export interface AnimatedBeamProps {
   endXOffset?: number;
   endYOffset?: number;
   animated?: boolean;
-  ease?: number[] | "linear" | "easeInOut";
+  ease?: [number, number, number, number] | "linear" | "easeInOut";
 }
 
 export function AnimatedBeam({
@@ -50,7 +50,7 @@ export function AnimatedBeam({
   endXOffset = 0,
   endYOffset = 0,
   animated = true,
-  ease = [0.16, 1, 0.3, 1],
+  ease = [0.16, 1, 0.3, 1] as [number, number, number, number],
 }: AnimatedBeamProps) {
   const id = useId();
   const [pathD, setPathD] = useState("");

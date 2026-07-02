@@ -61,11 +61,16 @@ export function BentoCard({
   );
 }
 
-/** Overlapping "hanging" positions for the three cards (primary, secondary, tertiary). */
+/**
+ * Overlapping "hanging" positions for the three cards (primary, secondary,
+ * tertiary) — applied only at `sm+`. Below `sm` the stack collapses to a normal
+ * full-width vertical layout (see the container), so the cards never cramp or
+ * collide on mobile.
+ */
 const SLOTS = [
-  "absolute left-0 top-1 w-[75%] z-[1]",
-  "absolute right-0 top-[24%] w-[52%] z-[3]",
-  "absolute left-[7%] bottom-0 w-[60%] z-[2]",
+  "relative w-full sm:absolute sm:left-0 sm:top-1 sm:w-[75%] sm:z-[1]",
+  "relative w-full sm:absolute sm:right-0 sm:top-[24%] sm:w-[52%] sm:z-[3]",
+  "relative w-full sm:absolute sm:left-[7%] sm:bottom-0 sm:w-[60%] sm:z-[2]",
 ] as const;
 
 /**
@@ -85,7 +90,7 @@ export function ProductBentoStack({
   const cards = [primary, secondary, tertiary];
 
   return (
-    <div className="relative mx-auto h-[360px] w-full max-w-[440px] sm:h-[380px]">
+    <div className="relative mx-auto flex w-full max-w-[440px] flex-col gap-3 sm:block sm:h-[380px] sm:gap-0">
       {cards.map((node, i) => (
         <motion.div
           key={i}
