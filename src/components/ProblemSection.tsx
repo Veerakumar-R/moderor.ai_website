@@ -216,7 +216,7 @@ function GovernanceVisual({ reduceMotion }: VisualProps) {
 /* ── Compliance: audit trail verifying sequentially ── */
 const TRAIL: [string, string][] = [
   ["Model used", "GPT-4o"],
-  ["Data touched", "PII masked"],
+  ["Guardrail", "PII masked"],
   ["Human sign-off", "J. Patel"],
   ["Outcome", "Logged"],
 ];

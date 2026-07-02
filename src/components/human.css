@@ -161,8 +161,6 @@
 .human-wizard-line {
   position: absolute;
   left: 15px;
-  top: 16px;
-  bottom: 16px;
   width: 2px;
   border-radius: 2px;
   background: #ece3dc;
@@ -172,7 +170,6 @@
 .human-wizard-line-fill {
   position: absolute;
   left: 15px;
-  top: 16px;
   width: 2px;
   border-radius: 2px;
   background: linear-gradient(180deg, #ff7a00 0%, #ffb347 100%);
@@ -350,6 +347,59 @@
 @media (max-width: 1023px) {
   .human-wizard {
     margin: 2rem 0 0;
+    padding: 1.5rem 1.25rem 1.65rem;
+    border-radius: 18px;
+  }
+
+  .human-box-content {
+    padding: 2rem 1.25rem 2.25rem;
+  }
+
+  .human-desc {
+    max-width: none;
+  }
+
+  .human-step-card {
+    padding: 10px 12px;
+  }
+
+  .human-step-label {
+    font-size: 13px;
+  }
+
+  .human-step-sub {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 640px) {
+  .human-wizard {
+    margin: 1.5rem 0 0;
+    padding: 1.25rem 1rem 1.35rem;
+  }
+
+  .human-wizard-head {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .human-step {
+    gap: 10px;
+  }
+
+  .human-step-node {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+  }
+
+  .human-wizard-line,
+  .human-wizard-line-fill {
+    left: 13px;
+  }
+
+  .human-title {
+    font-size: clamp(1.55rem, 7vw, 2rem);
   }
 }
 

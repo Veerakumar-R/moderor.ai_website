@@ -327,13 +327,16 @@
 /* ── Human control section ───────────────────────────────────────── */
 @media (max-width: 1023px) {
   .human-wizard {
-    overflow-x: auto;
     overflow-x: clip;
     -webkit-overflow-scrolling: touch;
   }
 
   .human-title {
     font-size: clamp(1.65rem, 5vw, 2.25rem);
+  }
+
+  .human-right {
+    width: 100%;
   }
 }
 

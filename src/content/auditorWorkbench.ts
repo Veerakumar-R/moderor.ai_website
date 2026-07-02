@@ -66,6 +66,10 @@ export const auditorNarrative = {
   tagline: "Manual Audits Can't Keep Up",
   titleLead: "Audit Smarter.",
   titleHighlight: "Not Harder.",
+  centerImage: {
+    src: "/images/auditor-workbench/narrative-center-orange-black-portrait.png",
+    alt: "Portrait audit visualization with orange and black gradient tones",
+  },
   problem: [
     "Internal audit teams are expected to deliver greater assurance with fewer resources — while managing expanding regulations, growing audit scope, and increasing operational risk.",
     "Yet most audits still depend on spreadsheets, emails, screenshots, and manual evidence collection — slowing execution and limiting visibility into organizational risk.",

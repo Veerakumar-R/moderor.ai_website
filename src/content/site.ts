@@ -34,7 +34,6 @@ export const headerNavLinks = [
 
 export const headerActionLinks = [
   { label: "Contact Sales", href: "#" },
-  { label: "Sign In", href: "#" },
 ];
 
 export const navSuites = [

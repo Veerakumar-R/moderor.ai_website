@@ -1004,117 +1004,190 @@
   }
 }
 
-.gov-audit-frame {
+.gov-audit-doc-wrap {
   position: relative;
-  width: 118px;
-  height: 124px;
+  z-index: 2;
+  width: 108px;
+  height: 118px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.gov-corner {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: rgba(255, 122, 0, 0.55);
-  border-style: solid;
-  animation: govCornerPulse 2.8s ease-in-out infinite;
+.gov-visual--audit {
+  color: var(--ember);
 }
 
-.gov-corner--tl {
-  top: 0;
-  left: 0;
-  border-width: 2px 0 0 2px;
-  border-radius: 4px 0 0 0;
-}
-
-.gov-corner--tr {
-  top: 0;
-  right: 0;
-  border-width: 2px 2px 0 0;
-  border-radius: 0 4px 0 0;
-  animation-delay: 0.2s;
-}
-
-.gov-corner--bl {
-  bottom: 0;
-  left: 0;
-  border-width: 0 0 2px 2px;
-  border-radius: 0 0 0 4px;
-  animation-delay: 0.3s;
-}
-
-.gov-corner--br {
-  bottom: 0;
-  right: 0;
-  border-width: 0 2px 2px 0;
-  border-radius: 0 0 4px 0;
-  animation-delay: 0.4s;
-}
-
-.gov-audit-shield {
+.gov-audit-doc-scene {
   position: relative;
   z-index: 2;
-  width: 72px;
+  width: 76px;
   height: auto;
-  color: var(--ember, #ff7a00);
-  filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.35));
+  overflow: visible;
+  color: var(--ember);
+  filter: drop-shadow(0 0 8px rgba(255, 122, 0, 0.32));
+  animation: govAuditDocFloat 4.2s ease-in-out infinite;
 }
 
-@keyframes govCornerPulse {
+.gov-audit-page {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: govStrokeDraw 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-audit-page--back {
+  opacity: 0;
+  animation:
+    govAuditBackIn 0.7s ease-out 0.35s forwards,
+    govAuditBackPulse 3.2s ease-in-out 1.2s infinite;
+}
+
+.gov-audit-line {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: govStrokeDraw 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-audit-line--1 {
+  animation-delay: 0.45s;
+}
+
+.gov-audit-line--2 {
+  animation-delay: 0.7s;
+}
+
+.gov-audit-line--3 {
+  animation-delay: 0.95s;
+}
+
+.gov-audit-line--4 {
+  animation-delay: 1.2s;
+}
+
+.gov-audit-tick-badge {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: govAuditTickBadgeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-audit-tick-badge--1 {
+  animation-delay: 0.85s;
+}
+
+.gov-audit-tick-badge--2 {
+  animation-delay: 1.1s;
+}
+
+.gov-audit-tick-badge--3 {
+  animation-delay: 1.35s;
+}
+
+.gov-audit-tick-bg {
+  fill: var(--ember);
+  filter: drop-shadow(0 1px 4px rgba(255, 122, 0, 0.4));
+}
+
+.gov-audit-tick-mark {
+  fill: none;
+  stroke: #0c0a08;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+  animation: govAuditTickMarkIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gov-audit-tick-badge--1 .gov-audit-tick-mark {
+  animation-delay: 1s;
+}
+
+.gov-audit-tick-badge--2 .gov-audit-tick-mark {
+  animation-delay: 1.25s;
+}
+
+.gov-audit-tick-badge--3 .gov-audit-tick-mark {
+  animation-delay: 1.5s;
+}
+
+@keyframes govAuditTickBadgeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.45);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes govAuditTickMarkIn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gov-audit-seal {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: govAuditSealIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.55s forwards;
+}
+
+.gov-audit-seal-check {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  opacity: 0;
+  animation: govAuditSealCheck 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.95s forwards;
+}
+
+@keyframes govAuditDocFloat {
   0%,
   100% {
-    opacity: 0.5;
+    transform: translateY(0);
   }
   50% {
-    opacity: 1;
+    transform: translateY(-3px);
   }
 }
 
-.gov-scan-beam {
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.9), transparent);
-  box-shadow: 0 0 16px rgba(255, 122, 0, 0.6);
-  animation: govScan 3s ease-in-out infinite;
-  z-index: 4;
+@keyframes govAuditBackIn {
+  to {
+    opacity: 0.28;
+    stroke-dashoffset: 0;
+  }
 }
 
-.gov-audit-glow-line {
-  position: absolute;
-  bottom: 8px;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 122, 0, 0.7), transparent);
-  box-shadow: 0 0 20px rgba(255, 122, 0, 0.5);
-  animation: govGlowLine 2.5s ease-in-out infinite;
-}
-
-@keyframes govScan {
+@keyframes govAuditBackPulse {
   0%,
   100% {
-    top: 8%;
-    opacity: 0.4;
+    opacity: 0.22;
   }
   50% {
-    top: 88%;
-    opacity: 1;
+    opacity: 0.34;
   }
 }
 
-@keyframes govGlowLine {
-  0%,
-  100% {
-    opacity: 0.4;
-    transform: scaleX(0.85);
+@keyframes govAuditSealIn {
+  0% {
+    stroke-dashoffset: 90;
+    opacity: 0;
+    transform: scale(0.72);
   }
-  50% {
+  70% {
+    transform: scale(1.06);
+  }
+  100% {
+    stroke-dashoffset: 0;
     opacity: 1;
-    transform: scaleX(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes govAuditSealCheck {
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
   }
 }
 
@@ -1163,6 +1236,32 @@
 
   .governed-header-wrap {
     margin-bottom: 32px;
+  }
+
+  .governed-card-visual {
+    min-height: 148px;
+  }
+
+  .governed-card-inner {
+    min-height: 132px;
+  }
+
+  .gov-audit-doc-wrap {
+    width: 96px;
+    height: 104px;
+  }
+
+  .gov-audit-doc-scene {
+    width: 64px;
+  }
+
+  .governed-card-title {
+    font-size: 18px;
+  }
+
+  .governed-card-desc {
+    font-size: 13px;
+    line-height: 1.55;
   }
 }
 
@@ -1213,9 +1312,9 @@
     margin: -32px 0 0 -32px;
   }
 
-  .gov-audit-frame {
-    width: 104px;
-    height: 112px;
+  .gov-audit-doc-wrap {
+    width: 100px;
+    height: 110px;
   }
 }
 
@@ -1233,7 +1332,13 @@
   .gov-orbit-path,
   .gov-hub,
   .gov-scan-beam,
-  .gov-audit-glow-line,
+  .gov-audit-doc-scene,
+  .gov-audit-page,
+  .gov-audit-line,
+  .gov-audit-tick-badge,
+  .gov-audit-tick-mark,
+  .gov-audit-seal,
+  .gov-audit-seal-check,
   .gov-corner,
   .gov-badge-float,
   .governed-blob,
@@ -1254,8 +1359,35 @@
   }
 
   .gov-fp-line,
-  .gov-trace-draw {
+  .gov-trace-draw,
+  .gov-audit-page,
+  .gov-audit-line,
+  .gov-audit-tick-badge,
+  .gov-audit-tick-mark,
+  .gov-audit-seal,
+  .gov-audit-seal-check {
     stroke-dashoffset: 0;
+  }
+
+  .gov-audit-page--back {
+    opacity: 0.28;
+  }
+
+  .gov-audit-tick-badge {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .gov-audit-tick-mark {
+    stroke-dashoffset: 0;
+  }
+
+  .gov-audit-seal-check {
+    opacity: 1;
+  }
+
+  .gov-audit-seal {
+    transform: scale(1);
   }
 
   .gov-fp-check {
