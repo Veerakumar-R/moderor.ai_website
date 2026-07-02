@@ -1,30 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { platformPage } from "@/content/site";
-import Waves from "@/components/Waves";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import "@/components/governed.css";
+import { PlatformWhyVisual } from "@/components/platform/PlatformWhyVisual";
 import "@/components/grc-suite/grc-suite.css";
 import "./platform.css";
 
 const content = platformPage;
-
-const PLATFORM_WHY_WAVES_PROPS = {
-  lineColor: "rgba(255, 160, 90, 0.17)",
-  backgroundColor: "transparent",
-  waveSpeedX: 0.0125,
-  waveSpeedY: 0.01,
-  waveAmpX: 40,
-  waveAmpY: 20,
-  friction: 0.9,
-  tension: 0.01,
-  maxCursorMove: 120,
-  xGap: 12,
-  yGap: 36,
-} as const;
 
 export function PlatformBreadcrumb() {
   return (
@@ -57,62 +40,42 @@ export function PlatformBreadcrumb() {
 
 export function PlatformWhySection() {
   const { why } = content;
-  const reduceMotion = useReducedMotion();
 
   return (
     <section
-      className="grc-why-section px-5 sm:px-[50px]"
+      className="platform-why-section px-5 py-16 sm:px-[50px] sm:py-20 lg:py-24"
       aria-labelledby="platform-why-heading"
     >
-      <div className="governed-bg" aria-hidden>
-        <span className="governed-blob governed-blob--1" />
-        <span className="governed-blob governed-blob--2" />
-      </div>
+      <div className="grc-section-inner">
+        <div className="platform-why-layout">
+          <ScrollReveal duration={0.85} className="platform-why-visual-col">
+            <PlatformWhyVisual title={why.visualTitle} bullets={why.bullets} />
+          </ScrollReveal>
 
-      {!reduceMotion && (
-        <div className="grc-why-waves" aria-hidden>
-          <Waves {...PLATFORM_WHY_WAVES_PROPS} />
-        </div>
-      )}
-
-      <div className="grc-section-inner grc-why-content">
-        <ScrollReveal duration={0.85}>
-          <div className="grc-why-grid">
-            <div className="grc-why-head-col">
-              <p className="grc-suite-tag grc-why-tag">
+          <ScrollReveal duration={0.85} delay={0.1} className="platform-why-content-stack">
+            <div className="platform-why-content-body">
+              <p className="grc-suite-tag platform-why-tag">
                 <span className="grc-suite-tag-dot" aria-hidden />
                 {why.tag}
               </p>
 
-              <h2 className="grc-suite-headline" id="platform-why-heading">
-                <span className="grc-suite-headline-lead">{why.title}</span>
-                <span className="grc-suite-headline-accent">{why.titleHighlight}</span>
+              <h2 className="platform-why-headline" id="platform-why-heading">
+                <span className="platform-why-headline-lead">{why.title}</span>{" "}
+                <span className="platform-why-headline-accent">{why.titleHighlight}</span>
               </h2>
-            </div>
 
-            <div className="grc-why-copy-col">
-              {why.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)} className="grc-why-paragraph">
-                  {paragraph}
-                </p>
-              ))}
-
-              <div className="platform-why-gap">
-                <p className="platform-why-gap-label">{why.bulletsLabel}</p>
-                <ul className="platform-why-gap-list">
-                  {why.bullets.map((bullet) => (
-                    <li key={bullet} className="platform-why-gap-item">
-                      <ArrowRight size={16} strokeWidth={2.25} aria-hidden />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="platform-why-copy">
+                {why.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="platform-why-paragraph">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
-
-              <p className="grc-why-paragraph platform-why-closing">{why.closing}</p>
             </div>
-          </div>
-        </ScrollReveal>
+
+            <p className="platform-why-closing">{why.closing}</p>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );

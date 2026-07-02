@@ -52,12 +52,6 @@ function HowItWorksConnector({ gridRef }: { gridRef: React.RefObject<HTMLDivElem
     const rings = grid.querySelectorAll<HTMLElement>(".grc-how-flow-icon-ring");
     if (rings.length < 3) return;
 
-    const flow = grid.closest<HTMLElement>(".grc-how-flow");
-    const styles = flow ? getComputedStyle(flow) : getComputedStyle(grid);
-    const iconBlock = parseFloat(styles.getPropertyValue("--grc-how-icon-block")) || 82;
-    const centerOffset = parseFloat(styles.getPropertyValue("--grc-how-center-offset")) || 44;
-    const svgHeight = iconBlock + centerOffset;
-
     const gridRect = grid.getBoundingClientRect();
     const width = gridRect.width;
     if (width <= 0) return;
@@ -81,14 +75,15 @@ function HowItWorksConnector({ gridRef }: { gridRef: React.RefObject<HTMLDivElem
     const endY = right.y;
     const midX = center.x;
     const midY = center.y;
+    const svgHeight = Math.ceil(Math.max(startY, midY, endY) + radius + 2);
 
     const path = [
       `M ${startX} ${startY}`,
-      `C ${startX + (midX - startX) * 0.42} ${startY - 18}`,
-      `${midX - (midX - startX) * 0.28} ${midY - 14}`,
+      `C ${(startX + midX) / 2} ${startY}`,
+      `${(startX + midX) / 2} ${midY}`,
       `${midX} ${midY}`,
-      `C ${midX + (endX - midX) * 0.28} ${midY - 14}`,
-      `${endX - (endX - midX) * 0.42} ${endY - 18}`,
+      `C ${(midX + endX) / 2} ${midY}`,
+      `${(midX + endX) / 2} ${endY}`,
       `${endX} ${endY}`,
     ].join(" ");
 
@@ -121,6 +116,7 @@ function HowItWorksConnector({ gridRef }: { gridRef: React.RefObject<HTMLDivElem
   return (
     <svg
       className="grc-how-flow-connector"
+      style={{ height: geometry.height }}
       viewBox={`0 0 ${geometry.width} ${geometry.height}`}
       preserveAspectRatio="none"
       aria-hidden
