@@ -21,7 +21,26 @@ type MegaSidebar = typeof navMegaSidebar;
 
 // Live product routes. Unmapped products fall back to "#" until their pages ship.
 const productRoutes: Record<string, string> = {
+  // GRC Suite
+  "Continuous Compliance Monitoring": "/products/continuous-compliance-monitoring",
   "Auditor Workbench": "/products/auditor-workbench",
+  "Risk Assessment": "/products/risk-assessment",
+  "Smart Alert Triage": "/products/smart-alert-triage",
+  "Regulatory Compliance": "/products/regulatory-compliance",
+  "AI Branch Audit": "/products/ai-branch-audit",
+  // BOM Suite
+  "HR Compliance": "/products/hr-compliance",
+  "Omni Connect": "/products/omni-connect",
+  "Logical Access Management": "/products/logical-access-uam",
+  "KYC Agentic Verify": "/products/kyc-agentic-verify",
+  // APPcelerate Suite
+  "AI BRD Generator": "/products/ai-brd-generator",
+  "AI App Builder": "/products/ai-app-builder",
+  VAPT: "/products/vapt",
+  "QA Suite": "/products/qa-suite",
+  "AIM Monitoring": "/products/aim-monitoring",
+  "Synthetic Data Engine": "/products/synthetic-data-engine",
+  "Query Builder": "/products/query-builder",
 };
 
 function MegaMenuSuiteMedia({ src, alt }: { src: string; alt: string }) {

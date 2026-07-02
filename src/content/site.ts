@@ -13,6 +13,9 @@ export const routes = {
   home: "/",
   platform: "/platform",
   grcSuite: "/suites/grc-suite",
+  bomSuite: "/suites/bom",
+  appcelerateSuite: "/suites/appcelerate",
+  adminSuite: "/suites/admin",
 } as const;
 
 export const navLinks = [
@@ -36,9 +39,9 @@ export const headerActionLinks = [
 
 export const navSuites = [
   { label: "GRC Suite — Governance, Risk & Compliance", href: routes.grcSuite },
-  { label: "BOM Suite — Business Operations Mesh", href: "#" },
-  { label: "APPcelerate — Build & Run Software Faster", href: "#" },
-  { label: "Platform Admin Console", href: "#" },
+  { label: "BOM Suite — Business Operations Mesh", href: routes.bomSuite },
+  { label: "APPcelerate — Build & Run Software Faster", href: routes.appcelerateSuite },
+  { label: "Platform Admin Console", href: routes.adminSuite },
 ];
 
 export const navMegaSidebar = {
@@ -95,7 +98,7 @@ export const navSuitesMega = {
       subtitle: "Business Operations Mesh",
       description:
         "HR checkpoints, identity governance, and KYC verification — governed operations from onboarding through every access decision.",
-      href: "#",
+      href: routes.bomSuite,
       image: "/images/domain-outcomes/domain-identity.png",
       imageAlt: "BOM Suite — identity and operations visualization",
     },
@@ -105,7 +108,7 @@ export const navSuitesMega = {
       subtitle: "Build & Run Software Faster",
       description:
         "Requirements, tests, vulnerabilities, and infrastructure — every engineering workflow monitored before it becomes an incident.",
-      href: "#",
+      href: routes.appcelerateSuite,
       image: "/images/domain-outcomes/domain-engineering.png",
       imageAlt: "APPcelerate — engineering and delivery visualization",
     },
@@ -115,7 +118,7 @@ export const navSuitesMega = {
       subtitle: "Governance Plane",
       description:
         "Central control for agents, policies, audit logs, and deployment — every action logged, governed, and traceable across suites.",
-      href: "#",
+      href: routes.adminSuite,
       image: "/images/domain-outcomes/domain-risk.png",
       imageAlt: "Platform Admin Console — governance plane visualization",
     },
@@ -127,7 +130,7 @@ export const navProducts = {
     "Continuous Compliance Monitoring",
     "Auditor Workbench",
     "Risk Assessment",
-    "Smart Alert Triage (ICAT)",
+    "Smart Alert Triage",
     "Regulatory Compliance",
     "AI Branch Audit",
   ],
@@ -375,7 +378,7 @@ export const outcomePanels = [
     ],
     outputs: [
       { title: "Score vendor onboarding risk", meta: "Entity: ACME-442 · Priority: High" },
-      { title: "Merge 47 alerts into one case", meta: "Triage: ICAT · Owner: Risk ops" },
+      { title: "Merge 47 alerts into one case", meta: "Triage: Smart Alerts · Owner: Risk ops" },
     ],
     metrics: [
       { num: "80%", label: "False positive reduction" },
@@ -384,7 +387,7 @@ export const outcomePanels = [
     ],
     products: [
       { name: "Risk Assessment", desc: "Vendor risk scored before onboarding completes. AI-updated attention queues and dynamic risk-weighted scoring." },
-      { name: "Smart Alert Triage (ICAT)", desc: "80% of false alerts eliminated. ML scoring with versioned model registry measuring reduction per version." },
+      { name: "Smart Alert Triage", desc: "80% of false alerts eliminated. ML scoring with versioned model registry measuring reduction per version." },
       { name: "Continuous Compliance Monitoring", desc: "Control failures surface continuously — vendor and third-party risks tracked alongside internal controls." },
     ],
   },
@@ -694,9 +697,9 @@ export const finalCta = {
 export const footerLinks = {
   suites: [
     { label: "GRC Suite", href: routes.grcSuite },
-    { label: "BOM Suite", href: "#" },
-    { label: "APPcelerate", href: "#" },
-    { label: "Platform Admin", href: "#" },
+    { label: "BOM Suite", href: routes.bomSuite },
+    { label: "APPcelerate", href: routes.appcelerateSuite },
+    { label: "Platform Admin", href: routes.adminSuite },
   ],
   platform: [
     { label: "Continuous Compliance", href: "#" },
