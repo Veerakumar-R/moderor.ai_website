@@ -1,0 +1,873 @@
+/* Platform page — Enterprise AI Control Plane hero visual.
+   Reuses the shared warm/orange design tokens from grc-suite.css + globals.css. */
+
+.platform-hero-orbit {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.platform-hero-orbit-glow {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 122, 0, 0.32) 0%,
+    rgba(255, 122, 0, 0.12) 38%,
+    transparent 68%
+  );
+  filter: blur(6px);
+  animation: platform-core-pulse 5.5s ease-in-out infinite;
+}
+
+.platform-hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 184, 120, 0.16);
+}
+
+.platform-hero-ring--outer {
+  inset: 0;
+  border-style: dashed;
+  border-color: rgba(255, 184, 120, 0.14);
+}
+
+.platform-hero-ring--mid {
+  inset: 18%;
+  border-color: rgba(255, 184, 120, 0.22);
+}
+
+.platform-hero-ring--inner {
+  inset: 36%;
+  border-color: rgba(255, 184, 120, 0.3);
+}
+
+/* Rotating conic sweep behind the core */
+.platform-hero-sweep {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 122, 0, 0.22) 40deg,
+    transparent 120deg,
+    transparent 360deg
+  );
+  mask: radial-gradient(circle, transparent 52%, #000 54%, #000 100%);
+  -webkit-mask: radial-gradient(circle, transparent 52%, #000 54%, #000 100%);
+  animation: platform-sweep-spin 12s linear infinite;
+}
+
+/* Central governance core */
+.platform-hero-core {
+  position: relative;
+  z-index: 3;
+  width: 33%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 210, 160, 0.35), transparent 60%),
+    linear-gradient(160deg, #ff8a1e 0%, #ff7a00 45%, #d9640a 100%);
+  border: 1px solid rgba(255, 214, 170, 0.55);
+  box-shadow:
+    0 0 0 6px rgba(255, 122, 0, 0.1),
+    0 18px 48px rgba(255, 96, 0, 0.35),
+    inset 0 1px 6px rgba(255, 236, 214, 0.45);
+}
+
+.platform-hero-core-icon {
+  color: #fff;
+  filter: drop-shadow(0 2px 6px rgba(120, 40, 0, 0.4));
+}
+
+.platform-hero-core-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: rgba(255, 246, 238, 0.96);
+  max-width: 84%;
+}
+
+/* Nodes positioned evenly on the mid ring (upright, readable) */
+.platform-hero-node {
+  --radius: 134px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));
+  transform-origin: 0 0;
+}
+
+.platform-hero-node-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(20, 12, 6, 0.72);
+  border: 1px solid rgba(255, 184, 120, 0.3);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transform: translate(-50%, -50%);
+  animation: platform-node-float 6s ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+.platform-hero-node-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff7a00;
+  box-shadow: 0 0 8px rgba(255, 122, 0, 0.9);
+  flex-shrink: 0;
+}
+
+.platform-hero-node-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 244, 235, 0.94);
+}
+
+@keyframes platform-core-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes platform-sweep-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes platform-node-float {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, calc(-50% - 5px)); }
+}
+
+@media (max-width: 480px) {
+  .platform-hero-orbit {
+    max-width: 300px;
+  }
+  .platform-hero-node {
+    --radius: 112px;
+  }
+  .platform-hero-node-label {
+    font-size: 9.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-hero-orbit-glow,
+  .platform-hero-sweep,
+  .platform-hero-node-chip {
+    animation: none;
+  }
+}
+
+/* --- Why section: bullet list of the governance gap --- */
+.platform-why-gap {
+  margin-top: 1.75rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 18px;
+  border: 1px solid var(--border, rgba(20, 16, 12, 0.08));
+  background: linear-gradient(180deg, rgba(255, 247, 240, 0.7) 0%, rgba(255, 241, 230, 0.5) 100%);
+}
+
+.platform-why-gap-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d9640a;
+  margin-bottom: 0.9rem;
+}
+
+.platform-why-gap-label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff7a00;
+  box-shadow: 0 0 8px rgba(255, 122, 0, 0.8);
+}
+
+.platform-why-gap-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.platform-why-gap-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #3f362f;
+}
+
+.platform-why-gap-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #ff7a00;
+}
+
+.platform-why-closing {
+  margin-top: 1.5rem;
+}
+
+/* =====================================================================
+   Principle section — Control Plane Stack (layered planes on dark box)
+   ===================================================================== */
+.platform-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.platform-stack-layer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.05rem 1.35rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 184, 120, 0.18);
+  background: rgba(255, 250, 244, 0.035);
+  backdrop-filter: blur(2px);
+}
+
+.platform-stack-layer--govern {
+  border-color: rgba(255, 184, 120, 0.42);
+  background: linear-gradient(120deg, rgba(255, 122, 0, 0.18) 0%, rgba(217, 100, 10, 0.1) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 122, 0, 0.14),
+    0 18px 46px rgba(255, 90, 0, 0.2);
+}
+
+.platform-stack-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  align-items: center;
+  justify-content: center;
+  color: #ffcaa0;
+  background: rgba(255, 122, 0, 0.12);
+  border: 1px solid rgba(255, 184, 120, 0.26);
+}
+
+.platform-stack-layer--govern .platform-stack-icon {
+  color: #fff;
+  background: linear-gradient(160deg, #ff8a1e 0%, #ff7a00 100%);
+  border-color: rgba(255, 214, 170, 0.5);
+  box-shadow: 0 8px 22px rgba(255, 96, 0, 0.4);
+}
+
+.platform-stack-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.platform-stack-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.platform-stack-sub {
+  font-size: 0.82rem;
+  color: rgba(255, 236, 214, 0.62);
+}
+
+.platform-stack-chips {
+  margin-left: auto;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.platform-stack-chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 0.3rem 0.62rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: rgba(255, 244, 235, 0.9);
+  background: rgba(20, 12, 6, 0.5);
+  border: 1px solid rgba(255, 184, 120, 0.22);
+}
+
+.platform-stack-layer--govern .platform-stack-chip {
+  border-color: rgba(255, 184, 120, 0.4);
+  background: rgba(255, 122, 0, 0.12);
+}
+
+.platform-stack-connector {
+  position: relative;
+  width: 2px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 184, 120, 0.55) 0 4px,
+    transparent 4px 9px
+  );
+}
+
+.platform-stack-connector::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translateX(-50%) rotate(45deg);
+  border-right: 2px solid rgba(255, 184, 120, 0.75);
+  border-bottom: 2px solid rgba(255, 184, 120, 0.75);
+}
+
+@media (max-width: 560px) {
+  .platform-stack-layer {
+    flex-wrap: wrap;
+  }
+  .platform-stack-chips {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+}
+
+/* =====================================================================
+   How It Works — Governed Pipeline (vertical rail + stage nodes)
+   ===================================================================== */
+.platform-pipe {
+  position: relative;
+  width: 100%;
+  max-width: 740px;
+  margin: 2.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.platform-pipe-rail {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 122, 0, 0.55) 12%,
+    rgba(255, 122, 0, 0.55) 88%,
+    transparent 100%
+  );
+}
+
+.platform-pipe-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.platform-pipe-node {
+  position: relative;
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7a00;
+  background: #fff;
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  box-shadow: 0 8px 26px rgba(255, 122, 0, 0.14);
+}
+
+.platform-pipe-node-index {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(160deg, #ff8a1e, #ff7a00);
+  box-shadow: 0 4px 10px rgba(255, 96, 0, 0.35);
+}
+
+.platform-pipe-card {
+  flex: 1;
+  min-width: 0;
+  border-radius: 16px;
+  border: 1px solid var(--border, rgba(20, 16, 12, 0.08));
+  background: linear-gradient(180deg, #ffffff 0%, #fff8f2 100%);
+  padding: 1.05rem 1.3rem;
+  box-shadow: 0 10px 30px rgba(120, 60, 10, 0.05);
+}
+
+.platform-pipe-step {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d9640a;
+}
+
+.platform-pipe-title {
+  margin-top: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1b1410;
+}
+
+.platform-pipe-desc {
+  margin-top: 0.4rem;
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: #6b625b;
+}
+
+/* =====================================================================
+   Outcomes — Impact meter rows (icon + animated accent bar)
+   ===================================================================== */
+.platform-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.platform-impact-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.05rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 184, 120, 0.16);
+  background: rgba(255, 250, 244, 0.035);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.platform-impact-row:hover {
+  border-color: rgba(255, 184, 120, 0.34);
+  transform: translateY(-2px);
+}
+
+.platform-impact-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffcaa0;
+  background: rgba(255, 122, 0, 0.12);
+  border: 1px solid rgba(255, 184, 120, 0.25);
+}
+
+.platform-impact-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.platform-impact-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgba(255, 246, 238, 0.95);
+}
+
+.platform-impact-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 184, 120, 0.16);
+  overflow: hidden;
+}
+
+.platform-impact-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, #ff7a00 0%, #ffb347 100%);
+  animation: platform-bar-grow 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--bar-delay, 0s);
+}
+
+@keyframes platform-bar-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (max-width: 720px) {
+  .platform-impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platform-impact-bar-fill {
+    animation: none;
+  }
+}
+
+/* =====================================================================
+   Platform Architecture diagram — Consume / Core / Connect
+   ===================================================================== */
+.platform-arch-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+}
+
+.platform-arch-eyebrow {
+  justify-content: center;
+}
+
+.platform-arch-headline {
+  margin-top: 0.75rem;
+  align-items: center;
+  text-align: center;
+}
+
+.platform-arch-intro {
+  margin-top: 1.1rem;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--grey-light, #6b625b);
+}
+
+.platform-arch {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr) minmax(0, 280px);
+  gap: 2rem;
+  align-items: start;
+}
+
+.platform-arch-col-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d9640a;
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.platform-arch-card {
+  background: #fff;
+  border: 1px solid var(--border, rgba(20, 16, 12, 0.08));
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(120, 60, 20, 0.07);
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.1rem;
+}
+
+.platform-arch-card-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 13.5px;
+  color: #1b1410;
+  margin-bottom: 0.75rem;
+}
+
+.platform-arch-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.2rem;
+  border-bottom: 1px solid rgba(20, 16, 12, 0.06);
+}
+
+.platform-arch-item:last-child {
+  border-bottom: none;
+}
+
+.platform-arch-item-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7a00;
+  background: rgba(255, 122, 0, 0.09);
+  border: 1px solid rgba(255, 122, 0, 0.16);
+}
+
+.platform-arch-item-icon--logo {
+  background: #f7f5f3;
+  border-color: rgba(20, 16, 12, 0.08);
+}
+
+.platform-arch-item-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.platform-arch-item-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2c241e;
+}
+
+.platform-arch-center {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* dark application + deployment layers */
+.platform-arch-app,
+.platform-arch-deploy {
+  border-radius: 20px;
+  background: linear-gradient(160deg, #17110b 0%, #0c0600 100%);
+  border: 1px solid rgba(255, 184, 120, 0.14);
+  color: #fff;
+  padding: 1.4rem 1.5rem;
+}
+
+.platform-arch-app {
+  text-align: center;
+}
+
+.platform-arch-app-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 0 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ff9a44;
+}
+
+.platform-arch-app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.platform-arch-app-item {
+  padding: 0.7rem 0.5rem;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 246, 238, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 184, 120, 0.12);
+}
+
+/* orange-bordered core governance plane */
+.platform-arch-core {
+  position: relative;
+  border: 2px solid #ff7a00;
+  background: linear-gradient(165deg, #fff4ea 0%, #ffe8d4 100%);
+  border-radius: 24px;
+  padding: 2.2rem 1.6rem 1.6rem;
+  box-shadow: 0 18px 44px rgba(255, 96, 0, 0.14);
+}
+
+.platform-arch-core-title {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: linear-gradient(160deg, #ff8a1e, #ff7a00);
+  color: #fff;
+  padding: 0.5rem 1.4rem;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  box-shadow: 0 8px 20px rgba(255, 96, 0, 0.3);
+}
+
+.platform-arch-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.platform-arch-pillar {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.1rem;
+  border: 1px solid var(--border, rgba(20, 16, 12, 0.08));
+}
+
+.platform-arch-pillar-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.platform-arch-pillar-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7a00;
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid rgba(255, 122, 0, 0.18);
+}
+
+.platform-arch-pillar-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.platform-arch-pillar-name {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #1b1410;
+}
+
+.platform-arch-pillar-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a7d72;
+}
+
+.platform-arch-chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.platform-arch-chip {
+  padding: 0.45rem;
+  border-radius: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-align: center;
+  color: #d9640a;
+  background: rgba(255, 122, 0, 0.08);
+  border: 1px solid rgba(255, 122, 0, 0.12);
+}
+
+.platform-arch-deploy-title {
+  text-align: center;
+  color: #ff9a44;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.platform-arch-deploy-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem;
+}
+
+.platform-arch-deploy-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 0.4rem;
+  border-radius: 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: rgba(255, 246, 238, 0.9);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 184, 120, 0.12);
+}
+
+.platform-arch-deploy-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid rgba(255, 184, 120, 0.22);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.platform-arch-deploy-logo svg {
+  color: #ff7a00;
+}
+
+.platform-arch-deploy-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+@media (max-width: 1023px) {
+  .platform-arch {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin: 0 auto;
+    gap: 1.75rem;
+  }
+  .platform-arch-center {
+    order: -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .platform-arch-app-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .platform-arch-pillars {
+    grid-template-columns: 1fr;
+  }
+  .platform-arch-deploy-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

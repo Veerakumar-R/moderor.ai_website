@@ -42,3 +42,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.gstack/
+
+# reference material (source docs kept for reference, not part of the site)
+*.docx
+*.doc
+moderor-platform-page*.html
+architecture_diagram*.html

@@ -11,18 +11,22 @@ export const siteConfig = {
 
 export const routes = {
   home: "/",
+  platform: "/platform",
   grcSuite: "/suites/grc-suite",
+  bomSuite: "/suites/bom",
+  appcelerateSuite: "/suites/appcelerate",
+  adminSuite: "/suites/admin",
 } as const;
 
 export const navLinks = [
-  { label: "Platform", href: "#platform" },
+  { label: "Platform", href: routes.platform },
   { label: "Industries", href: "#" },
   { label: "Customers", href: "#" },
   { label: "Resources", href: "#" },
 ];
 
 export const headerNavLinks = [
-  { label: "Platform", href: "#platform" },
+  { label: "Platform", href: routes.platform },
   { label: "Industries", href: "#" },
   { label: "Customers", href: "#" },
   { label: "Resources", href: "#" },
@@ -93,7 +97,7 @@ export const navSuitesMega = {
       subtitle: "Business Operations Mesh",
       description:
         "HR checkpoints, identity governance, and KYC verification — governed operations from onboarding through every access decision.",
-      href: "#",
+      href: routes.bomSuite,
       image: "/images/domain-outcomes/domain-identity.png",
       imageAlt: "BOM Suite — identity and operations visualization",
     },
@@ -103,7 +107,7 @@ export const navSuitesMega = {
       subtitle: "Build & Run Software Faster",
       description:
         "Requirements, tests, vulnerabilities, and infrastructure — every engineering workflow monitored before it becomes an incident.",
-      href: "#",
+      href: routes.appcelerateSuite,
       image: "/images/domain-outcomes/domain-engineering.png",
       imageAlt: "APPcelerate — engineering and delivery visualization",
     },
@@ -115,7 +119,7 @@ export const navProducts = {
     "Continuous Compliance Monitoring",
     "Auditor Workbench",
     "Risk Assessment",
-    "Smart Alert Triage (ICAT)",
+    "Smart Alert Triage",
     "Regulatory Compliance",
     "AI Branch Audit",
   ],
@@ -363,7 +367,7 @@ export const outcomePanels = [
     ],
     outputs: [
       { title: "Score vendor onboarding risk", meta: "Entity: ACME-442 · Priority: High" },
-      { title: "Merge 47 alerts into one case", meta: "Triage: ICAT · Owner: Risk ops" },
+      { title: "Merge 47 alerts into one case", meta: "Triage: Smart Alerts · Owner: Risk ops" },
     ],
     metrics: [
       { num: "80%", label: "False positive reduction" },
@@ -372,7 +376,7 @@ export const outcomePanels = [
     ],
     products: [
       { name: "Risk Assessment", desc: "Vendor risk scored before onboarding completes. AI-updated attention queues and dynamic risk-weighted scoring." },
-      { name: "Smart Alert Triage (ICAT)", desc: "80% of false alerts eliminated. ML scoring with versioned model registry measuring reduction per version." },
+      { name: "Smart Alert Triage", desc: "80% of false alerts eliminated. ML scoring with versioned model registry measuring reduction per version." },
       { name: "Continuous Compliance Monitoring", desc: "Control failures surface continuously — vendor and third-party risks tracked alongside internal controls." },
     ],
   },
@@ -682,9 +686,9 @@ export const finalCta = {
 export const footerLinks = {
   suites: [
     { label: "GRC Suite", href: routes.grcSuite },
-    { label: "BOM Suite", href: "#" },
-    { label: "APPcelerate", href: "#" },
-    { label: "Platform Admin", href: "#" },
+    { label: "BOM Suite", href: routes.bomSuite },
+    { label: "APPcelerate", href: routes.appcelerateSuite },
+    { label: "Platform Admin", href: routes.adminSuite },
   ],
   platform: [
     { label: "Continuous Compliance", href: "#" },
@@ -952,6 +956,295 @@ export const grcSuitePage = {
     titleHighlight: "Risk and Compliance?",
     description:
       "See how the GRC Suite helps organizations replace reactive compliance with continuous governance, intelligent automation, and AI-assisted decision-making.",
+    cta: "Book a Demo",
+  },
+};
+
+export const platformPage = {
+  metadata: {
+    title: "The Enterprise AI Control Plane — Govern Every AI Agent",
+    description:
+      "moderor.ai is the Enterprise AI Control Plane that governs AI agents, orchestrates autonomous workflows, and secures enterprise AI with complete visibility across every business process.",
+  },
+  breadcrumb: [
+    { label: "Home", href: routes.home },
+    { label: "Platform", current: true as const },
+  ],
+  hero: {
+    badge: "Enterprise AI Control Plane",
+    title: "The Enterprise AI",
+    titleHighlight: "Control Plane.",
+    subhead: "Govern Every AI Agent. Orchestrate Every Workflow. Control Every Decision.",
+    tagline:
+      "Govern AI agents, orchestrate autonomous workflows, and secure enterprise AI with complete visibility across every business process. moderor.ai enables organizations to operationalize AI confidently — from pilot projects to enterprise-scale production.",
+    primaryCta: "Book a Demo",
+    secondaryCta: "Explore Platform Architecture",
+    productsAnchor: "#capabilities",
+    nodes: [
+      { label: "Agent Management" },
+      { label: "Workflow Orchestration" },
+      { label: "Policy Engine" },
+      { label: "Multi-Model Routing" },
+      { label: "Human-in-the-Loop" },
+      { label: "Observability" },
+    ],
+  },
+  why: {
+    tag: "The Governance Gap",
+    title: "Enterprise AI is moving faster than",
+    titleHighlight: "enterprise governance.",
+    paragraphs: [
+      "Organizations are rapidly adopting copilots, large language models, and AI agents to improve productivity and automate business processes. But as AI adoption accelerates, operating AI securely and consistently across the enterprise becomes increasingly complex.",
+      "Without a centralized control layer, AI initiatives fragment into isolated experiments — each with its own risk profile, its own data exposure, and no shared accountability.",
+    ],
+    bulletsLabel: "Without a centralized control layer",
+    bullets: [
+      "AI agents operate independently across teams",
+      "Business policies are enforced inconsistently",
+      "Sensitive enterprise data becomes harder to govern",
+      "AI decisions lack transparency and accountability",
+      "Compliance and audit readiness become more challenging",
+    ],
+    closing:
+      "moderor.ai changes that. It provides the Enterprise AI Control Plane that governs, orchestrates, secures, and monitors AI across your organization — transforming isolated AI initiatives into a trusted enterprise capability.",
+  },
+  capabilities: {
+    label: "Platform Capabilities",
+    title: "Everything required to run",
+    titleHighlight: "enterprise AI.",
+    description:
+      "One platform to govern, orchestrate, secure, and observe AI across your organization — extending your existing investments rather than replacing them.",
+    items: [
+      {
+        num: "01",
+        name: "Agent Orchestration",
+        description:
+          "Coordinate autonomous AI agents that reason, collaborate, and execute complex business workflows across departments.",
+      },
+      {
+        num: "02",
+        name: "Enterprise Governance",
+        description:
+          "Apply enterprise policies, approval workflows, and operational guardrails consistently across every AI interaction.",
+      },
+      {
+        num: "03",
+        name: "Multi-Model Intelligence",
+        description:
+          "Leverage public, private, and fine-tuned AI models while maintaining centralized governance and intelligent model routing.",
+      },
+      {
+        num: "04",
+        name: "Knowledge Intelligence",
+        description:
+          "Ground AI responses in enterprise knowledge through RAG, vector search, graph intelligence, contextual memory, and semantic retrieval.",
+      },
+      {
+        num: "05",
+        name: "Enterprise Connectivity",
+        description:
+          "Securely connect AI agents with enterprise applications, APIs, databases, and documents using MCP and enterprise connectors.",
+      },
+      {
+        num: "06",
+        name: "Workflow Automation",
+        description:
+          "Transform repetitive business processes into governed autonomous workflows while maintaining complete operational control.",
+      },
+      {
+        num: "07",
+        name: "Human-in-the-Loop",
+        description:
+          "Ensure human oversight for business-critical decisions through configurable approval workflows and policy-driven review gates.",
+      },
+      {
+        num: "08",
+        name: "Enterprise Security",
+        description:
+          "Protect AI operations with role-based access, zero-trust principles, encryption, and secure execution boundaries.",
+      },
+      {
+        num: "09",
+        name: "Enterprise Observability",
+        description:
+          "Track every prompt, workflow, tool invocation, policy decision, and model response with complete operational visibility.",
+      },
+      {
+        num: "10",
+        name: "Deployment Flexibility",
+        description:
+          "Deploy wherever your business operates — public cloud, hybrid, private cloud, on-premises, or air-gapped infrastructure.",
+      },
+      {
+        num: "11",
+        name: "Lifecycle Management",
+        description:
+          "Manage AI agents from onboarding through production with versioning, governance, monitoring, telemetry, and optimization.",
+      },
+      {
+        num: "12",
+        name: "Explainability & Auditability",
+        description:
+          "Every AI decision, workflow, approval, and model response is fully traceable, explainable, and audit-ready.",
+      },
+    ],
+  },
+  outcomes: {
+    label: "Enterprise Impact",
+    title: "Transform enterprise AI into",
+    titleHighlight: "business value.",
+    rows: [
+      {
+        left: "Accelerate enterprise AI adoption",
+        right: "Govern AI with enterprise-grade security and compliance",
+      },
+      {
+        left: "Reduce operational complexity through centralized management",
+        right: "Increase transparency with complete AI observability",
+      },
+      {
+        left: "Reuse AI agents across departments to accelerate innovation",
+        right: "Scale AI confidently using a unified governance framework",
+      },
+    ],
+  },
+  architecture: {
+    eyebrow: "Platform Architecture",
+    headline: "One Platform.",
+    headlineAccent: "Complete Enterprise AI Control.",
+    description:
+      "Modern enterprises already have trusted investments in cloud, identity, security, and enterprise applications. moderor.ai extends — not replaces — your existing architecture, introducing a dedicated Enterprise AI Control Plane that governs how AI agents operate while integrating seamlessly with your ecosystem.",
+    left: {
+      title: "Consume",
+      groups: [
+        {
+          title: "User Roles",
+          items: [
+            { name: "AI Governance Lead", icon: "UserCog" },
+            { name: "Risk & Compliance", icon: "ShieldCheck" },
+          ],
+        },
+        {
+          title: "External Agents",
+          items: [
+            { name: "MS Copilot", logo: "/images/logos/copilot.svg" },
+            { name: "SF Agentforce", logo: "/images/logos/salesforce.svg" },
+            { name: "ServiceNow", logo: "/images/logos/servicenow.svg" },
+          ],
+        },
+      ],
+    },
+    right: {
+      title: "Connect",
+      groups: [
+        {
+          title: "Model Providers",
+          items: [
+            { name: "OpenAI", icon: "Atom" },
+            { name: "Claude", logo: "/images/logos/claude.svg" },
+            { name: "Gemini", logo: "/images/logos/gemini.svg" },
+            { name: "Mistral AI", logo: "/images/logos/mistral.svg" },
+            { name: "Hugging Face", logo: "/images/logos/huggingface.svg" },
+          ],
+        },
+        {
+          title: "Agent Tools",
+          items: [
+            { name: "Databases", icon: "Database" },
+            { name: "APIs", icon: "Webhook" },
+            { name: "File Systems", icon: "FolderTree" },
+          ],
+        },
+      ],
+    },
+    application: {
+      title: "Moderor Application",
+      items: ["Workflows", "Dashboards", "RBAC", "Audit Trail"],
+    },
+    core: {
+      title: "Orchestration & Governance Plane",
+      pillars: [
+        { name: "Agents", sub: "Reason · Plan · Act", icon: "Bot", chips: ["GRC", "Business", "Custom", "Library"] },
+        { name: "Models", sub: "Smart Routing", icon: "BrainCircuit", chips: ["Public", "On-Prem", "SLM", "Fine-tuned"] },
+        { name: "Knowledge", sub: "RAG & Memory", icon: "BookOpen", chips: ["Vector", "Graph", "Memory", "Context"] },
+        { name: "Connect", sub: "MCP & Tools", icon: "Plug", chips: ["Registry", "Servers", "A2A", "Secure"] },
+      ],
+    },
+    deployment: {
+      title: "Deployment Infrastructure",
+      items: [
+        { name: "AWS", logo: "/images/logos/aws.svg" },
+        { name: "Azure", logo: "/images/logos/azure.svg" },
+        { name: "GCP", logo: "/images/logos/gcp.svg" },
+        { name: "OCI", logo: "/images/logos/oracle.svg" },
+        { name: "On-Prem", icon: "Server" },
+      ],
+    },
+  },
+  principle: {
+    eyebrow: "Category Positioning",
+    headline: "AI Models Think.",
+    headlineAccent: "AI Agents Act.",
+    headlineEnd: "Moderor Governs.",
+    description:
+      "Foundation models generate intelligence and AI agents execute work — but moderor.ai governs how AI operates across your enterprise.",
+    descriptionLine2:
+      "Rather than replacing your existing AI investments, moderor extends them with enterprise-grade governance, orchestration, and observability.",
+    cycle: [
+      { label: "AI Models Think", sub: "Reason. Generate. Understand." },
+      { label: "AI Agents Act", sub: "Execute. Automate. Deliver." },
+      { label: "Moderor Governs", sub: "Control. Secure. Observe." },
+    ],
+    cards: [
+      {
+        description:
+          "Foundation models generate intelligence and agents execute work — but neither answers to enterprise policy on its own.",
+      },
+      {
+        description:
+          "moderor becomes the operational layer that transforms AI into secure, enterprise-scale business execution.",
+      },
+    ],
+  },
+  whyChoose: {
+    label: "Governed by Design",
+    title: "Enterprise AI that",
+    titleHighlight: "enterprises can trust.",
+    description:
+      "AI should accelerate innovation — not introduce operational risk. moderor.ai embeds governance into every stage of AI execution.",
+    items: [
+      {
+        name: "Zero Trust Security",
+        description:
+          "Protect every interaction with identity-aware access controls, encryption, and least-privilege security.",
+      },
+      {
+        name: "Policy Enforcement",
+        description:
+          "Apply business policies before, during, and after AI execution to ensure consistent governance.",
+      },
+      {
+        name: "Human Oversight",
+        description:
+          "Keep people in control of critical business decisions through configurable approval workflows.",
+      },
+      {
+        name: "Complete Auditability",
+        description:
+          "Capture every AI interaction, workflow execution, and approval with immutable audit trails.",
+      },
+      {
+        name: "Explainable AI",
+        description:
+          "Provide complete visibility into how AI decisions were made with transparent, traceable reasoning.",
+      },
+    ],
+  },
+  finalCta: {
+    title: "Govern Enterprise AI.",
+    titleHighlight: "Execute with Confidence.",
+    description:
+      "Move beyond isolated AI pilots. Build enterprise AI that is governed, secure, observable, and ready for production — through a unified Enterprise AI Control Plane.",
     cta: "Book a Demo",
   },
 };
