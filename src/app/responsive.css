@@ -76,24 +76,106 @@
 }
 
 /* ── Home hero ───────────────────────────────────────────────────── */
-/* The floating platform card is absolutely positioned + translated up on
-   desktop so it straddles the hero's bottom edge. On mobile/tablet that tall
-   stacked card reaches up and overlaps the headline, so we let it flow in
-   normal document order below the hero copy instead (no overlap). */
+/* Desktop: platform cards absolutely overlap the shell bottom edge.
+   Mobile/tablet: cards stay inside the dark shell in normal flow so
+   there is no white gap, then Outcomes follows the full hero section. */
 @media (max-width: 1023px) {
-  .home-hero-cards {
-    position: static;
-    transform: none;
-    margin-top: 1.5rem;
+  .home-hero {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1.25rem !important;
+    display: flow-root;
   }
 
-  .home-hero-shell,
+  .home-hero-stage {
+    display: block;
+  }
+
+  .home-hero-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 0 !important;
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 1.25rem;
+  }
+
   .home-hero-content {
     min-height: 0 !important;
+    flex: 0 0 auto;
+    padding-top: 2.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 
+  .home-hero-cards {
+    position: relative !important;
+    inset: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    flex: 0 0 auto;
+    width: 100%;
+    z-index: 10;
+    padding: 0 0.5rem;
+  }
+
+  .hero-curve-glow-wrap {
+    display: none;
+  }
+
+  .hero-cards-stage {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  .hero-card-float,
+  .hero-card-float-slow,
+  .hero-card-float-delay {
+    animation: none;
+  }
+
+  .outcomes-section {
+    position: relative;
+    z-index: 1;
+    padding-top: 2.25rem !important;
+  }
+}
+
+@media (max-width: 767px) {
   .home-hero-content {
-    padding-bottom: 2rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 0.375rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .home-hero-content .mt-8 {
+    margin-top: 1.5rem !important;
+  }
+
+  .home-hero-shell {
+    padding-bottom: 1rem;
+  }
+
+  .home-hero-cards {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .home-hero-cards .flex.flex-col {
+    gap: 0.75rem;
+  }
+
+  .hero-cards-stage {
+    padding-top: 0.375rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .hero-glass-deploy {
+    padding: 0.85rem !important;
+  }
+
+  .outcomes-section {
+    padding-top: 1.75rem !important;
   }
 }
 
@@ -102,22 +184,26 @@
     white-space: normal;
   }
 
-  .grc-hero-banner {
+  .grc-hero-banner,
+  .bom-hero-banner {
     min-height: 460px !important;
   }
 
-  .grc-hero-content {
+  .grc-hero-content,
+  .bom-hero-content {
     min-height: 460px !important;
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }
 
-  .grc-hero-copy h1 {
+  .grc-hero-copy h1,
+  .bom-hero-copy h1 {
     font-size: clamp(2rem, 9vw, 2.75rem) !important;
     line-height: 1.1;
   }
 
-  .grc-hero-description {
+  .grc-hero-description,
+  .bom-hero-description {
     font-size: 0.9375rem;
     line-height: 1.65;
   }
@@ -140,11 +226,13 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .grc-hero-banner {
+  .grc-hero-banner,
+  .bom-hero-banner {
     min-height: 500px !important;
   }
 
-  .grc-hero-content {
+  .grc-hero-content,
+  .bom-hero-content {
     min-height: 500px !important;
   }
 
@@ -216,10 +304,46 @@
 
 /* ── Frameworks zigzag ───────────────────────────────────────────── */
 @media (max-width: 1023px) {
+  .frameworks-layout {
+    gap: 2rem;
+  }
+
+  .frameworks-copy {
+    order: 1;
+  }
+
+  .frameworks-stage-wrap {
+    order: 2;
+  }
+
   .frameworks-tile-name,
   .frameworks-tile-type {
     white-space: normal;
     overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 767px) {
+  .frameworks-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .frameworks-stage {
+    overflow: visible;
+  }
+
+  .frameworks-stage-grid {
+    top: 0;
+    bottom: 0;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .frameworks-zigzag {
+    padding-top: 0.35rem;
+    padding-bottom: 1rem;
+    row-gap: 1.1rem;
   }
 }
 
@@ -418,14 +542,16 @@
 @media (max-width: 1023px) {
   /* keep hero visuals (bento cards, orbit) from bleeding past the screen */
   .aw-hero,
-  .grc-hero-banner {
+  .grc-hero-banner,
+  .bom-hero-banner {
     overflow-x: clip;
   }
 
   /* on stacked banners the copy (title + text + CTA) always leads,
      the product/suite visual follows below it (order works in grid + flex) */
   .aw-hero-copy,
-  .grc-hero-copy {
+  .grc-hero-copy,
+  .bom-hero-copy {
     order: -1;
   }
 }

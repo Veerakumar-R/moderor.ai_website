@@ -13,13 +13,14 @@ const LightRays = dynamic(() => import("./LightRays"), { ssr: false });
 
 export function Hero() {
   return (
-    <section className="home-hero bg-white px-5 pt-5 pb-40 sm:px-[50px] sm:pt-6 sm:pb-44 lg:pb-48">
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="home-hero-shell relative min-h-[660px] w-full overflow-visible rounded-[28px] bg-[#0c0600] sm:min-h-[720px] lg:min-h-[780px] lg:rounded-[36px]"
-      >
+    <section className="home-hero relative bg-white px-5 pt-5 pb-40 sm:px-[50px] sm:pt-6 sm:pb-44 lg:pb-48">
+      <div className="home-hero-stage relative w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="home-hero-shell relative min-h-[660px] w-full overflow-visible rounded-[28px] bg-[#0c0600] sm:min-h-[720px] lg:min-h-[780px] lg:rounded-[36px]"
+        >
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]">
           <div className="hero-warm-base" aria-hidden />
 
@@ -106,9 +107,9 @@ export function Hero() {
         </div>
 
         <HeroCurveGlow />
-
         <HeroPlatformCard />
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
