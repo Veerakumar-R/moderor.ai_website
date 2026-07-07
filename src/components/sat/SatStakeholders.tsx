@@ -2,20 +2,20 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ormStakeholders } from "@/content/operationalRiskManagement";
+import { satStakeholders } from "@/content/smartAlertTriage";
 import ShapeGrid from "../ShapeGrid";
 import { ScrollReveal } from "../ui/ScrollReveal";
-import { OrmIcon } from "./icons";
+import { SatIcon } from "./icons";
 import "@/components/grc-suite/grc-suite.css";
 import "@/components/infrastructure.css";
-import "./orm.css";
+import "./sat.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function OrmStakeholders() {
+export function SatStakeholders() {
   const reduceMotion = useReducedMotion();
   const [gridReady, setGridReady] = useState(false);
-  const { label, titleLead, titleHighlight, cards } = ormStakeholders;
+  const { label, titleLead, titleHighlight, cards } = satStakeholders;
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -69,7 +69,7 @@ export function OrmStakeholders() {
               </header>
             </ScrollReveal>
 
-            <div className="orm-sh-cards-grid">
+            <div className="sat-sh-cards-grid">
               {cards.map((card, i) => (
                 <motion.article
                   key={card.tagline}
@@ -82,11 +82,11 @@ export function OrmStakeholders() {
                   <div className="grc-product-icon aw-sh-grc-icon" aria-hidden>
                     <span className="grc-product-icon-glow" aria-hidden />
                     <span className="grc-product-icon-svg">
-                      <OrmIcon name={card.icon} size={22} strokeWidth={1.65} />
+                      <SatIcon name={card.icon} size={22} strokeWidth={1.65} />
                     </span>
                   </div>
-                  <h3 className="orm-sh-card-heading">{card.tagline}</h3>
-                  <p className="orm-sh-card-paragraph">{card.title}</p>
+                  <h3 className="sat-sh-card-heading">{card.tagline}</h3>
+                  <p className="sat-sh-card-paragraph">{card.title}</p>
                 </motion.article>
               ))}
             </div>

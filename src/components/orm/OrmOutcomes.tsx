@@ -2,63 +2,79 @@
 
 import { motion } from "framer-motion";
 import { ormOutcomes } from "@/content/operationalRiskManagement";
-import { MagicCard } from "../ui/magic-card";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { SectionLabel } from "../ui/SectionLabel";
 import { OrmIcon } from "./icons";
-import "@/components/grc-suite/grc-suite.css";
 import "./orm.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function OrmOutcomes() {
-  return (
-    <section className="aw-section section-alt aw-outcomes-section grc-products-section">
-      <div className="aw-inner">
-        <ScrollReveal duration={0.85}>
-          <SectionLabel>{ormOutcomes.eyebrow}</SectionLabel>
-        </ScrollReveal>
-        <ScrollReveal duration={0.85} delay={0.08}>
-          <h2 className="aw-h2">
-            {ormOutcomes.titleLead}
-            <span className="text-ember">{ormOutcomes.titleHighlight}</span>
-          </h2>
-        </ScrollReveal>
+const CAPABILITY_ROWS = [
+  ormOutcomes.cards.slice(0, 4),
+  ormOutcomes.cards.slice(4, 8),
+  ormOutcomes.cards.slice(8, 12),
+] as const;
 
-        <div className="aw-card-grid">
-          {ormOutcomes.cards.map((card, i) => (
-            <motion.div
-              key={card.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: (i % 3) * 0.08, duration: 0.6, ease: EASE }}
-              className="h-full"
-            >
-              <MagicCard
-                gradientColor="rgba(255, 122, 0, 0.22)"
-                gradientFrom="#ff7a00"
-                gradientTo="#ffb347"
-                gradientOpacity={0.55}
-                gradientSize={240}
-                surfaceColor="#0b0b0b"
-                borderFallback="rgba(255, 122, 0, 0.14)"
-                className="grc-product-card outcome-feature-card group h-full rounded-[20px]"
-              >
-                <span className="grc-product-card-surface" aria-hidden />
-                <span className="grc-product-card-glow" aria-hidden />
-                <div className="relative z-[1] flex h-full flex-1 flex-col p-6 lg:p-7">
-                  <div className="grc-product-icon" aria-hidden>
-                    <span className="grc-product-icon-glow" aria-hidden />
-                    <span className="grc-product-icon-svg">
-                      <OrmIcon name={card.icon} size={22} strokeWidth={1.75} />
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold tracking-tight lg:text-xl">{card.name}</h3>
-                  <p className="mt-4 text-sm font-normal leading-relaxed">{card.desc}</p>
-                </div>
-              </MagicCard>
-            </motion.div>
+export function OrmOutcomes() {
+  const { eyebrow, titleLead, titleHighlight, description, cards } = ormOutcomes;
+
+  return (
+    <section className="aw-section orm-outcomes-section" aria-labelledby="orm-outcomes-heading">
+      <div className="orm-outcomes-section-bg" aria-hidden />
+      <div className="orm-outcomes-section-grid" aria-hidden />
+      <div className="orm-outcomes-orb orm-outcomes-orb--1" aria-hidden />
+      <div className="orm-outcomes-orb orm-outcomes-orb--2" aria-hidden />
+      <div className="orm-outcomes-section-lines" aria-hidden />
+
+      <div className="aw-inner orm-outcomes-inner">
+        <div className="orm-outcomes-header">
+          <ScrollReveal duration={0.85} className="min-w-0">
+            <SectionLabel>{eyebrow}</SectionLabel>
+            <h2 className="aw-h2 orm-outcomes-title" id="orm-outcomes-heading">
+              {titleLead}
+              <span className="text-ember">{titleHighlight}</span>
+            </h2>
+            <div className="orm-outcomes-header-meta">
+              <span className="orm-outcomes-cap-pill">
+                <span className="orm-outcomes-cap-pill-dot" aria-hidden />
+                {cards.length} capabilities
+              </span>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal duration={0.85} delay={0.08} className="min-w-0">
+            <p className="orm-outcomes-desc">{description}</p>
+          </ScrollReveal>
+        </div>
+
+        <div className="orm-outcomes-card-grid">
+          {CAPABILITY_ROWS.map((row, rowIndex) => (
+            <div key={rowIndex} className="orm-outcomes-row">
+              {row.map((card, colIndex) => (
+                <motion.article
+                  key={card.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ delay: colIndex * 0.07, duration: 0.6, ease: EASE }}
+                  className="orm-outcomes-card group h-full"
+                >
+                    <span className="orm-outcomes-card-bloom" aria-hidden />
+                    <span className="orm-outcomes-card-shine" aria-hidden />
+                    <span className="orm-outcomes-card-accent" aria-hidden />
+
+                    <div className="orm-outcomes-card-inner">
+                      <span className="orm-outcomes-card-icon" aria-hidden>
+                        <span className="orm-outcomes-card-icon-ring" aria-hidden />
+                        <span className="orm-outcomes-card-icon-glow" aria-hidden />
+                        <OrmIcon name={card.icon} size={22} strokeWidth={1.65} />
+                      </span>
+                      <h3 className="orm-outcomes-card-title">{card.name}</h3>
+                      <p className="orm-outcomes-card-desc">{card.desc}</p>
+                    </div>
+                  </motion.article>
+              ))}
+            </div>
           ))}
         </div>
       </div>

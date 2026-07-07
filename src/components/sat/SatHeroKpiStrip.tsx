@@ -2,10 +2,10 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ormHero } from "@/content/operationalRiskManagement";
+import { satHero } from "@/content/smartAlertTriage";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { SectionLabel } from "../ui/SectionLabel";
-import "./orm.css";
+import "./sat.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -74,11 +74,11 @@ function KpiMetric({
   );
 }
 
-export function OrmHeroKpiStrip() {
-  const { kpiSection, kpis } = ormHero;
+export function SatHeroKpiStrip() {
+  const { kpiSection, kpis } = satHero;
 
   return (
-    <div className="aw-hero-kpi-section" aria-label="Operational Risk Management business outcomes">
+    <div className="aw-hero-kpi-section" aria-label="Smart Alert Triage business outcomes">
       <ScrollReveal duration={0.85}>
         <SectionLabel className="aw-hero-kpi-eyebrow">{kpiSection.eyebrow}</SectionLabel>
       </ScrollReveal>

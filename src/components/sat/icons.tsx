@@ -13,15 +13,19 @@ import {
   FileCheck2,
   FileSearch,
   FileText,
+  Gauge,
   GitBranch,
   Globe,
   Layers,
   LayoutDashboard,
   LineChart,
   ListChecks,
+  Lock,
+  MessageSquare,
   Network,
   NotebookPen,
   Radar,
+  RefreshCw,
   ScanEye,
   ScanSearch,
   Scale,
@@ -37,7 +41,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export const ormIcons: Record<string, LucideIcon> = {
+export const satIcons: Record<string, LucideIcon> = {
   Activity,
   BadgeCheck,
   BarChart3,
@@ -52,15 +56,19 @@ export const ormIcons: Record<string, LucideIcon> = {
   FileCheck2,
   FileSearch,
   FileText,
+  Gauge,
   GitBranch,
   Globe,
   Layers,
   LayoutDashboard,
   LineChart,
   ListChecks,
+  Lock,
+  MessageSquare,
   Network,
   NotebookPen,
   Radar,
+  RefreshCw,
   ScanEye,
   ScanSearch,
   Scale,
@@ -75,7 +83,7 @@ export const ormIcons: Record<string, LucideIcon> = {
   Zap,
 };
 
-export function OrmIcon({
+export function SatIcon({
   name,
   size = 20,
   strokeWidth = 1.75,
@@ -86,6 +94,6 @@ export function OrmIcon({
   strokeWidth?: number;
   className?: string;
 }) {
-  const Icon = ormIcons[name] ?? ShieldCheck;
+  const Icon = satIcons[name] ?? ShieldCheck;
   return <Icon size={size} strokeWidth={strokeWidth} className={className} aria-hidden />;
 }

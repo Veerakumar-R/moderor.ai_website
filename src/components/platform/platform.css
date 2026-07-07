@@ -403,6 +403,13 @@
   color: #6b625b;
 }
 
+.platform-why-visual-closing {
+  margin: 1.1rem 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #3f362f;
+}
+
 @media (max-width: 1023px) {
   .platform-why-visual {
     padding: 1rem;

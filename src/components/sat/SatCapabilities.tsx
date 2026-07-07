@@ -1,34 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ormCapabilities } from "@/content/operationalRiskManagement";
+import { satCapabilities } from "@/content/smartAlertTriage";
 import { ScrollReveal } from "../ui/ScrollReveal";
 import { SectionLabel } from "../ui/SectionLabel";
-import { OrmIcon } from "./icons";
-import { OrmSpotlightSilk } from "./OrmSpotlightSilk";
-import "./orm.css";
+import { SatIcon } from "./icons";
+import { SatSpotlightSilk } from "./SatSpotlightSilk";
+import "./sat.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function OrmCapabilities() {
-  const { cards, feature } = ormCapabilities;
+export function SatCapabilities() {
+  const { cards, feature } = satCapabilities;
 
   return (
     <section
-      id="orm-capabilities"
-      className="aw-capabilities-section orm-capabilities-section relative px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
+      id="sat-capabilities"
+      className="aw-capabilities-section sat-capabilities-section relative px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
       style={{ scrollMarginTop: "var(--site-header-height)" }}
     >
       <div className="aw-capabilities-bg" aria-hidden />
 
       <div className="relative z-[1] aw-inner">
         <ScrollReveal duration={0.85}>
-          <SectionLabel>{ormCapabilities.eyebrow}</SectionLabel>
+          <SectionLabel>{satCapabilities.eyebrow}</SectionLabel>
         </ScrollReveal>
         <ScrollReveal duration={0.85} delay={0.08}>
           <h2 className="aw-h2">
-            {ormCapabilities.titleLead}
-            <span className="text-ember">{ormCapabilities.titleHighlight}</span>
+            {satCapabilities.titleLead}
+            <span className="text-ember">{satCapabilities.titleHighlight}</span>
           </h2>
         </ScrollReveal>
 
@@ -41,12 +41,12 @@ export function OrmCapabilities() {
             className="aw-cap-spotlight"
             aria-label={feature.name}
           >
-            <OrmSpotlightSilk />
+            <SatSpotlightSilk />
             <div className="aw-cap-spotlight-glow" aria-hidden />
 
             <div className="aw-cap-spotlight-body">
               <span className="aw-cap-spotlight-icon">
-                <OrmIcon name={feature.icon} size={24} strokeWidth={1.65} />
+                <SatIcon name={feature.icon} size={24} strokeWidth={1.65} />
               </span>
               <h3 className="aw-cap-spotlight-title">{feature.name}</h3>
               <p className="aw-cap-spotlight-desc">{feature.desc}</p>
@@ -66,7 +66,7 @@ export function OrmCapabilities() {
                 <span className="aw-cap-stat-icon" aria-hidden>
                   <span className="aw-cap-stat-icon-shine" aria-hidden />
                   <span className="aw-cap-stat-icon-glow" aria-hidden />
-                  <OrmIcon name={card.icon} size={18} strokeWidth={1.65} className="aw-cap-stat-icon-svg" />
+                  <SatIcon name={card.icon} size={18} strokeWidth={1.65} className="aw-cap-stat-icon-svg" />
                 </span>
                 <div className="aw-cap-stat-copy">
                   <h4 className="aw-cap-stat-name">{card.name}</h4>

@@ -1,14 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ormPrinciple } from "@/content/operationalRiskManagement";
+import { satPrinciple } from "@/content/smartAlertTriage";
 import Waves from "@/components/Waves";
 import { PilotHeaderDeco } from "@/components/PilotHeaderDeco";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { OrmGovernanceVisual } from "./OrmGovernanceVisual";
+import { SatGovernanceVisual } from "./SatGovernanceVisual";
 import "@/components/pilot.css";
-import "./orm.css";
+import "./sat.css";
 
 const GOVERNANCE_WAVES_PROPS = {
   lineColor: "rgba(255, 160, 90, 0.38)",
@@ -37,7 +37,7 @@ function GovernanceCard({
   index,
   reduceMotion,
 }: {
-  item: (typeof ormPrinciple.items)[number];
+  item: (typeof satPrinciple.items)[number];
   index: number;
   reduceMotion: boolean;
 }) {
@@ -45,7 +45,7 @@ function GovernanceCard({
 
   return (
     <motion.article
-      className={`pilot-story-card pilot-story-card--${theme.variant} orm-governance-card`}
+      className={`pilot-story-card pilot-story-card--${theme.variant} sat-governance-card`}
       style={
         {
           "--pilot-card-bg": theme.gradient,
@@ -72,7 +72,7 @@ function GovernanceCard({
 
         <div className="pilot-story-scene-wrap">
           <div className="pilot-story-scene-content">
-            <OrmGovernanceVisual index={index} reduceMotion={reduceMotion} />
+            <SatGovernanceVisual index={index} reduceMotion={reduceMotion} />
           </div>
         </div>
 
@@ -82,16 +82,16 @@ function GovernanceCard({
   );
 }
 
-export function OrmPrinciple() {
+export function SatPrinciple() {
   const reduceMotion = useReducedMotion();
   const rm = !!reduceMotion;
-  const { label, title, description, items } = ormPrinciple;
+  const { label, title, description, items } = satPrinciple;
 
   return (
     <section
-      id="orm-governance"
-      className="pilot-section orm-governance-section relative border-b border-border px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
-      aria-labelledby="orm-governance-heading"
+      id="sat-governance"
+      className="pilot-section sat-governance-section relative border-b border-border px-5 pt-20 pb-20 sm:px-[50px] sm:pt-24 sm:pb-24 lg:pt-28 lg:pb-28"
+      aria-labelledby="sat-governance-heading"
     >
       <div className="pilot-mesh" aria-hidden />
       <div className="pilot-grid-bg" aria-hidden />
@@ -101,17 +101,17 @@ export function OrmPrinciple() {
           <div className="pilot-header-wrap">
             <PilotHeaderDeco />
             <header className="pilot-head-center">
-              <h2 id="orm-governance-heading" className="sr-only">
+              <h2 id="sat-governance-heading" className="sr-only">
                 {title}
               </h2>
               <SectionLabel className="pilot-section-label">{label}</SectionLabel>
-              <p className="pilot-headline orm-governance-title">{title}</p>
-              <p className="pilot-desc orm-governance-desc">{description}</p>
+              <p className="pilot-headline sat-governance-title">{title}</p>
+              <p className="pilot-desc sat-governance-desc">{description}</p>
             </header>
           </div>
         </ScrollReveal>
 
-        <div className="orm-governance-grid">
+        <div className="sat-governance-grid">
           {items.map((item, index) => (
             <GovernanceCard key={item.title} item={item} index={index} reduceMotion={rm} />
           ))}
