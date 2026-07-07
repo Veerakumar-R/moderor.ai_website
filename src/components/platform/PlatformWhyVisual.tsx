@@ -6,10 +6,12 @@ export function PlatformWhyVisual({
   title,
   bullets,
   badge = "Governance gap",
+  closing,
 }: {
-  title: string;
+  title?: string;
   bullets: string[];
   badge?: string;
+  closing?: string;
 }) {
   return (
     <div className="platform-why-visual">
@@ -22,7 +24,7 @@ export function PlatformWhyVisual({
             {badge}
           </div>
 
-          <h3 className="platform-why-visual-card-title">{title}</h3>
+          {title ? <h3 className="platform-why-visual-card-title">{title}</h3> : null}
         </div>
 
         <div className="platform-why-visual-card-body">
@@ -36,6 +38,7 @@ export function PlatformWhyVisual({
               </li>
             ))}
           </ul>
+          {closing ? <p className="platform-why-visual-closing">{closing}</p> : null}
         </div>
       </div>
     </div>

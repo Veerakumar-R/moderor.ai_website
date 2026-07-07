@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { OrmHero } from "@/components/orm/OrmHero";
-import { OrmNarrative } from "@/components/orm/OrmNarrative";
-import { OrmOutcomes } from "@/components/orm/OrmOutcomes";
+import { OrmBusinessChallenge } from "@/components/orm/OrmBusinessChallenge";
+import { OrmSolutionPositioning } from "@/components/orm/OrmSolutionPositioning";
+import { OrmBusinessOutcomes } from "@/components/orm/OrmBusinessOutcomes";
 import { OrmCapabilities } from "@/components/orm/OrmCapabilities";
 import { OrmStakeholders } from "@/components/orm/OrmStakeholders";
+import { OrmOutcomes } from "@/components/orm/OrmOutcomes";
+import { OrmIntegrations } from "@/components/orm/OrmIntegrations";
 import { OrmPrinciple } from "@/components/orm/OrmPrinciple";
 import { OrmFinalCTA } from "@/components/orm/OrmFinalCTA";
 
@@ -28,10 +31,13 @@ export default function OperationalRiskManagementPage() {
       <Navbar />
       <main className="pt-[var(--site-header-height)]">
         <OrmHero />
-        <OrmNarrative />
-        <OrmOutcomes />
+        <OrmBusinessChallenge />
+        <OrmSolutionPositioning />
+        <OrmBusinessOutcomes />
         <OrmCapabilities />
         <OrmStakeholders />
+        <OrmOutcomes />
+        <OrmIntegrations />
         <OrmPrinciple />
         <OrmFinalCTA />
       </main>

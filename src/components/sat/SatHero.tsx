@@ -2,19 +2,19 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { ormHero } from "@/content/operationalRiskManagement";
+import { satHero } from "@/content/smartAlertTriage";
 import { PillButton } from "../ui/PillButton";
-import { OrmHeroBento } from "./OrmHeroBento";
-import "./orm.css";
+import { SatHeroVisual } from "./SatHeroVisual";
+import "./sat.css";
 
 const LineWaves = dynamic(() => import("@/components/LineWaves"), { ssr: false });
 const SideRays = dynamic(() => import("@/components/SideRays"), { ssr: false });
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export function OrmHero() {
+export function SatHero() {
   return (
-    <section className="aw-hero" aria-labelledby="orm-hero-title">
+    <section className="aw-hero" aria-labelledby="sat-hero-title">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,31 +63,31 @@ export function OrmHero() {
             <div className="aw-hero-copy">
               <span className="aw-hero-badge">
                 <span className="aw-hero-badge-dot" aria-hidden />
-                {ormHero.badge}
+                {satHero.badge}
               </span>
 
-              <h1 id="orm-hero-title" className="aw-hero-title">
-                <span className="aw-hero-title-line">{ormHero.titleLine1}</span>
-                <span className="aw-hero-title-line">{ormHero.titleLine2}</span>
+              <h1 id="sat-hero-title" className="aw-hero-title">
+                <span className="aw-hero-title-line">{satHero.titleLine1}</span>
+                <span className="aw-hero-title-line">{satHero.titleLine2}</span>
               </h1>
 
-              <p className="aw-hero-desc">{ormHero.description}</p>
+              <p className="aw-hero-desc">{satHero.description}</p>
 
               <div className="aw-hero-cta-row">
-                <PillButton href="#orm-capabilities" variant="orange" showArrow>
-                  {ormHero.primaryCta}
+                <PillButton href="#sat-capabilities" variant="orange" showArrow>
+                  {satHero.primaryCta}
                 </PillButton>
                 <PillButton
-                  href="#orm-capabilities"
+                  href="#sat-capabilities"
                   variant="white"
                   className="border border-[#e8e8e8] shadow-none hover:bg-white"
                 >
-                  {ormHero.secondaryCta}
+                  {satHero.secondaryCta}
                 </PillButton>
               </div>
             </div>
 
-            <OrmHeroBento />
+            <SatHeroVisual />
           </div>
         </div>
       </motion.div>
