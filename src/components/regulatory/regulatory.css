@@ -1,0 +1,484 @@
+/* Regulatory Compliance — reuses Auditor Workbench visual system */
+@import "../auditor/auditor.css";
+
+/* Hero title — keep "with AI" on its own line; allow lead line to wrap naturally */
+.rc-hero-title .rc-hero-title-lead {
+  white-space: nowrap;
+}
+
+.rc-hero-title .rc-hero-title-accent {
+  white-space: nowrap;
+  margin-top: 0.06em;
+  color: #0a0a0a;
+}
+
+.rc-business-outcomes-section {
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+}
+
+.rc-business-outcomes-section .aw-hero-kpi-section {
+  padding-top: 0;
+}
+
+.rc-business-outcomes-section .aw-hero-kpi-wrap {
+  margin-top: 0;
+}
+
+.rc-intro-bullets-wrap {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: #f3f2f0;
+  border: 1px solid rgba(20, 16, 12, 0.06);
+}
+
+.rc-intro-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.rc-intro-bullets li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #5c5248;
+}
+
+.rc-intro-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ff7a00;
+}
+
+.rc-cap-header {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .rc-cap-header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+  }
+}
+
+.rc-cap-title {
+  margin-top: 0.75rem;
+}
+
+.rc-cap-desc {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--grey-light, #6b6b6b);
+}
+
+@media (min-width: 1024px) {
+  .rc-cap-desc {
+    padding-top: 2.35rem;
+  }
+}
+
+.rc-sh-header.infra-header {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+  max-width: none;
+  margin: 0 auto 2.75rem;
+  text-align: left;
+}
+
+@media (min-width: 1024px) {
+  .rc-sh-header.infra-header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem 3rem;
+  }
+}
+
+.rc-sh-header .infra-title {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.rc-stakeholders-content {
+  position: relative;
+  z-index: 2;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.rc-stakeholders-section .infra-shape-grid.rc-stakeholders-shape-grid,
+.rc-stakeholders-section .infra-shape-grid.rc-stakeholders-shape-grid .shapegrid-canvas {
+  pointer-events: none;
+}
+
+.rc-sh-description {
+  margin: 0;
+  max-width: none;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255, 236, 220, 0.78);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+@media (min-width: 1024px) {
+  .rc-sh-description {
+    padding-top: 2.35rem;
+  }
+}
+
+.rc-sh-cards-grid .infra-card.aw-sh-infra-card,
+.rc-sh-cards-grid .infra-card.aw-sh-infra-card .aw-sh-tagline,
+.rc-sh-cards-grid .infra-card.aw-sh-infra-card .aw-sh-card-title,
+.rc-sh-cards-grid .infra-card.aw-sh-infra-card .aw-sh-paragraph,
+.rc-stakeholders-section .infra-header,
+.rc-stakeholders-section .infra-label,
+.rc-stakeholders-section .infra-title {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Stakeholder grid: 8 cards in 2×4 layout on desktop */
+.rc-sh-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  align-items: start;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .rc-sh-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .rc-sh-cards-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(2),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(4),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(6),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(8) {
+    margin-top: 1.25rem;
+  }
+}
+
+/* Enterprise AI governance — pilot-section layout */
+.rc-governance-section .rc-governance-desc {
+  max-width: min(100%, 52rem);
+  font-size: clamp(15px, 1.35vw, 17px);
+}
+
+.rc-governance-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .rc-governance-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .rc-governance-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .rc-governance-grid > *:nth-child(5) {
+    grid-column: 2;
+  }
+
+  .rc-governance-grid > *:nth-child(6) {
+    grid-column: 3;
+  }
+}
+
+.rc-gov-scene-caption {
+  margin-top: 0.55rem;
+}
+
+.rc-gov-scene--enterprise .pilot-scene-panel--table {
+  display: flex;
+  flex-direction: column;
+}
+
+.rc-gov-scene-confidence strong {
+  font-size: 1.45rem;
+}
+
+/* Enterprise Integrations — platform outcomes layout */
+.rc-integrations-header {
+  display: grid;
+  gap: 1.25rem 2rem;
+  align-items: end;
+  text-align: left;
+}
+
+.rc-integrations-header-copy {
+  min-width: 0;
+}
+
+.rc-integrations-title {
+  white-space: normal;
+}
+
+.rc-integrations-title-line {
+  display: block;
+}
+
+.rc-integrations-title-line + .rc-integrations-title-line {
+  margin-top: 0.06em;
+}
+
+.rc-integrations-grid.platform-impact-grid {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+}
+
+@media (min-width: 768px) {
+  .rc-integrations-grid.platform-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rc-integrations-grid.platform-impact-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 1rem;
+  }
+}
+
+.rc-integration-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  min-height: 148px;
+  height: 100%;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.rc-integration-icon {
+  margin: 0 auto;
+}
+
+.rc-integration-label {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 1024px) {
+  .rc-integration-row {
+    min-height: 156px;
+    padding: 1.35rem 0.85rem;
+  }
+
+  .rc-integration-label {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+}
+
+.rc-integrations-desc {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  line-height: 1.7;
+  color: rgba(255, 246, 238, 0.72);
+}
+
+@media (min-width: 768px) {
+  .rc-integrations-header {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2rem 3rem;
+  }
+
+  .rc-integrations-desc {
+    justify-self: end;
+    max-width: 28rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rc-integrations-header {
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: 2.5rem 4rem;
+  }
+
+  .rc-integrations-desc {
+    max-width: 32rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .rc-integrations-section .grc-outcomes-card-content {
+    padding-bottom: 3.5rem;
+  }
+}
+
+.rc-integrations-section .grc-outcomes-card-content {
+  padding-bottom: 2.75rem;
+}
+
+/* ── Regulatory Compliance — responsive ───────────────────────────── */
+@media (max-width: 639px) {
+  .rc-hero-title .rc-hero-title-lead,
+  .rc-hero-title .rc-hero-title-accent {
+    white-space: normal;
+  }
+
+  .rc-hero .aw-hero-copy .aw-hero-cta-row {
+    width: 100%;
+  }
+
+  .rc-hero .aw-hero-copy .aw-hero-cta-row a {
+    flex: 1 1 auto;
+    min-width: min(100%, 11.5rem);
+    justify-content: center;
+  }
+
+  .rc-business-outcomes-section .aw-hero-kpi {
+    padding: 1.35rem 1rem;
+  }
+
+  .rc-business-outcomes-section .aw-hero-kpi-label {
+    font-size: 0.8125rem;
+    line-height: 1.35;
+  }
+
+  .rc-sh-header.infra-header {
+    margin-bottom: 2rem;
+  }
+
+  .rc-sh-cards-grid {
+    padding-bottom: 1.5rem;
+  }
+
+  .rc-integration-row {
+    min-height: 132px;
+    padding: 1.1rem 0.85rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .rc-hero .aw-hero-bento {
+    min-height: 250px;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .rc-hero .aw-bento-stack {
+    max-width: min(100%, 380px);
+  }
+
+  .rc-cap-desc,
+  .rc-sh-description {
+    padding-top: 0;
+  }
+
+  .rc-cap-header,
+  .rc-sh-header.infra-header,
+  .rc-integrations-header {
+    gap: 1rem;
+  }
+
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(2),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(4),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(6),
+  .rc-sh-cards-grid .infra-card.aw-sh-infra-card:nth-child(8) {
+    margin-top: 0;
+  }
+
+  .rc-integrations-section .grc-outcomes-dots {
+    opacity: 0.35;
+  }
+
+  .rc-governance-section .pilot-story-card,
+  .rc-governance-section .pilot-story-card-inner {
+    min-height: 0;
+  }
+
+  .rc-governance-section .pilot-story-scene-wrap,
+  .rc-governance-section .pilot-story-scene-content,
+  .rc-governance-section .pilot-scene {
+    min-height: 190px;
+  }
+
+  .rc-governance-section .pilot-story-card-inner {
+    padding: 1.15rem 1rem 1.1rem;
+  }
+
+  .rc-governance-section .pilot-story-title {
+    font-size: 1rem;
+  }
+
+  .rc-governance-section .pilot-story-tagline,
+  .rc-governance-section .pilot-story-desc {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 767px) {
+  .rc-integrations-header {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .rc-integrations-desc {
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .rc-integrations-section .grc-outcomes-card-content {
+    padding: 1.75rem 1.1rem 2rem;
+  }
+
+  .rc-stakeholders-section .infra-box-content {
+    padding: 1.75rem 1.1rem 2rem;
+  }
+
+  .rc-governance-section .pilot-story-scene-wrap,
+  .rc-governance-section .pilot-story-scene-content,
+  .rc-governance-section .pilot-scene {
+    min-height: 165px;
+  }
+
+  .rc-governance-grid {
+    margin-top: 2rem;
+  }
+}
+
+.rc-integration-label {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}

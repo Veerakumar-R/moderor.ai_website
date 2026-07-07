@@ -418,6 +418,10 @@
     gap: 0.85rem;
   }
 
+  .rc-integrations-grid.platform-impact-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
   .grc-ai-principle-cards {
     gap: 0.85rem;
   }

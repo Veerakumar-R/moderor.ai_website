@@ -5,9 +5,11 @@ import { CircleCheck } from "lucide-react";
 export function PlatformWhyVisual({
   title,
   bullets,
+  badge = "Governance gap",
 }: {
   title: string;
   bullets: string[];
+  badge?: string;
 }) {
   return (
     <div className="platform-why-visual">
@@ -17,7 +19,7 @@ export function PlatformWhyVisual({
         <div className="platform-why-visual-card-head">
           <div className="platform-why-visual-badge">
             <span className="platform-why-visual-badge-dot" aria-hidden />
-            Governance gap
+            {badge}
           </div>
 
           <h3 className="platform-why-visual-card-title">{title}</h3>
