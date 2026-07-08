@@ -29,6 +29,7 @@ const productRoutes: Record<string, string> = {
   "Smart Alert Triage": "/products/smart-alert-triage",
   "Regulatory Compliance": "/products/regulatory-compliance",
   "Operational Risk Management": "/products/operational-risk-management",
+  "Compliance IQ": "/products/compliance-iq",
   "AI Branch Audit": "/products/ai-branch-audit",
   // BOM Suite
   "HR Compliance": "/products/hr-compliance",

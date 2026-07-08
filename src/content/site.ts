@@ -120,8 +120,9 @@ export const navProducts = {
     "Risk Assessment",
     "Smart Alert Triage",
     "Regulatory Compliance",
-    "Operational Risk Management",
     "AI Branch Audit",
+    "Compliance IQ",
+    "Operational Risk Management",
   ],
   bom: [
     "HR Compliance",

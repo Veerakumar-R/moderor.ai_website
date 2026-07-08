@@ -1,20 +1,46 @@
 import type { Metadata } from "next";
-import { ProductHero } from "@/components/products/ProductHero";
-import { ContinuousComplianceMonitoringVisual } from "@/components/products/ContinuousComplianceMonitoringVisual";
+import { Navbar } from "@/components/Navbar";
+import { CcmHero } from "@/components/ccm/CcmHero";
+import { CcmBusinessChallenge } from "@/components/ccm/CcmBusinessChallenge";
+import { CcmSolutionPositioning } from "@/components/ccm/CcmSolutionPositioning";
+import { CcmBusinessOutcomes } from "@/components/ccm/CcmBusinessOutcomes";
+import { CcmCapabilities } from "@/components/ccm/CcmCapabilities";
+import { CcmStakeholders } from "@/components/ccm/CcmStakeholders";
+import { CcmOutcomes } from "@/components/ccm/CcmOutcomes";
+import { CcmIntegrations } from "@/components/ccm/CcmIntegrations";
+import { CcmPrinciple } from "@/components/ccm/CcmPrinciple";
+import { CcmFinalCTA } from "@/components/ccm/CcmFinalCTA";
 
 export const metadata: Metadata = {
-  title: "Continuous Compliance Monitoring | moderor.ai",
+  title: "Continuous Compliance Monitoring — AI-Powered GRC | moderor.ai",
   description:
-    "Continuous Compliance Monitoring (CCM) is Moderor's flagship GRC product — AI agents continuously evaluate enterprise assets across 74–106 control categories and 160+ sub-controls.",
+    "AI agents continuously evaluate enterprise assets across 74–106 control categories and 160+ sub-controls. Detect violations, automate remediation, and stay audit-ready every day.",
+  openGraph: {
+    title: "Continuous Compliance Monitoring — AI-Powered GRC | moderor.ai",
+    description:
+      "Continuously monitor IT assets, detect compliance violations in real time, and maintain audit-ready visibility across every control and framework.",
+    url: "https://moderor.ai/products/continuous-compliance-monitoring",
+    siteName: "moderor.ai",
+    type: "website",
+  },
 };
 
 export default function ContinuousComplianceMonitoringPage() {
   return (
-    <ProductHero
-      badge="GRC Suite · Product"
-      title="Every control. Every asset. Continuously."
-      description="AI agents continuously evaluate enterprise assets across 74–106 control categories with 160+ sub-controls spanning ITGC, GDPR, RBI, SOC 2, PCI DSS, DPDP and vendor access — extensible with your own rulesets."
-      visual={<ContinuousComplianceMonitoringVisual />}
-    />
+    <>
+      <Navbar />
+      <main className="pt-[var(--site-header-height)]">
+        <CcmHero />
+        <CcmBusinessChallenge />
+        <CcmSolutionPositioning />
+        <CcmBusinessOutcomes />
+        <CcmCapabilities />
+        <CcmStakeholders />
+        <CcmOutcomes />
+        <CcmIntegrations />
+        <CcmPrinciple />
+        <CcmFinalCTA />
+      </main>
+    </>
   );
 }
